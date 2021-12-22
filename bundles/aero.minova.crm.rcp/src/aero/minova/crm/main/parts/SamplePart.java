@@ -34,4 +34,8 @@ public class SamplePart {
 		browser.setUrl("http:/localhost:8082/test?x=" + text.getText());
 	}
 
+	public void refresh(String string) {
+		browser.setUrl("http:/localhost:8082/test?x=" + string);
+	}
+
 }

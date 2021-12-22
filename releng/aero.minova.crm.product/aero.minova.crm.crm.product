@@ -112,6 +112,7 @@
       <feature id="aero.minova.feature.jetty" installMode="root"/>
       <feature id="aero.minova.feature.crm" installMode="root"/>
       <feature id="aero.minova.feature.h2" installMode="root"/>
+      <feature id="aero.minova.feature.jpa" installMode="root"/>
    </features>
 
    <configurations>

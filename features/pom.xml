@@ -16,5 +16,6 @@
 		<module>aero.minova.feature.crm</module>
 		<module>aero.minova.feature.h2</module>
 		<module>aero.minova.feature.jetty</module>
+		<module>aero.minova.feature.jpa</module>
 	</modules>
 </project>

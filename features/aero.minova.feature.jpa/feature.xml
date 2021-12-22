@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="aero.minova.feature.crm"
-      label="Crm"
+      id="aero.minova.feature.jpa"
+      label="Jpa"
       version="0.0.1.qualifier">
 
    <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+      Libraries for JPA integration via eclipselink
    </description>
 
    <copyright url="http://www.example.com/copyright">
@@ -17,21 +17,35 @@
    </license>
 
    <plugin
-         id="aero.minova.crm.rcp"
+         id="jakarta.persistence-api"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.model"
+         id="org.eclipse.persistence.jpa.jpql"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.jpa.service"
+         id="org.eclipse.persistence.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.persistence.jpa"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.persistence.asm"
          download-size="0"
          install-size="0"
          version="0.0.0"
