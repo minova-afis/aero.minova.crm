@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Customer Relation Manager
-Bundle-SymbolicName: aero.minova.crm.main;singleton:=true
+Bundle-SymbolicName: aero.minova.crm.rcp;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: MINOVA Information Services GmbH
 Require-Bundle: javax.inject;bundle-version="0.0.0",

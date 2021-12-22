@@ -151,7 +151,6 @@
 		<module>features</module>
 		<module>releng</module>
 		<!--module>libs</module-->
-		<module>tests</module>
-
+		<!--module>tests</module-->
 	</modules>
 </project>

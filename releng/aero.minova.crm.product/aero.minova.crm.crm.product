@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="CRM" uid="CustomerRelationManager" id="aero.minova.crm.main.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.2.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="CRM" uid="CustomerRelationManager" id="aero.minova.crm.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.2.1.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -16,7 +16,7 @@
    <windowImages/>
 
    <splash
-      location="aero.minova.crm.crm" />
+      location="aero.minova.crm.main" />
    <launcher name="Customer Relation Manager">
       <macosx icon="/aero.minova.crm.product/crm.icns"/>
       <win useIco="true">

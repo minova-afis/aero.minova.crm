@@ -3,18 +3,18 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.window.main" label="Customer Relation Manager" width="500" height="400">
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.partstack.sample">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.part.sample" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/aero.minova.crm.main/icons/wiki.png"/>
+        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.part.sample" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/wiki.png"/>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.file.open" label="Start localhost" iconURI="platform:/plugin/aero.minova.crm.main/icons/open-file.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.save" label="Save" iconURI="platform:/plugin/aero.minova.crm.main/icons/save-file.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.file.open" label="Start localhost" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/open-file.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.save" label="Save" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/save-file.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_donoMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.menu.server" label="Server">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_ffC-UGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledmenuitem.startdatabase" label="Start Database" iconURI="platform:/plugin/aero.minova.crm.main/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_ji7qgGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledmenuitem.startwebserver" label="Start Webserver" iconURI="platform:/plugin/aero.minova.crm.main/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_ffC-UGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledmenuitem.startdatabase" label="Start Database" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_ji7qgGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledmenuitem.startwebserver" label="Start Webserver" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
@@ -22,20 +22,20 @@
     </mainMenu>
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.trimbar.top">
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.trimbar.top.save" iconURI="platform:/plugin/aero.minova.crm.main/icons/save-file.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.trimbar.top.open" iconURI="platform:/plugin/aero.minova.crm.main/icons/open-file.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.trimbar.top.save" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/save-file.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.trimbar.top.open" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/open-file.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_tCdgAGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.toolbarseparator.0"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tiOlMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem." label="" iconURI="platform:/plugin/aero.minova.crm.main/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_wUG28GCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.main/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_tiOlMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem." label="" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_wUG28GCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
       </children>
     </trimBars>
   </children>
-  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.quitCommand" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.openCommand" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.saveCommand" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.aboutCommand" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_zy9jcGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.0" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
-  <handlers xmi:id="_4ycVMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.1" contributionURI="bundleclass://aero.minova.crm.main/aero.minova.crm.main.handlers.StartWebserverHandler" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
+  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.quitCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.openCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.saveCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.aboutCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_zy9jcGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
+  <handlers xmi:id="_4ycVMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.1" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartWebserverHandler" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
