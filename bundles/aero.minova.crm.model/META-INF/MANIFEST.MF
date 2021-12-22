@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model
+Bundle-SymbolicName: aero.minova.crm.model
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: aero.minova.crm.model.Activator
+Require-Bundle: org.eclipse.persistence.jpa;bundle-version="3.0.2",
+ jakarta.persistence-api;bundle-version="3.0.0",
+ org.eclipse.osgi
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: aero.minova.crm.model
+Bundle-ActivationPolicy: lazy
+Export-Package: aero.minova.crm.model.jpa,
+ aero.minova.crm.model.jpa.service
