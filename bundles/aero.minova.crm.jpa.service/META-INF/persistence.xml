@@ -5,6 +5,8 @@
 	<persistence-unit name="h2-eclipselink" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>aero.minova.crm.model.jpa.Todo</class>
+		<class>aero.minova.crm.model.jpa.Ticket</class>
+		<class>aero.minova.crm.model.jpa.MarkupText</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="jakarta.persistence.jdbc.url" value="jdbc:h2:~/vogellaDB" />

@@ -11,12 +11,14 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletHandler;
 
 import aero.minova.crm.main.jetty.ExempleServlet;
+import aero.minova.crm.main.jetty.TicketServlet;
 import aero.minova.crm.main.parts.SamplePart;
+import aero.minova.crm.model.jpa.service.TicketService;
 
 public class StartWebserverHandler {
 	@Execute
-	public void execute(MApplication application, @Optional MPart part) throws Exception {
-		if (application.getContext().get("CRM-SERVER") == null) startServer(application);
+	public void execute(MApplication application, @Optional MPart part, TicketService ticketService) throws Exception {
+		if (application.getContext().get("CRM-SERVER") == null) startServer(application, ticketService);
 
 		if (part == null) return;
 		if (!(part.getObject() instanceof SamplePart)) return;
@@ -25,7 +27,7 @@ public class StartWebserverHandler {
 		samplePart.refresh();
 	}
 
-	private void startServer(MApplication application) throws Exception {
+	private void startServer(MApplication application, TicketService ticketService) throws Exception {
 		Server server = new Server();
 		ServerConnector connector = new ServerConnector(server);
 		connector.setPort(8082);
@@ -35,6 +37,7 @@ public class StartWebserverHandler {
 		server.setHandler(servletHandler);
 
 		servletHandler.addServletWithMapping(ExempleServlet.class, "/test");
+		servletHandler.addServletWithMapping(TicketServlet.class, "/ticket");
 
 		server.start();
 

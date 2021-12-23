@@ -10,6 +10,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
+import aero.minova.crm.model.jpa.Ticket;
+
 public class SamplePart {
 
 	private Browser browser;
@@ -36,6 +38,10 @@ public class SamplePart {
 
 	public void refresh(String string) {
 		browser.setUrl("http:/localhost:8082/test?x=" + string);
+	}
+
+	public void refresh(Ticket ticket) {
+		browser.setUrl("http:/localhost:8082/ticket?id=" + ticket.getId());
 	}
 
 }
