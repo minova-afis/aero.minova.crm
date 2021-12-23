@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="aero.minova.feature.crm"
-      label="Crm"
+      id="aero.minova.feature.xmlrpc"
+      label="XML-RPC"
       version="0.0.1.qualifier">
 
    <description url="http://www.example.com/description">
@@ -17,28 +17,21 @@
    </license>
 
    <plugin
-         id="aero.minova.crm.rcp"
+         id="wrapped.org.apache.xmlrpc.xmlrpc-common"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.model"
+         id="wrapped.org.apache.xmlrpc.xmlrpc-client"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.jpa.service"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="aero.minova.crm.trac"
+         id="wrapped.org.apache.ws.commons.util.ws-commons-util"
          download-size="0"
          install-size="0"
          version="0.0.0"

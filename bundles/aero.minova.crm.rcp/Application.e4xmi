@@ -15,6 +15,7 @@
       <children xsi:type="menu:Menu" xmi:id="_donoMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.menu.server" label="Server">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_ffC-UGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledmenuitem.startdatabase" label="Start Database" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_ji7qgGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledmenuitem.startwebserver" label="Start Webserver" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_vrvD0GMsEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handledmenuitem.checkticket" label="Check Ticket" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/ticket.png" command="_ySfqsGMsEeyhZse0SZ9tZQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
@@ -25,6 +26,7 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.trimbar.top.save" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/save-file.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handleditem.trimbar.top.open" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/open-file.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_tCdgAGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.toolbarseparator.0"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6Lcj8GMsEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handledtoolitem." label="" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/ticket.png" tooltip="Check Ticket" command="_ySfqsGMsEeyhZse0SZ9tZQ"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_tiOlMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem." label="" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_wUG28GCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
       </children>
@@ -36,6 +38,7 @@
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.aboutCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_zy9jcGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
   <handlers xmi:id="_4ycVMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.1" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartWebserverHandler" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
+  <handlers xmi:id="_AgFKwGMtEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.CheckTicketHandler" command="_ySfqsGMsEeyhZse0SZ9tZQ"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -52,6 +55,7 @@
   <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
   <commands xmi:id="_WmQ_wGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.command.startdatabase" commandName="startDatabase"/>
   <commands xmi:id="_ZaZ7UGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.command.startwebserver" commandName="startWebserver"/>
+  <commands xmi:id="_ySfqsGMsEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.command.checkticket" commandName="checkTicket"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

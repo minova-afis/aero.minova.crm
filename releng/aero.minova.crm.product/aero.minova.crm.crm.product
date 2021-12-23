@@ -113,6 +113,7 @@
       <feature id="aero.minova.feature.crm" installMode="root"/>
       <feature id="aero.minova.feature.h2" installMode="root"/>
       <feature id="aero.minova.feature.jpa" installMode="root"/>
+      <feature id="aero.minova.feature.xmlrpc" installMode="root"/>
    </features>
 
    <configurations>
