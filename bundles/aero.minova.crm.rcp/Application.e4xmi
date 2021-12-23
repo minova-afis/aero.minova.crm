@@ -31,6 +31,11 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_wUG28GCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
       </children>
     </trimBars>
+    <trimBars xmi:id="_x6h0YGPhEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.trimbar.0" side="Bottom">
+      <children xsi:type="menu:ToolBar" xmi:id="_zmHMcGPhEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.toolbar.0">
+        <children xsi:type="menu:ToolControl" xmi:id="_0XaGgGPhEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.toolcontrol.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.jobs.ProgressMonitorControl"/>
+      </children>
+    </trimBars>
   </children>
   <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.quitCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.handler.openCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>

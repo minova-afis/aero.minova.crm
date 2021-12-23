@@ -87,4 +87,8 @@ public class SamplePart {
 		browser.setUrl("http:/localhost:8082/ticket?id=" + ticket.getId());
 	}
 
+	public void showLastTicket() {
+		browser.setUrl("http:/localhost:8082/ticket?id=unknown");
+	}
+
 }
