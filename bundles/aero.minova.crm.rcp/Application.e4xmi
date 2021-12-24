@@ -29,6 +29,7 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_6Lcj8GMsEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handledtoolitem." label="" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/ticket.png" tooltip="Check Ticket" command="_ySfqsGMsEeyhZse0SZ9tZQ"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_tiOlMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem." label="" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/database.png" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_wUG28GCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/web-hosting.png" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Q4RrsGPyEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/synchronize.png" tooltip="Download Wiki" command="_dgrWoGPyEeyhZse0SZ9tZQ"/>
       </children>
     </trimBars>
     <trimBars xmi:id="_x6h0YGPhEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.trimbar.0" side="Bottom">
@@ -44,6 +45,7 @@
   <handlers xmi:id="_zy9jcGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_WmQ_wGCxEeyxAOsh4cJ3Fw"/>
   <handlers xmi:id="_4ycVMGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.handler.1" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartWebserverHandler" command="_ZaZ7UGCxEeyxAOsh4cJ3Fw"/>
   <handlers xmi:id="_AgFKwGMtEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.CheckTicketHandler" command="_ySfqsGMsEeyhZse0SZ9tZQ"/>
+  <handlers xmi:id="_aARK8GPyEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.handler.1" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.DownloadWikiHandler" command="_dgrWoGPyEeyhZse0SZ9tZQ"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.main.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -61,6 +63,7 @@
   <commands xmi:id="_WmQ_wGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.command.startdatabase" commandName="startDatabase"/>
   <commands xmi:id="_ZaZ7UGCxEeyxAOsh4cJ3Fw" elementId="aero.minova.crm.main.command.startwebserver" commandName="startWebserver"/>
   <commands xmi:id="_ySfqsGMsEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.command.checkticket" commandName="checkTicket"/>
+  <commands xmi:id="_dgrWoGPyEeyhZse0SZ9tZQ" elementId="aero.minova.crm.rcp.command.downloadwiki" commandName="downloadWikiCommand"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

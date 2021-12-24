@@ -14,5 +14,6 @@ Import-Package: aero.minova.crm.model.jpa,
  org.osgi.service.component.annotations;version="1.3.0"
 Service-Component: OSGI-INF/aero.minova.jpa.service.MarkupTextServiceImpl.xml,
  OSGI-INF/aero.minova.jpa.service.TicketServiceImpl.xml,
- OSGI-INF/aero.minova.jpa.service.TodoServiceImpl.xml
+ OSGI-INF/aero.minova.jpa.service.TodoServiceImpl.xml,
+ OSGI-INF/aero.minova.jpa.service.WikiServiceImpl.xml
 Bundle-ActivationPolicy: lazy

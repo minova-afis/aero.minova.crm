@@ -50,7 +50,7 @@ public class CheckTicketHandler {
 					ticket.setSummary((String) tracTicket.getSummary());
 					MarkupText mt = new MarkupText();
 					mt.setMarkup((String) tracTicket.getDescription());
-					mt.setHtml(server.wikiTiHtml(tracTicket.getDescription()));
+					mt.setHtml(server.wikiToHtml(tracTicket.getDescription()));
 					subMonitor.worked(1);
 					ticket.setDescription(mt);
 					ticketService.saveTicket(ticket);

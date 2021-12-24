@@ -1,0 +1,92 @@
+package aero.minova.crm.main.jobs;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Optional;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.Job;
+
+import aero.minova.crm.model.jpa.MarkupText;
+import aero.minova.crm.model.jpa.WikiPage;
+import aero.minova.crm.model.jpa.service.WikiService;
+import aero.minova.trac.domain.Server;
+
+public class DownloadWikiJob extends Job {
+
+	private Server tracServer;
+	private WikiService wikiService;
+
+	public DownloadWikiJob(Server tracServer, WikiService wikiService) {
+		super("Synchronize Wiki");
+		this.tracServer = tracServer;
+		this.wikiService = wikiService;
+	}
+
+	@Override
+	protected IStatus run(IProgressMonitor monitor) {
+		SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+
+		subMonitor.worked(5);
+		List<String> pageNames = tracServer.listWikiPages();
+		subMonitor.setWorkRemaining(pageNames.size() + 1);
+		subMonitor.worked(1);
+
+		for (String path : pageNames) {
+			checkWikiPage(path);
+			subMonitor.worked(1);
+		}
+
+		return Status.OK_STATUS;
+	}
+
+	private void checkWikiPage(String pagename) {
+		try {
+			Optional<WikiPage> pageOptional = wikiService.getWikiPage(pagename);
+			if (pageOptional.isPresent() && pageOptional.get().getLastModified() != null) return;
+		} catch (Exception e) {
+			System.out.println(e);
+			return;
+		}
+
+		MarkupText mt = new MarkupText();
+		WikiPage page = new WikiPage();
+		page.setPath(pagename);
+		page.setDescription(mt);
+
+		try {
+			Hashtable<String, ?> infos = tracServer.getPageInfo(pagename);
+			Date lastModified = (Date) infos.get("lastModified");
+			if (lastModified != null) {
+				@SuppressWarnings("deprecation")
+				Instant i = lastModified.toInstant().minusSeconds(lastModified.getTimezoneOffset() * 60);
+				LocalDateTime ldt = LocalDateTime.ofInstant(i, ZoneId.of("UTC"));
+				page.setLastModified(ldt);
+			}
+			page.setLastUser((String) infos.get("author"));
+			page.setVersion((Integer) infos.get("version"));
+			page.setComment((String) infos.get("comment"));
+		} catch (Exception e) {}
+		mt.setMarkup(tracServer.getPage(pagename));
+
+		try {
+			mt.setHtml(tracServer.getPageHTML(pagename));
+			if (mt.getHtml().length() > 1000000) {
+				// Kann nicht mehr sauber in der Datenabnk gespeichert werden
+				mt.setHtml(null);
+			}
+		} catch (Exception e) {
+			mt.setHtml(null);
+		}
+
+		wikiService.saveWikiPage(page);
+	}
+
+}

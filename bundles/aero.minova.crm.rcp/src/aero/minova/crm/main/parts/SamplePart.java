@@ -69,7 +69,7 @@ public class SamplePart {
 			ticket.setSummary((String) tracTicket.getSummary());
 			MarkupText mt = new MarkupText();
 			mt.setMarkup((String) tracTicket.getDescription());
-			mt.setHtml(server.wikiTiHtml(tracTicket.getDescription()));
+			mt.setHtml(server.wikiToHtml(tracTicket.getDescription()));
 			ticket.setDescription(mt);
 			ticketService.saveTicket(ticket);
 			refresh(ticket);

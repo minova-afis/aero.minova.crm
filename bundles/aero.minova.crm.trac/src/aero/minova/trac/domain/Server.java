@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import org.apache.xmlrpc.client.XmlRpcClient;
@@ -146,7 +147,7 @@ public class Server {
 	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
 	 * @return {@link Wiki}
 	 */
-	public String wikiTiHtml(String wikiText) {
+	public String wikiToHtml(String wikiText) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		String html = wiki.wikiToHtml(wikiText);
 		return html;
@@ -201,11 +202,28 @@ public class Server {
 		}
 	}
 
-	// //theoretisches Löschen eines Tickets mit übergebener Nummer
-	// public void deleteTicket(int id){
-	//
-	// org.lustin.trac.xmlprc.Ticket ticket = (org.lustin.trac.xmlprc.Ticket) trackerDynamicProxy.newInstance(org.lustin.trac.xmlprc.Ticket.class);
-	// ticket.delete(id);
-	//
-	// }
+	public List<String> listWikiPages() {
+		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
+		Vector<?> pageList = wiki.getAllPages();
+		Vector<String> pageNames = new Vector<>();
+		for (Object object : pageList) {
+			pageNames.add((String) object);
+		}
+		return pageNames;
+	}
+
+	public String getPage(String pagename) {
+		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
+		return wiki.getPage(pagename);
+	}
+
+	public String getPageHTML(String pagename) {
+		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
+		return wiki.getPageHTML(pagename);
+	}
+
+	public Hashtable<String, ?> getPageInfo(String pagename) {
+		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
+		return wiki.getPageInfo(pagename);
+	}
 }
