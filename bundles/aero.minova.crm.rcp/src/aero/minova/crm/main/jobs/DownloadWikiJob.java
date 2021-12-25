@@ -17,16 +17,16 @@ import org.eclipse.core.runtime.jobs.Job;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.WikiPage;
 import aero.minova.crm.model.jpa.service.WikiService;
-import aero.minova.trac.domain.Server;
+import aero.minova.trac.TracService;
 
 public class DownloadWikiJob extends Job {
 
-	private Server tracServer;
+	private TracService tracService;
 	private WikiService wikiService;
 
-	public DownloadWikiJob(Server tracServer, WikiService wikiService) {
+	public DownloadWikiJob(TracService tracService, WikiService wikiService) {
 		super("Synchronize Wiki");
-		this.tracServer = tracServer;
+		this.tracService = tracService;
 		this.wikiService = wikiService;
 	}
 
@@ -35,7 +35,7 @@ public class DownloadWikiJob extends Job {
 		SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
 
 		subMonitor.worked(5);
-		List<String> pageNames = tracServer.listWikiPages();
+		List<String> pageNames = tracService.listWikiPages();
 		subMonitor.setWorkRemaining(pageNames.size() + 1);
 		subMonitor.worked(1);
 
@@ -62,7 +62,7 @@ public class DownloadWikiJob extends Job {
 		page.setDescription(mt);
 
 		try {
-			Hashtable<String, ?> infos = tracServer.getPageInfo(pagename);
+			Hashtable<String, ?> infos = tracService.getPageInfo(pagename);
 			Date lastModified = (Date) infos.get("lastModified");
 			if (lastModified != null) {
 				@SuppressWarnings("deprecation")
@@ -74,10 +74,10 @@ public class DownloadWikiJob extends Job {
 			page.setVersion((Integer) infos.get("version"));
 			page.setComment((String) infos.get("comment"));
 		} catch (Exception e) {}
-		mt.setMarkup(tracServer.getPage(pagename));
+		mt.setMarkup(tracService.getPage(pagename));
 
 		try {
-			mt.setHtml(tracServer.getPageHTML(pagename));
+			mt.setHtml(tracService.getPageHTML(pagename));
 			if (mt.getHtml().length() > 1000000) {
 				// Kann nicht mehr sauber in der Datenabnk gespeichert werden
 				mt.setHtml(null);

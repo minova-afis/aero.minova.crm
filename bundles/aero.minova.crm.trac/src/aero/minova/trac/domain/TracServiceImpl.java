@@ -11,45 +11,33 @@ import java.util.Vector;
 
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
+import org.osgi.service.component.annotations.Component;
 
+import aero.minova.trac.TracService;
 import aero.minova.trac.xmlprc.TrackerDynamicProxy;
 
 /**
  * @author saak
  * @since 12.0.0
  */
-public class Server {
-	private static Server server = null;
+@Component(service = TracService.class)
+public class TracServiceImpl implements TracService {
 	private TrackerDynamicProxy trackerDynamicProxy = null;
 
-	public static Server getInstance() {
-		// FIXME
-		return getInstance("bugzilla", "123wilfried");
-	}
-
-	public static Server getInstance(String username, String password) {
-		// falls (noch) keine Instanz vorhanden ist, erstelle eine
-		// FIXME falls sich username / password ändern, bleibt die Instanz gleich
-		if (server == null) {
-			try {
-				Server newServer = new Server();
-				XmlRpcClientConfigImpl conf = new XmlRpcClientConfigImpl();
-				conf.setBasicUserName(username);
-				conf.setBasicPassword(password);
-				conf.setServerURL(new URL("https://trac.minova.com/trac/minova/login/xmlrpc"));
-
-				XmlRpcClient client = new XmlRpcClient();
-				client.setConfig(conf);
-
-				newServer.trackerDynamicProxy = new TrackerDynamicProxy(client);
-				server = newServer;
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-				server = null;
-			}
+	public TracServiceImpl() {
+		XmlRpcClientConfigImpl conf = new XmlRpcClientConfigImpl();
+		conf.setBasicUserName("bugzilla");
+		conf.setBasicPassword("123wilfried");
+		try {
+			conf.setServerURL(new URL("https://trac.minova.com/trac/minova/login/xmlrpc"));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		}
 
-		return server;
+		XmlRpcClient client = new XmlRpcClient();
+		client.setConfig(conf);
+
+		trackerDynamicProxy = new TrackerDynamicProxy(client);
 	}
 
 	/**
@@ -140,13 +128,6 @@ public class Server {
 		return newWiki;
 	}
 
-	/**
-	 * Liest den Inhalt der angegebenen Wiki-Seite
-	 * 
-	 * @param wikiAddress
-	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
-	 * @return {@link Wiki}
-	 */
 	public String wikiToHtml(String wikiText) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		String html = wiki.wikiToHtml(wikiText);
@@ -198,7 +179,6 @@ public class Server {
 			ticket.update(newTicket.getId(), text, ht, false);
 		} catch (Exception e) {
 			e.printStackTrace();
-			server = null;
 		}
 	}
 
@@ -225,5 +205,14 @@ public class Server {
 	public Hashtable<String, ?> getPageInfo(String pagename) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		return wiki.getPageInfo(pagename);
+	}
+
+	private static TracServiceImpl tracServiceImpl = null;
+
+	protected static TracServiceImpl getInstance() {
+		if (tracServiceImpl != null) return tracServiceImpl;
+
+		tracServiceImpl = new TracServiceImpl();
+		return tracServiceImpl;
 	}
 }

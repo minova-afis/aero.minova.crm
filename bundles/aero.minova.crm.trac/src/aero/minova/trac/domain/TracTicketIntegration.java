@@ -216,7 +216,7 @@ public class TracTicketIntegration {
 	 * @return true, falls das Ticket aktualisiert werden konnte.
 	 */
 	public boolean setDetail(String summary, int ticketNumber, String text) {
-		Server server = Server.getInstance();
+		TracServiceImpl server = TracServiceImpl.getInstance();
 		Ticket changeTicket = server.getTicket(ticketNumber);
 
 		if (changeTicket == null) {
@@ -240,7 +240,7 @@ public class TracTicketIntegration {
 	public boolean hasEnglish(int ticketNumber) {
 		boolean hasLanguage = hasLang;
 
-		Server server = Server.getInstance();
+		TracServiceImpl server = TracServiceImpl.getInstance();
 		Ticket langTicket = server.getTicket(ticketNumber);
 
 		if (langTicket == null) {
@@ -262,7 +262,7 @@ public class TracTicketIntegration {
 	public boolean usesEnglish(int ticketNumber, String ticketSummary) {
 		boolean kommtVor = false;
 
-		Server server = Server.getInstance();
+		TracServiceImpl server = TracServiceImpl.getInstance();
 		Ticket langTicket = server.getTicket(ticketNumber);
 
 		if (langTicket.getDescription().equals(ticketSummary)) {
@@ -299,7 +299,7 @@ public class TracTicketIntegration {
 	 *            Eindeutige Ticket-Nummer
 	 */
 	public void setTicketNumber(final int tracNumber) {
-		final Server server = Server.getInstance();
+		final TracServiceImpl server = TracServiceImpl.getInstance();
 		setTicket(server.getTicket(tracNumber));
 	}
 }

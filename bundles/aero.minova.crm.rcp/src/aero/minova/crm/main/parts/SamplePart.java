@@ -19,7 +19,7 @@ import aero.minova.crm.main.jetty.TicketServlet;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.jpa.service.TicketService;
-import aero.minova.trac.domain.Server;
+import aero.minova.trac.TracService;
 
 public class SamplePart {
 
@@ -31,6 +31,9 @@ public class SamplePart {
 
 	@Inject
 	TicketService ticketService;
+
+	@Inject
+	TracService tracService;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
@@ -61,15 +64,13 @@ public class SamplePart {
 			Ticket ticket = null;
 			aero.minova.trac.domain.Ticket tracTicket = null;
 
-			Server server = Server.getInstance();
-
-			tracTicket = server.getTicket(id);
+			tracTicket = tracService.getTicket(id);
 			ticket = new aero.minova.crm.model.jpa.Ticket();
 			ticket.setId(id);
 			ticket.setSummary((String) tracTicket.getSummary());
 			MarkupText mt = new MarkupText();
 			mt.setMarkup((String) tracTicket.getDescription());
-			mt.setHtml(server.wikiToHtml(tracTicket.getDescription()));
+			mt.setHtml(tracService.wikiToHtml(tracTicket.getDescription()));
 			ticket.setDescription(mt);
 			ticketService.saveTicket(ticket);
 			refresh(ticket);

@@ -49,7 +49,7 @@ public class Ticket {
 
 	public Milestone getMilestone() {
 		if (milestone == null && milestoneName != null && !milestoneName.isEmpty()) {
-			milestone = Server.getInstance().getMilestone(milestoneName);
+			milestone = TracServiceImpl.getInstance().getMilestone(milestoneName);
 		}
 		return milestone;
 	}
@@ -111,13 +111,13 @@ public class Ticket {
 		if (wikiAddress == null) {
 			return null;
 		} else if (wiki == null) {
-			wiki = Server.getInstance().getWiki(wikiAddress);
+			wiki = TracServiceImpl.getInstance().getWiki(wikiAddress);
 		}
 		return wiki;
 	}
 
 	public void update(String text) {
-		Server.getInstance().updateTicket(this, text);
+		TracServiceImpl.getInstance().updateTicket(this, text);
 	}
 
 	@Override

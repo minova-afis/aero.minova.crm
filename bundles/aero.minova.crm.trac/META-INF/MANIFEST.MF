@@ -9,5 +9,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: wrapped.org.apache.xmlrpc.xmlrpc-client;bundle-version="3.1.3",
  wrapped.org.apache.xmlrpc.xmlrpc-common;bundle-version="3.1.3",
  wrapped.org.apache.ws.commons.util.ws-commons-util;bundle-version="1.0.2"
-Export-Package: aero.minova.trac.domain,
+Export-Package: aero.minova.trac,
+ aero.minova.trac.domain,
  aero.minova.trac.xmlprc
+Import-Package: org.osgi.service.component.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/aero.minova.trac.domain.TracServiceImpl.xml

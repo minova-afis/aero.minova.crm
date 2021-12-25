@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="aero.minova.trac.domain.TracServiceImpl">
+   <service>
+      <provide interface="aero.minova.trac.TracService"/>
+   </service>
+   <implementation class="aero.minova.trac.domain.TracServiceImpl"/>
+</scr:component>

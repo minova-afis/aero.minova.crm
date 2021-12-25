@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="CRM" uid="CustomerRelationManager" id="aero.minova.crm.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.2.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="CRM" uid="CustomerRelationManager" id="aero.minova.crm.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.0.1.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>

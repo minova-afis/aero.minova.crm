@@ -1,4 +1,4 @@
- 
+
 package aero.minova.crm.main.parts;
 
 import javax.annotation.PostConstruct;
@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.layout.FormAttachment;
@@ -17,6 +18,11 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 
+import aero.minova.crm.main.jobs.LoadTicketJob;
+import aero.minova.crm.model.jpa.Ticket;
+import aero.minova.crm.model.jpa.service.TicketService;
+import aero.minova.trac.TracService;
+
 public class TicketPart {
 	private Text summaryText;
 	private Browser browser;
@@ -26,13 +32,26 @@ public class TicketPart {
 	private TabFolder tabFolder;
 	private TabItem tbtmBeschreibung;
 
+	MPart part;
+	private Ticket ticket;
+	private int ticketId = -1;
+
 	@Inject
-	public TicketPart() {
-		
-	}
-	
+	private TicketService ticketService;
+
+	@Inject
+	private TracService tracService;
+
+	@Inject
+	public TicketPart() {}
+
 	@PostConstruct
-	public void postConstruct(Composite parent) {
+	public void postConstruct(Composite parent, MPart part) {
+		this.part = part;
+		try {
+			ticketId = Integer.parseInt(part.getLabel().substring(1));
+		} catch (Exception e) {}
+
 		parent.setLayout(new FormLayout());
 
 		summaryText = new Text(parent, SWT.BORDER);
@@ -90,7 +109,6 @@ public class TicketPart {
 		browser.setLayoutData(fd_browser);
 
 		// Layout
-		int margin = 10;
 		FormData fd;
 
 		fd = new FormData();
@@ -99,18 +117,32 @@ public class TicketPart {
 		fd.top = new FormAttachment(0, 10);
 		summaryText.setLayoutData(fd);
 
+		if (ticket == null) {
+			LoadTicketJob job = new LoadTicketJob(tracService, ticketService, ticketId, this);
+			job.schedule();
+		}
 	}
-	
-	
-	
+
 	@Focus
 	public void onFocus() {
-		
+		descriptionText.forceFocus();
 	}
-	
-	
+
 	@Persist
 	public void save() {
-		
+		ticketService.saveTicket(ticket);
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+		update();
+	}
+
+	/**
+	 * Es wurde ein neues Ticket gesetzt und muss jetzt angezeigt werden.
+	 */
+	private void update() {
+		// TODO Auto-generated method stub
+
 	}
 }

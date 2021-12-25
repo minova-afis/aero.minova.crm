@@ -13,15 +13,18 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 
 import aero.minova.crm.main.jobs.DownloadWikiJob;
 import aero.minova.crm.model.jpa.service.WikiService;
-import aero.minova.trac.domain.Server;
+import aero.minova.trac.TracService;
 
 public class DownloadWikiHandler {
 	@Inject
 	UISynchronize sync;
 
+	@Inject
+	TracService tracService;
+
 	@Execute
 	public void execute(WikiService wikiService, @Optional MPart part) {
-		Job job = new DownloadWikiJob(Server.getInstance(), wikiService);
+		Job job = new DownloadWikiJob(tracService, wikiService);
 		job.addJobChangeListener(new JobChangeAdapter() {
 			@Override
 			public void done(IJobChangeEvent event) {

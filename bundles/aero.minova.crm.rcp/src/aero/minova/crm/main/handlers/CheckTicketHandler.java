@@ -17,7 +17,7 @@ import aero.minova.crm.main.jetty.TicketServlet;
 import aero.minova.crm.main.parts.SamplePart;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.service.TicketService;
-import aero.minova.trac.domain.Server;
+import aero.minova.trac.TracService;
 import aero.minova.trac.domain.Ticket;
 
 public class CheckTicketHandler {
@@ -25,10 +25,12 @@ public class CheckTicketHandler {
 	@Inject
 	UISynchronize sync;
 
+	@Inject
+	TracService tracService;
+
 	@Execute
 	public void execute(TicketService ticketService, @Optional MPart part) {
 		Job job = new Job("Load Ticket 5228") {
-
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				aero.minova.crm.model.jpa.Ticket ticket = null;
@@ -41,8 +43,7 @@ public class CheckTicketHandler {
 
 				if (ticketOptional.isEmpty()) {
 					Ticket tracTicket = null;
-					Server server = Server.getInstance();
-					tracTicket = server.getTicket(5228);
+					tracTicket = tracService.getTicket(5228);
 					subMonitor.worked(1);
 
 					ticket = new aero.minova.crm.model.jpa.Ticket();
@@ -50,7 +51,7 @@ public class CheckTicketHandler {
 					ticket.setSummary((String) tracTicket.getSummary());
 					MarkupText mt = new MarkupText();
 					mt.setMarkup((String) tracTicket.getDescription());
-					mt.setHtml(server.wikiToHtml(tracTicket.getDescription()));
+					mt.setHtml(tracService.wikiToHtml(tracTicket.getDescription()));
 					subMonitor.worked(1);
 					ticket.setDescription(mt);
 					ticketService.saveTicket(ticket);
