@@ -8,14 +8,14 @@ import java.util.regex.Pattern;
  * @author wild
  * @since 12.0.0
  */
-public class Ticket {
+public class TracTicket {
 	private int id; // #:
 	private String description; // description:
-	private Milestone milestone = null; // milestone:
+	private TracMilestone milestone = null; // milestone:
 	private String milestoneName;
 	private String keywords; // keywords:
 	private Object summary; // summary:
-	private Wiki wiki = null;
+	private TracWikiPage wiki = null;
 	private String wikiAddress;
 	private Pattern keywordPattern = Pattern.compile("([a-zA-Z\\-_0-9]*)");
 
@@ -47,14 +47,14 @@ public class Ticket {
 		this.description = description;
 	}
 
-	public Milestone getMilestone() {
+	public TracMilestone getMilestone() {
 		if (milestone == null && milestoneName != null && !milestoneName.isEmpty()) {
 			milestone = TracServiceImpl.getInstance().getMilestone(milestoneName);
 		}
 		return milestone;
 	}
 
-	public void setMilestone(Milestone milestone) {
+	public void setMilestone(TracMilestone milestone) {
 		this.milestone = milestone;
 	}
 
@@ -107,7 +107,7 @@ public class Ticket {
 		return summary;
 	}
 
-	public Wiki getWiki() {
+	public TracWikiPage getWiki() {
 		if (wikiAddress == null) {
 			return null;
 		} else if (wiki == null) {

@@ -1,4 +1,4 @@
-package aero.minova.crm.main.jetty;
+package aero.minova.crm.service.http.servlets;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ public class ExempleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setStatus(200);
-		resp.getWriter().println("<html><head>Hallo</head><body><h1>Header</h1>");
+		resp.getWriter().println("<html><body><h1>Header</h1>");
 		resp.getWriter().println("<p>Es ist " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyy HH:mm:ss", req.getLocale())) + "</p>");
 		for (Entry<String, String[]> entry : req.getParameterMap().entrySet()) {
 			String key = entry.getKey();

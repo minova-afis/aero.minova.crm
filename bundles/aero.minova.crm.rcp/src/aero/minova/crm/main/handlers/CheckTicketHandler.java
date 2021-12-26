@@ -13,12 +13,11 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 
-import aero.minova.crm.main.jetty.TicketServlet;
 import aero.minova.crm.main.parts.SamplePart;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.service.jpa.TicketService;
 import aero.minova.trac.TracService;
-import aero.minova.trac.domain.Ticket;
+import aero.minova.trac.domain.TracTicket;
 
 public class CheckTicketHandler {
 
@@ -33,17 +32,18 @@ public class CheckTicketHandler {
 		Job job = new Job("Load Ticket 5228") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
+				int ticketId = 5228;
 				aero.minova.crm.model.jpa.Ticket ticket = null;
 
 				SubMonitor subMonitor = SubMonitor.convert(monitor, 4);
 				subMonitor.worked(0);
 
-				java.util.Optional<aero.minova.crm.model.jpa.Ticket> ticketOptional = ticketService.getTicket(5228);
+				java.util.Optional<aero.minova.crm.model.jpa.Ticket> ticketOptional = ticketService.getTicket(ticketId);
 				subMonitor.worked(1);
 
 				if (ticketOptional.isEmpty()) {
-					Ticket tracTicket = null;
-					tracTicket = tracService.getTicket(5228);
+					TracTicket tracTicket = null;
+					tracTicket = tracService.getTicket(ticketId);
 					subMonitor.worked(1);
 
 					ticket = new aero.minova.crm.model.jpa.Ticket();
@@ -66,9 +66,8 @@ public class CheckTicketHandler {
 
 				SamplePart samplePart = (SamplePart) part.getObject();
 
-				TicketServlet.setLastTicket(ticket);
 				sync.asyncExec(() -> {
-					samplePart.showLastTicket();
+					samplePart.showTicket(ticketId);
 				});
 
 				monitor.done();

@@ -3,8 +3,8 @@ package aero.minova.trac;
 import java.util.Hashtable;
 import java.util.List;
 
-import aero.minova.trac.domain.Ticket;
-import aero.minova.trac.domain.Wiki;
+import aero.minova.trac.domain.TracTicket;
+import aero.minova.trac.domain.TracWikiPage;
 
 public interface TracService {
 
@@ -14,9 +14,9 @@ public interface TracService {
 
 	public Hashtable<String, ?> getPageInfo(String pagename);
 
-	public Ticket getTicket(int id);
+	public TracTicket getTicket(int id);
 
-	public Wiki getWiki(String wikiAddress);
+	public TracWikiPage getWiki(String wikiAddress);
 
 	public List<String> listWikiPages();
 
@@ -25,7 +25,7 @@ public interface TracService {
 	 * 
 	 * @param wikiAddress
 	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
-	 * @return {@link Wiki}
+	 * @return {@link TracWikiPage}
 	 */
 	public String wikiToHtml(String wikiText);
 }

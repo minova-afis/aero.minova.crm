@@ -47,14 +47,14 @@ public class TracServiceImpl implements TracService {
 	 *            Ticketnummer
 	 * @return null, wenn das Ticket nicht geladen werden konnte; sonst das gefudene Ticket
 	 */
-	public Ticket getTicket(int id) {
+	public TracTicket getTicket(int id) {
 		return getTicket(id, false);
 	}
 
-	public Ticket getTicket(int id, boolean debug) {
+	public TracTicket getTicket(int id, boolean debug) {
 		aero.minova.trac.xmlprc.Ticket ticket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Ticket.class);
 
-		Ticket newTicket = new Ticket();
+		TracTicket newTicket = new TracTicket();
 		try {
 			Vector<?> details = ticket.get(id);
 			// @SuppressWarnings("unused")
@@ -85,11 +85,11 @@ public class TracServiceImpl implements TracService {
 		return newTicket;
 	}
 
-	public Milestone getMilestone(String milestoneName) {
+	public TracMilestone getMilestone(String milestoneName) {
 		aero.minova.trac.xmlprc.Ticket.Milestone milestone = (aero.minova.trac.xmlprc.Ticket.Milestone) trackerDynamicProxy
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Milestone.class);
 
-		Milestone newMilestone = new Milestone();
+		TracMilestone newMilestone = new TracMilestone();
 		try {
 			Hashtable<String, ?> attributes = milestone.get(milestoneName);
 			newMilestone.setName(milestoneName);
@@ -109,12 +109,12 @@ public class TracServiceImpl implements TracService {
 	 * 
 	 * @param wikiAddress
 	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
-	 * @return {@link Wiki}
+	 * @return {@link TracWikiPage}
 	 */
-	public Wiki getWiki(String wikiAddress) {
+	public TracWikiPage getWiki(String wikiAddress) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 
-		Wiki newWiki = new Wiki(wikiAddress);
+		TracWikiPage newWiki = new TracWikiPage(wikiAddress);
 		try {
 			String content = wiki.getPage(wikiAddress);
 			if (content == null) {
@@ -138,11 +138,11 @@ public class TracServiceImpl implements TracService {
 	 * Schreibt den Inhalt auf die angegebene Wiki-Seite.
 	 * 
 	 * @param internalWiki
-	 *            Objekt der internen {@link Wiki}-Klasse
+	 *            Objekt der internen {@link TracWikiPage}-Klasse
 	 * @author wild
 	 * @since 11.0.0
 	 */
-	public void setWiki(Wiki internalWiki) {
+	public void setWiki(TracWikiPage internalWiki) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 
 		// null ist nicht zulässig...
@@ -157,7 +157,7 @@ public class TracServiceImpl implements TracService {
 	}
 
 	// theoretisches Update eines Tickets
-	public void updateTicket(Ticket newTicket, String text) {
+	public void updateTicket(TracTicket newTicket, String text) {
 		aero.minova.trac.xmlprc.Ticket ticket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Ticket.class);
 
 		try {

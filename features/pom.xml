@@ -17,6 +17,7 @@
 		<module>aero.minova.feature.h2</module>
 		<module>aero.minova.feature.jetty</module>
 		<module>aero.minova.feature.jpa</module>
+		<module>aero.minova.feature.markdown</module>
 		<module>aero.minova.feature.xmlrpc</module>
 	</modules>
 </project>

@@ -12,6 +12,7 @@ import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.service.jpa.TicketService;
 import aero.minova.trac.TracService;
+import aero.minova.trac.domain.TracTicket;
 
 public class LoadTicketJob extends Job {
 
@@ -37,7 +38,7 @@ public class LoadTicketJob extends Job {
 			return Status.OK_STATUS;
 		}
 
-		aero.minova.trac.domain.Ticket tracTicket = tracServer.getTicket(ticketId);
+		TracTicket tracTicket = tracServer.getTicket(ticketId);
 
 		if (tracTicket == null) {
 			ticketPart.setTicket(null);

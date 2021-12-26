@@ -13,7 +13,7 @@ public class TracTicketIntegration {
 	public static final int TICKET_OK = 1;
 	public static final int TICKET_INCOMPLETE = 2;
 
-	private Ticket ticket;
+	private TracTicket ticket;
 
 	private final HashMap<String, String> values = new HashMap<>(5);
 	private final Pattern sisPattern = Pattern.compile(
@@ -37,7 +37,7 @@ public class TracTicketIntegration {
 	 * nachgeschaut, ob wir Daten für die Abrechnung finden.
 	 */
 	private void analyseKeyWords() {
-		final Wiki wiki = ticket.getWiki();
+		final TracWikiPage wiki = ticket.getWiki();
 		try {
 			final String content = wiki.getContent();
 			final Matcher sisMatcher = sisPattern.matcher(content);
@@ -51,7 +51,7 @@ public class TracTicketIntegration {
 	 * Diese Methode soll die Abrechnungsdaten aus dem Milestone laden
 	 */
 	private void analyseMilestone() {
-		final Milestone milestone = ticket.getMilestone();
+		final TracMilestone milestone = ticket.getMilestone();
 		try {
 			final String description = milestone.getDescription();
 			final Matcher sisMatcher = sisPattern.matcher(description);
@@ -217,7 +217,7 @@ public class TracTicketIntegration {
 	 */
 	public boolean setDetail(String summary, int ticketNumber, String text) {
 		TracServiceImpl server = TracServiceImpl.getInstance();
-		Ticket changeTicket = server.getTicket(ticketNumber);
+		TracTicket changeTicket = server.getTicket(ticketNumber);
 
 		if (changeTicket == null) {
 			// server.deleteTicket(ticketNumber);
@@ -241,7 +241,7 @@ public class TracTicketIntegration {
 		boolean hasLanguage = hasLang;
 
 		TracServiceImpl server = TracServiceImpl.getInstance();
-		Ticket langTicket = server.getTicket(ticketNumber);
+		TracTicket langTicket = server.getTicket(ticketNumber);
 
 		if (langTicket == null) {
 			hasLanguage = false;
@@ -263,7 +263,7 @@ public class TracTicketIntegration {
 		boolean kommtVor = false;
 
 		TracServiceImpl server = TracServiceImpl.getInstance();
-		Ticket langTicket = server.getTicket(ticketNumber);
+		TracTicket langTicket = server.getTicket(ticketNumber);
 
 		if (langTicket.getDescription().equals(ticketSummary)) {
 			kommtVor = true;
@@ -278,7 +278,7 @@ public class TracTicketIntegration {
 	 * @param ticket
 	 *            Das Ticket, von welchen die Daten neu geladen werden.
 	 */
-	public void setTicket(final Ticket ticket) {
+	public void setTicket(final TracTicket ticket) {
 		this.ticket = ticket;
 		if (ticket != null) {
 			values.put("OrderReceiverKey", null);
@@ -294,7 +294,7 @@ public class TracTicketIntegration {
 	/**
 	 * Setzt die Ticketnummer. Wenn der Trac-Server das Ticket kennt, wird das Ticket gesetzt.
 	 * 
-	 * @see #setTicket(Ticket)
+	 * @see #setTicket(TracTicket)
 	 * @param tracNumber
 	 *            Eindeutige Ticket-Nummer
 	 */

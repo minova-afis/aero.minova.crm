@@ -6,7 +6,7 @@ import java.util.Date;
  * @author wild
  * @since 12.0.0
  */
-public class Milestone {
+public class TracMilestone {
 	private String description;
 	private String name;
 	private Date due;

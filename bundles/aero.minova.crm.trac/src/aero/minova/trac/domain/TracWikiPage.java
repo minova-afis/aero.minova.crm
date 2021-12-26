@@ -6,7 +6,7 @@ package aero.minova.trac.domain;
  * @author wild
  * @since 12.0.0
  */
-public class Wiki {
+public class TracWikiPage {
 	private String address;
 	private String content;
 
@@ -14,7 +14,7 @@ public class Wiki {
 	 * @param address
 	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
 	 */
-	Wiki(String address) {
+	TracWikiPage(String address) {
 		this.address = address;
 	}
 
