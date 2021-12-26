@@ -1,11 +1,15 @@
 
 package aero.minova.crm.main.parts;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -18,6 +22,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 
+import aero.minova.crm.http.HttpService;
 import aero.minova.crm.main.jobs.LoadTicketJob;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.service.jpa.TicketService;
@@ -43,11 +48,20 @@ public class TicketPart {
 	private TracService tracService;
 
 	@Inject
-	public TicketPart() {}
+	MApplication application;
+
+	@Inject
+	HttpService httpService;
+
+	@Inject
+	public TicketPart() {
+		// httpService.start(application, 8082);
+	}
 
 	@PostConstruct
-	public void postConstruct(Composite parent, MPart part) {
+	public void postConstruct(MApplication application, Composite parent, MPart part) {
 		this.part = part;
+		this.application = application;
 		try {
 			ticketId = Integer.parseInt(part.getLabel().substring(1));
 		} catch (Exception e) {}
@@ -121,6 +135,13 @@ public class TicketPart {
 			LoadTicketJob job = new LoadTicketJob(tracService, ticketService, ticketId, this);
 			job.schedule();
 		}
+
+		descriptionText.addModifyListener(e -> refreshMarkdown());
+	}
+
+	private void refreshMarkdown() {
+		httpService.start(application, 8082);
+		browser.setUrl("http:/localhost:8082/markdown?text=" + URLEncoder.encode(descriptionText.getText(), StandardCharsets.UTF_8));
 	}
 
 	@Focus
@@ -141,8 +162,5 @@ public class TicketPart {
 	/**
 	 * Es wurde ein neues Ticket gesetzt und muss jetzt angezeigt werden.
 	 */
-	private void update() {
-		// TODO Auto-generated method stub
-
-	}
+	private void update() {}
 }

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.jface.widgets.TextFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -15,7 +16,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import aero.minova.crm.main.jetty.TicketServlet;
+import aero.minova.crm.http.HttpService;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.service.jpa.TicketService;
@@ -35,6 +36,12 @@ public class SamplePart {
 	@Inject
 	TracService tracService;
 
+	@Inject
+	HttpService httpService;
+
+	@Inject
+	MApplication application;
+
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
@@ -47,6 +54,7 @@ public class SamplePart {
 
 		browser = new Browser(parent, SWT.NONE);
 		browser.setLayoutData(new GridData(GridData.FILL_BOTH));
+		refresh();
 	}
 
 	public void refresh() {
@@ -58,7 +66,7 @@ public class SamplePart {
 			int id = Integer.parseInt(ticketId);
 			Optional<Ticket> ticketOptional = ticketService.getTicket(id);
 			if (ticketOptional.isPresent()) {
-				refresh(ticketOptional.get());
+				showTicket(ticketOptional.get());
 				return;
 			}
 			Ticket ticket = null;
@@ -73,23 +81,25 @@ public class SamplePart {
 			mt.setHtml(tracService.wikiToHtml(tracTicket.getDescription()));
 			ticket.setDescription(mt);
 			ticketService.saveTicket(ticket);
-			refresh(ticket);
+			showTicket(ticket);
 			return;
 		}
+		httpService.start(application, 8082);
 		browser.setUrl("http:/localhost:8082/test?x=" + text.getText());
 	}
 
 	public void refresh(String string) {
+		httpService.start(application, 8082);
 		browser.setUrl("http:/localhost:8082/test?x=" + string);
 	}
 
-	public void refresh(Ticket ticket) {
-		TicketServlet.setLastTicket(ticket);
+	public void showTicket(Ticket ticket) {
+		httpService.start(application, 8082);
 		browser.setUrl("http:/localhost:8082/ticket?id=" + ticket.getId());
 	}
 
-	public void showLastTicket() {
-		browser.setUrl("http:/localhost:8082/ticket?id=unknown");
+	public void showTicket(int ticketId) {
+		httpService.start(application, 8082);
+		browser.setUrl("http:/localhost:8082/ticket?id=" + ticketId);
 	}
-
 }

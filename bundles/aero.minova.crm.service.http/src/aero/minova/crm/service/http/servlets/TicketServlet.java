@@ -1,4 +1,4 @@
-package aero.minova.crm.main.jetty;
+package aero.minova.crm.service.http.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
