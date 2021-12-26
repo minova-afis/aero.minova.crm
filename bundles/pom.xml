@@ -15,7 +15,7 @@
 	<modules>
 		<module>aero.minova.crm.rcp</module>
 		<module>aero.minova.crm.model</module>
-		<module>aero.minova.crm.jpa.service</module>
+		<module>aero.minova.crm.service.jpa</module>
 		<module>aero.minova.crm.trac</module>
 	</modules>
 </project>

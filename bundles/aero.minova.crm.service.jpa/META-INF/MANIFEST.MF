@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Service
-Bundle-SymbolicName: aero.minova.crm.jpa.service
+Bundle-SymbolicName: aero.minova.crm.service.jpa
 Bundle-Version: 0.0.1.qualifier
 Automatic-Module-Name: aero.minova.crm.jpa.service
 Bundle-RequiredExecutionEnvironment: JavaSE-11

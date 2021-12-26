@@ -31,14 +31,14 @@
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.jpa.service"
+         id="aero.minova.crm.trac"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.trac"
+         id="aero.minova.crm.service.jpa"
          download-size="0"
          install-size="0"
          version="0.0.0"
