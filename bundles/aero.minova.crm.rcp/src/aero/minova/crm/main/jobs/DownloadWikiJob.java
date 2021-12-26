@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.jobs.Job;
 
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.jpa.service.WikiService;
+import aero.minova.crm.model.service.jpa.WikiService;
 import aero.minova.trac.TracService;
 
 public class DownloadWikiJob extends Job {

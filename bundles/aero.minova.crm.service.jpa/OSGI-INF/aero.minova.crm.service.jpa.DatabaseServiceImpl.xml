@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activateComponent" deactivate="deactivateComponent" name="aero.minova.crm.service.jpa.DatabaseServiceImpl">
+   <service>
+      <provide interface="aero.minova.crm.service.jpa.DatabaseService"/>
+   </service>
+   <implementation class="aero.minova.crm.service.jpa.DatabaseServiceImpl"/>
+</scr:component>

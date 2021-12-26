@@ -11,4 +11,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: aero.minova.crm.model
 Bundle-ActivationPolicy: lazy
 Export-Package: aero.minova.crm.model.jpa,
- aero.minova.crm.model.jpa.service
+ aero.minova.crm.model.service.jpa

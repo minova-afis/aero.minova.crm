@@ -16,7 +16,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import aero.minova.crm.main.jetty.TicketServlet;
 import aero.minova.crm.main.parts.SamplePart;
 import aero.minova.crm.model.jpa.MarkupText;
-import aero.minova.crm.model.jpa.service.TicketService;
+import aero.minova.crm.model.service.jpa.TicketService;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.Ticket;
 

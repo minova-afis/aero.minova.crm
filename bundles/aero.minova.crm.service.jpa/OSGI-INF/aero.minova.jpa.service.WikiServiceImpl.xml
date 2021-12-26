@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" deactivate="deactivateComponent" name="aero.minova.jpa.service.WikiServiceImpl">
-   <service>
-      <provide interface="aero.minova.crm.model.jpa.service.WikiService"/>
-   </service>
-   <reference cardinality="1..1" field="databaseService" interface="aero.minova.jpa.service.DatabaseService" name="databaseService"/>
-   <implementation class="aero.minova.jpa.service.WikiServiceImpl"/>
-</scr:component>

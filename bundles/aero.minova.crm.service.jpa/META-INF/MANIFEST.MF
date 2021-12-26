@@ -10,12 +10,12 @@ Require-Bundle: jakarta.persistence-api;bundle-version="3.0.0",
  com.h2database;bundle-version="2.0.202",
  org.eclipse.persistence.core;bundle-version="3.0.2"
 Import-Package: aero.minova.crm.model.jpa,
- aero.minova.crm.model.jpa.service,
+ aero.minova.crm.model.service.jpa,
  javax.inject;version="1.0.0",
  org.osgi.service.component.annotations;version="1.3.0"
-Service-Component: OSGI-INF/aero.minova.jpa.service.DatabaseServiceImpl.xml,
- OSGI-INF/aero.minova.jpa.service.MarkupTextServiceImpl.xml,
- OSGI-INF/aero.minova.jpa.service.TicketServiceImpl.xml,
- OSGI-INF/aero.minova.jpa.service.TodoServiceImpl.xml,
- OSGI-INF/aero.minova.jpa.service.WikiServiceImpl.xml
+Service-Component: OSGI-INF/aero.minova.crm.service.jpa.DatabaseServiceImpl.xml,
+ OSGI-INF/aero.minova.crm.service.jpa.MarkupTextServiceImpl.xml,
+ OSGI-INF/aero.minova.crm.service.jpa.TicketServiceImpl.xml,
+ OSGI-INF/aero.minova.crm.service.jpa.TodoServiceImpl.xml,
+ OSGI-INF/aero.minova.crm.service.jpa.WikiServiceImpl.xml
 Bundle-ActivationPolicy: lazy

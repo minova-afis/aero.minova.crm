@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Text;
 
 import aero.minova.crm.main.jobs.LoadTicketJob;
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.jpa.service.TicketService;
+import aero.minova.crm.model.service.jpa.TicketService;
 import aero.minova.trac.TracService;
 
 public class TicketPart {

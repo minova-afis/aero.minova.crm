@@ -1,4 +1,4 @@
-package aero.minova.jpa.service;
+package aero.minova.crm.service.jpa;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 import aero.minova.crm.model.jpa.Todo;
-import aero.minova.crm.model.jpa.service.TodoService;
+import aero.minova.crm.model.service.jpa.TodoService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;

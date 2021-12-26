@@ -1,4 +1,4 @@
-package aero.minova.jpa.service;
+package aero.minova.crm.service.jpa;
 
 import jakarta.persistence.EntityManager;
 

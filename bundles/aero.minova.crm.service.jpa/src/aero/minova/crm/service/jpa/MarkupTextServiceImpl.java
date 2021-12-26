@@ -1,4 +1,4 @@
-package aero.minova.jpa.service;
+package aero.minova.crm.service.jpa;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.MarkupText;
-import aero.minova.crm.model.jpa.service.MarkupTextService;
+import aero.minova.crm.model.service.jpa.MarkupTextService;
 import jakarta.persistence.EntityManager;
 
 @Component(service = MarkupTextService.class)

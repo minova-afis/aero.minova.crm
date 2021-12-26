@@ -1,4 +1,4 @@
-package aero.minova.jpa.service;
+package aero.minova.crm.service.jpa;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.jpa.service.WikiService;
+import aero.minova.crm.model.service.jpa.WikiService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 

@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import aero.minova.crm.main.parts.TicketPart;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.jpa.service.TicketService;
+import aero.minova.crm.model.service.jpa.TicketService;
 import aero.minova.trac.TracService;
 
 public class LoadTicketJob extends Job {

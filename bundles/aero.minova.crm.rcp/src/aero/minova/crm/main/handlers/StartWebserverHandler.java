@@ -13,7 +13,7 @@ import org.eclipse.jetty.servlet.ServletHandler;
 import aero.minova.crm.main.jetty.ExempleServlet;
 import aero.minova.crm.main.jetty.TicketServlet;
 import aero.minova.crm.main.parts.SamplePart;
-import aero.minova.crm.model.jpa.service.TicketService;
+import aero.minova.crm.model.service.jpa.TicketService;
 
 public class StartWebserverHandler {
 	@Execute

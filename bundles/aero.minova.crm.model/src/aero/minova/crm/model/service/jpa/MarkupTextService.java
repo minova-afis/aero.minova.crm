@@ -1,4 +1,4 @@
-package aero.minova.crm.model.jpa.service;
+package aero.minova.crm.model.service.jpa;
 
 import java.util.Optional;
 
