@@ -3,7 +3,10 @@ package aero.minova.crm.main.parts;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+<<<<<<< HEAD
 import java.util.Optional;
+=======
+>>>>>>> branch 'main' of git@github.com:minova-afis/aero.minova.crm.git
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
