@@ -3,10 +3,6 @@ package aero.minova.crm.main.parts;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-<<<<<<< HEAD
-import java.util.Optional;
-=======
->>>>>>> branch 'main' of git@github.com:minova-afis/aero.minova.crm.git
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -31,7 +27,6 @@ import aero.minova.crm.main.jobs.LoadTicketJob;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.service.jpa.TicketService;
 import aero.minova.trac.TracService;
-import aero.minova.trac.domain.TracTicket;
 
 public class TicketPart {
 	private Text summaryText;
@@ -169,11 +164,11 @@ public class TicketPart {
 	 */
 	private void update() {}
 
-	public void setTicketId(int ticketId) {
-		Ticket ticket;
-		Optional<Ticket> ticketOptional = ticketService.getTicket(ticketId);
-		if (ticketOptional.isEmpty()) {
-			TracTicket tracTicket = tracService.getTicket(ticketId);
-		}
-	}
+//	public void setTicketId(int ticketId) {
+//		Ticket ticket;
+//		Optional<Ticket> ticketOptional = ticketService.getTicket(ticketId);
+//		if (ticketOptional.isEmpty()) {
+//			TracTicket tracTicket = tracService.getTicket(ticketId);
+//		}
+//	}
 }

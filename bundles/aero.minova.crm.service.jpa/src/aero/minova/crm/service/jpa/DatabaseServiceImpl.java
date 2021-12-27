@@ -3,6 +3,7 @@ package aero.minova.crm.service.jpa;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.eclipse.persistence.jpa.PersistenceProvider;
 import org.osgi.service.component.annotations.Activate;
@@ -30,8 +31,20 @@ public class DatabaseServiceImpl implements DatabaseService {
 //		map.put(PersistenceUnitProperties.WEAVING, "true");
 		map.put(PersistenceUnitProperties.WEAVING_LAZY, "true");
 
+		/*
+		 * Datenbank
+		 */
+		map.put("jakarta.persistence.jdbc.driver", "org.h2.Driver");
+		map.put("jakarta.persistence.jdbc.user", "sa");
+		map.put("jakarta.persistence.jdbc.password", "Hallo0192*+");
+		System.out.println(Platform.getInstanceLocation().getURL().getPath());
+		map.put("jakarta.persistence.jdbc.url", "jdbc:h2:" + Platform.getInstanceLocation().getURL().getPath() + "crm");
+		map.put("eclipselink.ddl-generation", "create-or-extend-tables");
+		map.put("eclipselink.ddl-generation.output-mode", "database");
+		map.put("eclipselink.logging.level", "FINE");
+
 		PersistenceProvider persistenceProvider = new PersistenceProvider();
-		entityManagerFactory = persistenceProvider.createEntityManagerFactory("h2-eclipselink", map);
+		entityManagerFactory = persistenceProvider.createEntityManagerFactory("crm", map);
 
 		return entityManagerFactory.createEntityManager();
 	}

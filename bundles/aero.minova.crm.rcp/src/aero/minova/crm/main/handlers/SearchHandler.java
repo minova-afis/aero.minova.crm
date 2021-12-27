@@ -47,6 +47,7 @@ public class SearchHandler {
 		if (ticketPart != null) {
 			ticketPart.setElementId("aero.minova.crm.rcp.part.ticket#" + ticket);
 			ticketPart.setLabel("#" + ticket);
+// TODO			((TicketPart) ticketPart).setTicketId(ticket);
 		}
 
 		if (partStack != null && ticketPart != null) {
