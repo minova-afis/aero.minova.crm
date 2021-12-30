@@ -47,16 +47,17 @@ public class TracServiceImpl implements TracService {
 	 *            Ticketnummer
 	 * @return null, wenn das Ticket nicht geladen werden konnte; sonst das gefudene Ticket
 	 */
+	@Override
 	public TracTicket getTicket(int id) {
 		return getTicket(id, false);
 	}
 
 	public TracTicket getTicket(int id, boolean debug) {
-		aero.minova.trac.xmlprc.Ticket ticket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Ticket.class);
+		aero.minova.trac.xmlprc.Ticket xmlTicket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Ticket.class);
 
-		TracTicket newTicket = new TracTicket();
+		TracTicket tracTicket = new TracTicket(this);
 		try {
-			Vector<?> details = ticket.get(id);
+			Vector<?> details = xmlTicket.get(id);
 			// @SuppressWarnings("unused")
 			// Object x = ticket.query("max=100,modified=2013-02-22..2013-02-23,status=closed");
 			for (Iterator<?> i = details.iterator(); i.hasNext();) {
@@ -64,11 +65,132 @@ public class TracServiceImpl implements TracService {
 				if (value instanceof HashMap) {
 					@SuppressWarnings("unchecked")
 					HashMap<String, ?> attributes = (HashMap<String, ?>) value;
-					newTicket.setId(id);
-					newTicket.setSummary((String) attributes.get("summary"));
-					newTicket.setDescription((String) attributes.get("description"));
-					newTicket.setKeywords((String) attributes.get("keywords"));
-					newTicket.setMilestoneName((String) attributes.get("milestone"));
+					tracTicket.id = id;
+					tracTicket.summary = (String) attributes.get("summary");
+					tracTicket.description = (String) attributes.get("description");
+					tracTicket.setKeywords((String) attributes.get("keywords"));
+					tracTicket.milestoneName = (String) attributes.get("milestone");
+
+					try {
+						tracTicket.billable = (String) attributes.get("billable");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.reporter = (String) attributes.get("reporter");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.ticketType = (String) attributes.get("type");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.release = (String) attributes.get("release");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.creationTime = (Date) attributes.get("time");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.changeTime = (Date) attributes.get("changetime");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.blockedBy = (String) attributes.get("blockedby");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.blocking = (String) attributes.get("blocking");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.component = (String) attributes.get("component");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.customerDescripion = (String) attributes.get("customerdescription");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.customerPrio = (String) attributes.get("customerprio");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.customerState = (String) attributes.get("customerstate");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.customerType = (String) attributes.get("customertype");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.totalHours = (String) attributes.get("totalhours");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.status = (String) attributes.get("status");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.resolution = (String) attributes.get("resolution");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.priority = (String) attributes.get("priority");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.offeredHours = (String) attributes.get("offeredhours");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.owner = (String) attributes.get("owner");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.dueDate = (String) attributes.get("duedate");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.startDate = (String) attributes.get("startdate");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.estimatedHours = (String) attributes.get("estimatedhours");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.moduleNames = (String) attributes.get("modulenames");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					try {
+						tracTicket.cc = (String) attributes.get("cc");
+					} catch (Exception e) {
+						System.out.println(e);
+					}
 
 					if (debug) {
 						for (Iterator<String> attributeName = attributes.keySet().iterator(); attributeName.hasNext();) {
@@ -80,11 +202,12 @@ public class TracServiceImpl implements TracService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			newTicket = null;
+			tracTicket = null;
 		}
-		return newTicket;
+		return tracTicket;
 	}
 
+	@Override
 	public TracMilestone getMilestone(String milestoneName) {
 		aero.minova.trac.xmlprc.Ticket.Milestone milestone = (aero.minova.trac.xmlprc.Ticket.Milestone) trackerDynamicProxy
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Milestone.class);
@@ -111,6 +234,7 @@ public class TracServiceImpl implements TracService {
 	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
 	 * @return {@link TracWikiPage}
 	 */
+	@Override
 	public TracWikiPage getWiki(String wikiAddress) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 
@@ -128,6 +252,7 @@ public class TracServiceImpl implements TracService {
 		return newWiki;
 	}
 
+	@Override
 	public String wikiToHtml(String wikiText) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		String html = wiki.wikiToHtml(wikiText);
@@ -157,7 +282,8 @@ public class TracServiceImpl implements TracService {
 	}
 
 	// theoretisches Update eines Tickets
-	public void updateTicket(TracTicket newTicket, String text) {
+	@Override
+	public void updateTicketSummary(TracTicket newTicket, String text) {
 		aero.minova.trac.xmlprc.Ticket ticket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Ticket.class);
 
 		try {
@@ -182,6 +308,7 @@ public class TracServiceImpl implements TracService {
 		}
 	}
 
+	@Override
 	public List<String> listWikiPages() {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		Vector<?> pageList = wiki.getAllPages();
@@ -192,16 +319,19 @@ public class TracServiceImpl implements TracService {
 		return pageNames;
 	}
 
+	@Override
 	public String getPage(String pagename) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		return wiki.getPage(pagename);
 	}
 
+	@Override
 	public String getPageHTML(String pagename) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		return wiki.getPageHTML(pagename);
 	}
 
+	@Override
 	public Hashtable<String, ?> getPageInfo(String pagename) {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		return wiki.getPageInfo(pagename);

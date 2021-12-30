@@ -22,7 +22,7 @@ public class Ticket {
 	private String owner;
 	private String reporter;
 	private List<Integer> blockedBy; // blockedby
-	private List<String> moduleNames; // modulenames
+	private String moduleNames; // modulenames
 	private TicketPriority priority;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Ticket parent;
@@ -33,6 +33,7 @@ public class Ticket {
 	private Double estimatedHours; // esitmatedhours
 	private Double offeredHours; // offeredhours
 	private Double totalHours; // totalhours
+	@ManyToOne(cascade = CascadeType.ALL)
 	private TicketComponent component;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Milestone milestone;
@@ -166,7 +167,7 @@ public class Ticket {
 	/**
 	 * @return the moduleNames
 	 */
-	public List<String> getModuleNames() {
+	public String getModuleNames() {
 		return moduleNames;
 	}
 
@@ -174,7 +175,7 @@ public class Ticket {
 	 * @param moduleNames
 	 *            the moduleNames to set
 	 */
-	public void setModuleNames(List<String> moduleNames) {
+	public void setModuleNames(String moduleNames) {
 		this.moduleNames = moduleNames;
 	}
 

@@ -32,22 +32,9 @@ public class WikiServiceImpl implements WikiService {
 	}
 
 	@Override
-	public boolean saveWikiPage(WikiPage newPage) {
+	public boolean saveWikiPage(WikiPage page) {
 		checkEntityManager();
-		// hold the Optional object as reference to determine, if the Todo is
-		// newly created or not
-		Optional<WikiPage> pageOptional = getWikiPage(newPage.getPath());
-
-		// get the actual todo or create a new one
-		WikiPage page = pageOptional.orElse(new WikiPage());
-		page.setPath(newPage.getPath());
-		page.setDescription(newPage.getDescription());
-		page.setComment(newPage.getComment());
-		page.setLastModified(newPage.getLastModified());
-		page.setLastUser(newPage.getLastUser());
-		page.setVersion(newPage.getVersion());
-
-		// send out events
+		Optional<WikiPage> pageOptional = getWikiPage(page.getPath());
 		if (pageOptional.isPresent()) {
 			entityManager.getTransaction().begin();
 			entityManager.merge(page);
@@ -63,22 +50,17 @@ public class WikiServiceImpl implements WikiService {
 	@Override
 	public Optional<WikiPage> getWikiPage(int id) {
 		checkEntityManager();
-		entityManager.getTransaction().begin();
 		WikiPage find = entityManager.find(WikiPage.class, id);
-		entityManager.getTransaction().commit();
-
 		return Optional.ofNullable(find);
 	}
 
 	@Override
 	public Optional<WikiPage> getWikiPage(String path) {
 		checkEntityManager();
-		entityManager.getTransaction().begin();
 		Query query = entityManager.createQuery("SELECT w FROM WikiPage w WHERE w.path = :path");
 		query.setParameter("path", path);
 		@SuppressWarnings("unchecked")
 		List<WikiPage> page = query.getResultList();
-		entityManager.getTransaction().commit();
 
 		if (page.size() == 0) return Optional.empty();
 		return Optional.of(page.get(0));

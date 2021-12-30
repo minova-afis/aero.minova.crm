@@ -31,16 +31,11 @@ public class MarkupTextServiceImpl implements MarkupTextService {
 
 	// create or update an existing instance of Todo
 	@Override
-	public synchronized boolean saveMarkupText(MarkupText newMarkupText) {
+	public synchronized boolean saveMarkupText(MarkupText markupText) {
 		checkEntityManager();
 		// hold the Optional object as reference to determine, if the Todo is
 		// newly created or not
-		Optional<MarkupText> markupTextOptional = getMarkupText(newMarkupText.getId());
-
-		// get the actual todo or create a new one
-		MarkupText markupText = markupTextOptional.orElse(new MarkupText());
-		markupText.setMarkup(newMarkupText.getMarkup());
-		markupText.setHtml(newMarkupText.getHtml());
+		Optional<MarkupText> markupTextOptional = getMarkupText(markupText.getId());
 
 		// send out events
 		if (markupTextOptional.isPresent()) {

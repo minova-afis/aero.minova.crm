@@ -3,10 +3,13 @@ package aero.minova.trac;
 import java.util.Hashtable;
 import java.util.List;
 
+import aero.minova.trac.domain.TracMilestone;
 import aero.minova.trac.domain.TracTicket;
 import aero.minova.trac.domain.TracWikiPage;
 
 public interface TracService {
+
+	public TracMilestone getMilestone(String milestoneName);
 
 	public String getPage(String pagename);
 
@@ -19,6 +22,8 @@ public interface TracService {
 	public TracWikiPage getWiki(String wikiAddress);
 
 	public List<String> listWikiPages();
+
+	public void updateTicketSummary(TracTicket newTicket, String comment);
 
 	/**
 	 * Liest den Inhalt der angegebenen Wiki-Seite

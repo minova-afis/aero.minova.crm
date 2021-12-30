@@ -37,13 +37,17 @@
   <handlers xmi:id="_FGRHAGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.DownloadWikiHandler" command="_BHOekGWDEey8iMpThXUUnw"/>
   <handlers xmi:id="_MiVP8GWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.1" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SearchHandler" command="_K5FaMGWDEey8iMpThXUUnw"/>
   <handlers xmi:id="_VgjSsGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.2" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_Si5OwGWEEey8iMpThXUUnw"/>
+  <handlers xmi:id="_zuSIMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.handler.4" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SwitchToDetailsHandler" command="_p1CyMGlLEeyPs7QNe0aZ_A"/>
   <handlers xmi:id="_p9EaMGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.3" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartWebserverHandler" command="_m0Ny4GWEEey8iMpThXUUnw"/>
+  <handlers xmi:id="__UaJQGm4EeyrA9bDxnp9ow" elementId="aero.minova.crm.rcp.handler.5" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.FocusPartHandler" command="_3NBLYGm4EeyrA9bDxnp9ow"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLhcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1s" keySequence="M1+S" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLiMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1a" keySequence="M1+A" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_Qp5LIGWXEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.keybinding.m13" keySequence="M1+3" command="_K5FaMGWDEey8iMpThXUUnw"/>
+    <bindings xmi:id="_koAsoGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.keybinding.0" keySequence="M1+M3+D" command="_p1CyMGlLEeyPs7QNe0aZ_A"/>
+    <bindings xmi:id="_7rTUkGm4EeyrA9bDxnp9ow" elementId="aero.minova.crm.rcp.keybinding.1" keySequence="M1+M3+P" command="_3NBLYGm4EeyrA9bDxnp9ow"/>
   </bindingTables>
   <rootContext xmi:id="_6wlLecgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
     <children xmi:id="_6wlLesgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
@@ -58,6 +62,8 @@
   <commands xmi:id="_K5FaMGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.searchcommand" commandName="searchCommand"/>
   <commands xmi:id="_Si5OwGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.checkdatabase" commandName="checkDatabaseCommand"/>
   <commands xmi:id="_m0Ny4GWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.startjettycommand" commandName="startWebserverCommand"/>
+  <commands xmi:id="_p1CyMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.command.switchtodetails" commandName="switchToDetails" category="_tvOv0GlLEeyPs7QNe0aZ_A"/>
+  <commands xmi:id="_3NBLYGm4EeyrA9bDxnp9ow" elementId="aero.minova.crm.rcp.command.focuspartcommand" commandName="focusPartCommand"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -65,4 +71,5 @@
   <addons xmi:id="_6wlLdsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_6wlLd8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
   <addons xmi:id="_6wlLeMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+  <categories xmi:id="_tvOv0GlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.category.form" name="Form" description="Keys used to "/>
 </application:Application>

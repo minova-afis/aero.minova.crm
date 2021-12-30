@@ -53,24 +53,14 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public synchronized boolean saveTicket(Ticket newTicket) {
 		checkEntityManager();
-		// hold the Optional object as reference to determine, if the Todo is
-		// newly created or not
 		Optional<Ticket> ticketOptional = getTicket(newTicket.getId());
-
-		// get the actual todo or create a new one
-		Ticket ticket = ticketOptional.orElse(new Ticket());
-		ticket.setId(newTicket.getId());
-		ticket.setSummary(newTicket.getSummary());
-		ticket.setDescription(newTicket.getDescription());
-
-		// send out events
 		if (ticketOptional.isPresent()) {
 			entityManager.getTransaction().begin();
-			entityManager.merge(ticket);
+			entityManager.merge(newTicket);
 			entityManager.getTransaction().commit();
 		} else {
 			entityManager.getTransaction().begin();
-			entityManager.persist(ticket);
+			entityManager.persist(newTicket);
 			entityManager.getTransaction().commit();
 		}
 		return true;
@@ -79,10 +69,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public Optional<Ticket> getTicket(int id) {
 		checkEntityManager();
-		entityManager.getTransaction().begin();
 		Ticket find = entityManager.find(Ticket.class, id);
-		entityManager.getTransaction().commit();
-
 		return Optional.ofNullable(find);
 	}
 
@@ -93,7 +80,6 @@ public class TicketServiceImpl implements TicketService {
 		Ticket find = entityManager.find(Ticket.class, id);
 		entityManager.remove(find);
 		entityManager.getTransaction().commit();
-
 		return true;
 	}
 }

@@ -30,13 +30,11 @@ public class SearchHandler {
 		Matcher ticketMatcher = ticketPattern.matcher(searchText);
 		if (!ticketMatcher.find()) return;
 		int ticket = Integer.parseInt(ticketMatcher.group(1));
-		
+
 		MPartStack partStack = (MPartStack) modelService.find("aero.minova.crm.partstack.crm", window);
 		MPart ticketPart = (MPart) modelService.find("aero.minova.crm.rcp.part.ticket#" + ticket, partStack);
 
 		if (ticketPart != null) {
-			boolean b = ticketPart.isVisible();
-			b = ticketPart.isToBeRendered();
 			ticketPart.setVisible(true);
 			ticketPart.setToBeRendered(true);
 			partStack.setSelectedElement(ticketPart);
@@ -47,7 +45,6 @@ public class SearchHandler {
 		if (ticketPart != null) {
 			ticketPart.setElementId("aero.minova.crm.rcp.part.ticket#" + ticket);
 			ticketPart.setLabel("#" + ticket);
-// TODO			((TicketPart) ticketPart).setTicketId(ticket);
 		}
 
 		if (partStack != null && ticketPart != null) {

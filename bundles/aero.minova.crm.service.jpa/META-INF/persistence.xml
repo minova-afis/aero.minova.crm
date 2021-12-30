@@ -4,8 +4,12 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 	<persistence-unit name="crm" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<!-- converter -->
+		<class>aero.minova.crm.model.converter.IntegerListConverter</class>
+		<!-- model -->
 		<class>aero.minova.crm.model.jpa.Todo</class>
 		<class>aero.minova.crm.model.jpa.Ticket</class>
+		<class>aero.minova.crm.model.jpa.TicketComponent</class>
 		<class>aero.minova.crm.model.jpa.MarkupText</class>
 		<class>aero.minova.crm.model.jpa.Milestone</class>
 		<class>aero.minova.crm.model.jpa.WikiPage</class>
