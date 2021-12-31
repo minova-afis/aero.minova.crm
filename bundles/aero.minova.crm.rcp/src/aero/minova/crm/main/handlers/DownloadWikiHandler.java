@@ -12,7 +12,7 @@ import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 
 import aero.minova.crm.main.jobs.DownloadWikiJob;
-import aero.minova.crm.model.service.jpa.WikiPageService;
+import aero.minova.crm.model.service.WikiPageService;
 import aero.minova.trac.TracService;
 
 public class DownloadWikiHandler {

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Text;
 import aero.minova.crm.http.HttpService;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.service.jpa.TicketService;
+import aero.minova.crm.model.service.TicketService;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
 

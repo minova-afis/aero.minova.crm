@@ -12,7 +12,7 @@ Require-Bundle: jakarta.persistence-api;bundle-version="3.0.0",
  org.eclipse.core.runtime,
  org.eclipse.osgi.services
 Import-Package: aero.minova.crm.model.jpa,
- aero.minova.crm.model.service.jpa,
+ aero.minova.crm.model.service,
  javax.inject;version="1.0.0"
 Service-Component: OSGI-INF/aero.minova.crm.service.jpa.DatabaseServiceImpl.xml,
  OSGI-INF/aero.minova.crm.service.jpa.MarkupTextServiceImpl.xml,

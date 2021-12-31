@@ -34,8 +34,8 @@ import org.eclipse.swt.widgets.Text;
 import aero.minova.crm.http.HttpService;
 import aero.minova.crm.main.jobs.LoadTicketJob;
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.service.jpa.TicketComponentService;
-import aero.minova.crm.model.service.jpa.TicketService;
+import aero.minova.crm.model.service.TicketComponentService;
+import aero.minova.crm.model.service.TicketService;
 import aero.minova.trac.TracService;
 
 public class TicketPart {

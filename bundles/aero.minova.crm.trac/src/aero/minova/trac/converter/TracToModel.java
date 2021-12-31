@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.service.jpa.TicketComponentService;
+import aero.minova.crm.model.service.TicketComponentService;
 import aero.minova.trac.domain.TracTicket;
 
 public class TracToModel {
@@ -33,7 +33,7 @@ public class TracToModel {
 		ticket.setLastDate(getLocalDateTime(tracTicket.getChangeTime()));
 		ticket.setMilestone(null);
 		ticket.setModuleNames(tracTicket.getModuleNames());
-		ticket.setParent(getListInteger(tracTicket.getParent()));
+//		ticket.setParent(getListInteger(tracTicket.getParent()));
 		ticket.setPriority(null);
 		ticket.setRelease(null);
 //		ticket.setResolution(Resolution.valueOf(tracTicket.getResolution()));

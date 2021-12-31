@@ -9,7 +9,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.TicketComponent;
-import aero.minova.crm.model.service.jpa.TicketComponentService;
+import aero.minova.crm.model.service.TicketComponentService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;

@@ -8,7 +8,7 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.service.jpa.WikiPageService;
+import aero.minova.crm.model.service.WikiPageService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 

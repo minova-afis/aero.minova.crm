@@ -8,7 +8,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 
 import aero.minova.crm.http.HttpService;
 import aero.minova.crm.main.parts.SamplePart;
-import aero.minova.crm.model.service.jpa.TicketService;
+import aero.minova.crm.model.service.TicketService;
 
 public class StartWebserverHandler {
 

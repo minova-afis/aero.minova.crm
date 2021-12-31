@@ -15,7 +15,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 import aero.minova.crm.model.jpa.Todo;
-import aero.minova.crm.model.service.jpa.TodoService;
+import aero.minova.crm.model.service.TodoService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
