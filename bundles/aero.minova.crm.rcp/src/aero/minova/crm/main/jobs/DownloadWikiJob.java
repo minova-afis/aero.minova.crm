@@ -16,15 +16,15 @@ import org.eclipse.core.runtime.jobs.Job;
 
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.service.jpa.WikiService;
+import aero.minova.crm.model.service.jpa.WikiPageService;
 import aero.minova.trac.TracService;
 
 public class DownloadWikiJob extends Job {
 
 	private TracService tracService;
-	private WikiService wikiService;
+	private WikiPageService wikiService;
 
-	public DownloadWikiJob(TracService tracService, WikiService wikiService) {
+	public DownloadWikiJob(TracService tracService, WikiPageService wikiService) {
 		super("Synchronize Wiki");
 		this.tracService = tracService;
 		this.wikiService = wikiService;

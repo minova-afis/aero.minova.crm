@@ -8,12 +8,12 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.service.jpa.WikiService;
+import aero.minova.crm.model.service.jpa.WikiPageService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 
-@Component(service = WikiService.class)
-public class WikiServiceImpl implements WikiService {
+@Component(service = WikiPageService.class)
+public class WikiServiceImpl implements WikiPageService {
 	private EntityManager entityManager;
 
 	@Reference

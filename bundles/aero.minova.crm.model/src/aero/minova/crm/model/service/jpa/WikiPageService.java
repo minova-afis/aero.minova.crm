@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import aero.minova.crm.model.jpa.WikiPage;
 
-public interface WikiService {
+public interface WikiPageService {
 
 	boolean saveWikiPage(WikiPage newWikiPage);
 

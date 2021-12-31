@@ -39,7 +39,7 @@ public class Ticket {
 	private Milestone milestone;
 	private List<Integer> blocking;
 	private String release;
-	private Resolution resolution;
+	private TicketResolution resolution;
 	private String customerDescription; // customerdescription
 	private TicketCustomerPrio customerPrio; // customerprio
 	private TicketCustomerType customerType; // customertype
@@ -377,7 +377,7 @@ public class Ticket {
 	/**
 	 * @return the resolution
 	 */
-	public Resolution getResolution() {
+	public TicketResolution getResolution() {
 		return resolution;
 	}
 
@@ -385,7 +385,7 @@ public class Ticket {
 	 * @param resolution
 	 *            the resolution to set
 	 */
-	public void setResolution(Resolution resolution) {
+	public void setResolution(TicketResolution resolution) {
 		this.resolution = resolution;
 	}
 

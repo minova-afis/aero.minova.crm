@@ -46,6 +46,7 @@ public class TracTicket {
 	private final TracService tracService;
 	protected TracWikiPage wiki = null;
 	protected String wikiAddress;
+	private String parent;
 
 	public TracTicket(TracService tracService) {
 		this.tracService = tracService;
@@ -295,5 +296,9 @@ public class TracTicket {
 
 	public void update(String text) {
 		tracService.updateTicketSummary(this, text);
+	}
+
+	public String getParent() {
+		return parent;
 	}
 }
