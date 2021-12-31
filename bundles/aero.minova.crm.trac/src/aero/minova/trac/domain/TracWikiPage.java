@@ -14,7 +14,7 @@ public class TracWikiPage {
 	 * @param address
 	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
 	 */
-	TracWikiPage(String address) {
+	public TracWikiPage(String address) {
 		this.address = address;
 	}
 

@@ -1,15 +1,20 @@
-package aero.minova.crm.service.jpa;
+package aero.minova.crm.service.trac;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import org.eclipse.core.runtime.Status;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
+import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.service.TicketService;
+import aero.minova.crm.service.trac.converter.TracToModel;
+import aero.minova.trac.TracService;
+import aero.minova.trac.domain.TracTicket;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -22,6 +27,9 @@ public class TicketServiceImpl implements TicketService {
 
 	@Reference
 	private DatabaseService databaseService;
+
+	@Reference
+	private TracService tracService;
 
 	@Deactivate
 	protected void deactivateComponent() {
@@ -45,7 +53,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	private void checkEntityManager() {
-		if (entityManager != null) return;
+		if (entityManager != null)
+			return;
 		entityManager = databaseService.getEntityManager();
 	}
 
@@ -53,8 +62,8 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public synchronized boolean saveTicket(Ticket newTicket) {
 		checkEntityManager();
-		Optional<Ticket> ticketOptional = getTicket(newTicket.getId());
-		if (ticketOptional.isPresent()) {
+		Ticket find = entityManager.find(Ticket.class, newTicket.getId());
+		if (find != null) {
 			entityManager.getTransaction().begin();
 			entityManager.merge(newTicket);
 			entityManager.getTransaction().commit();
@@ -70,7 +79,27 @@ public class TicketServiceImpl implements TicketService {
 	public Optional<Ticket> getTicket(int id) {
 		checkEntityManager();
 		Ticket find = entityManager.find(Ticket.class, id);
+		if (find == null) {
+			find = getTicketFromTrac(id);
+		}
 		return Optional.ofNullable(find);
+	}
+
+	private Ticket getTicketFromTrac(int id) {
+		TracTicket tracTicket = tracService.getTicket(id);
+
+		Ticket ticket = TracToModel.getTicket(tracTicket);
+		MarkupText description = new MarkupText();
+		description.setMarkup(tracTicket.getDescription());
+		try {
+			description.setHtml(tracService.wikiToHtml(tracTicket.getDescription()));
+		} catch (Exception e) {
+			description.setHtml(null);
+		}
+		ticket.setDescription(description);
+		saveTicket(ticket);
+
+		return ticket;
 	}
 
 	@Override

@@ -31,20 +31,6 @@
          unpack="false"/>
 
    <plugin
-         id="aero.minova.crm.trac"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="aero.minova.crm.service.jpa"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="aero.minova.crm.http"
          download-size="0"
          install-size="0"
@@ -53,6 +39,20 @@
 
    <plugin
          id="aero.minova.crm.service.http"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="aero.minova.crm.service.trac"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="aero.minova.crm.trac"
          download-size="0"
          install-size="0"
          version="0.0.0"

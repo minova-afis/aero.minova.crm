@@ -1,4 +1,4 @@
-package aero.minova.trac.converter;
+package aero.minova.crm.service.trac.converter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,11 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.service.TicketComponentService;
 import aero.minova.trac.domain.TracTicket;
 
 public class TracToModel {
-	public static Ticket getTicket(TracTicket tracTicket, TicketComponentService ticketComponentService) {
+	public static Ticket getTicket(TracTicket tracTicket) {
 		Ticket ticket = new Ticket();
 
 		ticket.setId(tracTicket.getId());
@@ -21,11 +20,12 @@ public class TracToModel {
 		ticket.setBillable("1".equals(tracTicket.getBillable()));
 		ticket.setBlockedBy(getListInteger(tracTicket.getBlockedBy()));
 		ticket.setBlocking(getListInteger(tracTicket.getBlocking()));
-		ticket.setComponent(ticketComponentService.getTicketComponent(tracTicket.getComponent()).orElse(null));
+//		ticket.setComponent(ticketComponentService.getTicketComponent(tracTicket.getComponent()).orElse(null));
 //		ticket.setCustomerPrio(TicketCustomerPrio.valueOf(tracTicket.getCustomerPrio()));
 		ticket.setCustomerDescription(tracTicket.getCustomerDescripion());
 //		ticket.setCustomerType(TicketCustomerType.valueOf(tracTicket.getCustomerType()));
 		ticket.setDescription(null);
+		ticket.setKeywords(tracTicket.getKeywords());
 		ticket.setDueDate(getLocalDate(tracTicket.getDueDate()));
 		ticket.setEstimatedHours(getDouble(tracTicket.getEstimatedHours()));
 		ticket.setOfferedHours(getDouble(tracTicket.getOfferedHours()));

@@ -21,7 +21,7 @@ public class TracTicketIntegration {
 			Pattern.MULTILINE);
 	private final Pattern keyTextPattern = Pattern.compile("\\s*\\|\\|(Kunde|Projekt|Kontrakt|Aufwand|Beschreibung)\\|\\|([^\\|]*)\\|\\|");
 
-	private boolean hasLang;
+//	private boolean hasLang;
 
 	public TracTicketIntegration() {
 		// Werte initialisieren
@@ -117,7 +117,7 @@ public class TracTicketIntegration {
 				values.put("ServiceKey", text);
 			} else if (values.get("Description") == null && type.equals("Beschreibung")) {
 				values.put("Description", text);
-				hasLang = true;
+//				hasLang = true;
 			}
 
 			pos = keyTextMatcher.end();
@@ -205,73 +205,73 @@ public class TracTicketIntegration {
 	}
 
 	/**
-	 * Diese Methode soll die Summary des Tickets im Trac auf den übergebenen Text setzen.
-	 * 
-	 * @param summary
-	 *            Die gewünschte Zusammenfassung
-	 * @param ticketNumber
-	 *            Die eindeutige Ticket-Nummer
-	 * @param text
-	 *            Der Text des Tickets
-	 * @return true, falls das Ticket aktualisiert werden konnte.
-	 */
-	public boolean setDetail(String summary, int ticketNumber, String text) {
-		TracServiceImpl server = TracServiceImpl.getInstance();
-		TracTicket changeTicket = server.getTicket(ticketNumber);
-
-		if (changeTicket == null) {
-			// server.deleteTicket(ticketNumber);
-			return false;
-
-		} else {
-			changeTicket.setSummary(summary);
-			changeTicket.update(text);
-			return true;
-		}
-	}
-
-	/**
-	 * Diese Methode soll kontrollieren, ob das Ticket einen übersetzten Text besitzt.
-	 * 
-	 * @param ticketNumber
-	 *            Die eindeutige Ticket-Nummer
-	 * @return Gibt true zurück, wenn das Ticket exisitiert und eine Beschreibung hat.
-	 */
-	public boolean hasEnglish(int ticketNumber) {
-		boolean hasLanguage = hasLang;
-
-		TracServiceImpl server = TracServiceImpl.getInstance();
-		TracTicket langTicket = server.getTicket(ticketNumber);
-
-		if (langTicket == null) {
-			hasLanguage = false;
-		}
-
-		return hasLanguage;
-	}
-
-	/**
-	 * Diese Methode soll kontrollieren, ob das Ticket den übersetzten Text benutzt.
-	 * 
-	 * @param ticketNumber
-	 *            Die eindeutige Ticket-Nummer
-	 * @param ticketSummary
-	 *            Die Zusammenfassung des Tickets
-	 * @return true, wenn die Beschreibung gleich der Zusammenfassung ist.
-	 */
-	public boolean usesEnglish(int ticketNumber, String ticketSummary) {
-		boolean kommtVor = false;
-
-		TracServiceImpl server = TracServiceImpl.getInstance();
-		TracTicket langTicket = server.getTicket(ticketNumber);
-
-		if (langTicket.getDescription().equals(ticketSummary)) {
-			kommtVor = true;
-		}
-
-		return kommtVor;
-	}
-
+//	 * Diese Methode soll die Summary des Tickets im Trac auf den übergebenen Text setzen.
+//	 * 
+//	 * @param summary
+//	 *            Die gewünschte Zusammenfassung
+//	 * @param ticketNumber
+//	 *            Die eindeutige Ticket-Nummer
+//	 * @param text
+//	 *            Der Text des Tickets
+//	 * @return true, falls das Ticket aktualisiert werden konnte.
+//	 */
+//	public boolean setDetail(String summary, int ticketNumber, String text) {
+//		TracServiceImpl server = TracServiceImpl.getInstance();
+//		TracTicket changeTicket = server.getTicket(ticketNumber);
+//
+//		if (changeTicket == null) {
+//			// server.deleteTicket(ticketNumber);
+//			return false;
+//
+//		} else {
+//			changeTicket.setSummary(summary);
+//			changeTicket.update(text);
+//			return true;
+//		}
+//	}
+//
+//	/**
+//	 * Diese Methode soll kontrollieren, ob das Ticket einen übersetzten Text besitzt.
+//	 * 
+//	 * @param ticketNumber
+//	 *            Die eindeutige Ticket-Nummer
+//	 * @return Gibt true zurück, wenn das Ticket exisitiert und eine Beschreibung hat.
+//	 */
+//	public boolean hasEnglish(int ticketNumber) {
+//		boolean hasLanguage = hasLang;
+//
+//		TracServiceImpl server = TracServiceImpl.getInstance();
+//		TracTicket langTicket = server.getTicket(ticketNumber);
+//
+//		if (langTicket == null) {
+//			hasLanguage = false;
+//		}
+//
+//		return hasLanguage;
+//	}
+//
+//	/**
+//	 * Diese Methode soll kontrollieren, ob das Ticket den übersetzten Text benutzt.
+//	 * 
+//	 * @param ticketNumber
+//	 *            Die eindeutige Ticket-Nummer
+//	 * @param ticketSummary
+//	 *            Die Zusammenfassung des Tickets
+//	 * @return true, wenn die Beschreibung gleich der Zusammenfassung ist.
+//	 */
+//	public boolean usesEnglish(int ticketNumber, String ticketSummary) {
+//		boolean kommtVor = false;
+//
+//		TracServiceImpl server = TracServiceImpl.getInstance();
+//		TracTicket langTicket = server.getTicket(ticketNumber);
+//
+//		if (langTicket.getDescription().equals(ticketSummary)) {
+//			kommtVor = true;
+//		}
+//
+//		return kommtVor;
+//	}
+//
 	/**
 	 * Setzt das Ticket.
 	 * 
@@ -286,20 +286,20 @@ public class TracTicketIntegration {
 			values.put("ServiceObjectKey", null);
 			values.put("ServiceKey", null);
 			values.put("Description", null);
-			hasLang = false;
+//			hasLang = false;
 			analyseTicket();
 		}
 	}
 
-	/**
-	 * Setzt die Ticketnummer. Wenn der Trac-Server das Ticket kennt, wird das Ticket gesetzt.
-	 * 
-	 * @see #setTicket(TracTicket)
-	 * @param tracNumber
-	 *            Eindeutige Ticket-Nummer
-	 */
-	public void setTicketNumber(final int tracNumber) {
-		final TracServiceImpl server = TracServiceImpl.getInstance();
-		setTicket(server.getTicket(tracNumber));
-	}
+//	/**
+//	 * Setzt die Ticketnummer. Wenn der Trac-Server das Ticket kennt, wird das Ticket gesetzt.
+//	 * 
+//	 * @see #setTicket(TracTicket)
+//	 * @param tracNumber
+//	 *            Eindeutige Ticket-Nummer
+//	 */
+//	public void setTicketNumber(final int tracNumber) {
+//		final TracServiceImpl server = TracServiceImpl.getInstance();
+//		setTicket(server.getTicket(tracNumber));
+//	}
 }

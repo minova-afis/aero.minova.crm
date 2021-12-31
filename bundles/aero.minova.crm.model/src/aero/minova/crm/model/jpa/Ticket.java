@@ -14,334 +14,42 @@ public class Ticket {
 
 	@Id
 	private int id;
-	private String summary;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private MarkupText description;
-	private LocalDateTime lastDate; // changetime
-	private String cc;
-	private String owner;
-	private String reporter;
-	private List<Integer> blockedBy; // blockedby
-	private String moduleNames; // modulenames
-	private TicketPriority priority;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Ticket parent;
 	private boolean billable;
-	private TicketType type;
-	private LocalDate dueDate; // dueDate
-	private TicketState state; // status
-	private Double estimatedHours; // esitmatedhours
-	private Double offeredHours; // offeredhours
-	private Double totalHours; // totalhours
+	private List<Integer> blockedBy; // blockedby
+	private List<Integer> blocking;
+	private String cc;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private TicketComponent component;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Milestone milestone;
-	private List<Integer> blocking;
-	private String release;
-	private TicketResolution resolution;
 	private String customerDescription; // customerdescription
 	private TicketCustomerPrio customerPrio; // customerprio
 	private TicketCustomerType customerType; // customertype
-
-	/**
-	 * @return ticket id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the ticket id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the short summary
-	 */
-	public String getSummary() {
-		return summary;
-	}
-
-	/**
-	 * @param summary
-	 *            the short summary to set
-	 */
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
-
-	/**
-	 * @return the markup description
-	 */
-	public MarkupText getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description
-	 *            the markup description to set
-	 */
-	public void setDescription(MarkupText description) {
-		this.description = description;
-	}
-
-	/**
-	 * @return the timestamp of last change
-	 */
-	public LocalDateTime getLastDate() {
-		return lastDate;
-	}
-
-	/**
-	 * @param lastDate
-	 *            the timestamp of last change to set
-	 */
-	public void setLastDate(LocalDateTime lastDate) {
-		this.lastDate = lastDate;
-	}
-
-	/**
-	 * @return the carbon copies
-	 */
-	public String getCc() {
-		return cc;
-	}
-
-	/**
-	 * @param cc
-	 *            the carbon copies to set
-	 */
-	public void setCc(String cc) {
-		this.cc = cc;
-	}
-
-	/**
-	 * @return the owner of the ticket
-	 */
-	public String getOwner() {
-		return owner;
-	}
-
-	/**
-	 * @param owner
-	 *            the owner of the ticket to set
-	 */
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
-	/**
-	 * @return the reporter of the ticket
-	 */
-	public String getReporter() {
-		return reporter;
-	}
-
-	/**
-	 * @param reporter
-	 *            the reporter of the ticket to set
-	 */
-	public void setReporter(String reporter) {
-		this.reporter = reporter;
-	}
+	@ManyToOne(cascade = CascadeType.ALL)
+	private MarkupText description;
+	private LocalDate dueDate; // dueDate
+	private Double estimatedHours; // esitmatedhours
+	private String keywords;
+	private LocalDateTime lastDate; // changetime
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Milestone milestone;
+	private String moduleNames; // modulenames
+	private Double offeredHours; // offeredhours
+	private String owner;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Ticket parent;
+	private TicketPriority priority;
+	private String release;
+	private String reporter;
+	private TicketResolution resolution;
+	private TicketState state; // status
+	private String summary;
+	private Double totalHours; // totalhours
+	private TicketType type;
 
 	/**
 	 * @return the tickets (ticket ids) blocking this ticket
 	 */
 	public List<Integer> getBlockedBy() {
 		return blockedBy;
-	}
-
-	/**
-	 * @param blockedBy
-	 *            the tickets (ticket ids) blocking this ticket to set
-	 */
-	public void setBlockedBy(List<Integer> blockedBy) {
-		this.blockedBy = blockedBy;
-	}
-
-	/**
-	 * @return the moduleNames
-	 */
-	public String getModuleNames() {
-		return moduleNames;
-	}
-
-	/**
-	 * @param moduleNames
-	 *            the moduleNames to set
-	 */
-	public void setModuleNames(String moduleNames) {
-		this.moduleNames = moduleNames;
-	}
-
-	/**
-	 * @return the priority
-	 */
-	public TicketPriority getPriority() {
-		return priority;
-	}
-
-	/**
-	 * @param priority
-	 *            the priority to set
-	 */
-	public void setPriority(TicketPriority priority) {
-		this.priority = priority;
-	}
-
-	/**
-	 * @return the parents
-	 */
-	public Ticket getParent() {
-		return parent;
-	}
-
-	/**
-	 * @param parent
-	 *            the parent ticket id to set
-	 */
-	public void setParent(Ticket parent) {
-		this.parent = parent;
-	}
-
-	/**
-	 * @return the billable
-	 */
-	public boolean isBillable() {
-		return billable;
-	}
-
-	/**
-	 * @param billable
-	 *            the billable to set
-	 */
-	public void setBillable(boolean billable) {
-		this.billable = billable;
-	}
-
-	/**
-	 * @return the type
-	 */
-	public TicketType getType() {
-		return type;
-	}
-
-	/**
-	 * @param type
-	 *            the type to set
-	 */
-	public void setType(TicketType type) {
-		this.type = type;
-	}
-
-	/**
-	 * @return the dueDate
-	 */
-	public LocalDate getDueDate() {
-		return dueDate;
-	}
-
-	/**
-	 * @param dueDate
-	 *            the dueDate to set
-	 */
-	public void setDueDate(LocalDate dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	/**
-	 * @return the state
-	 */
-	public TicketState getState() {
-		return state;
-	}
-
-	/**
-	 * @param state
-	 *            the state to set
-	 */
-	public void setState(TicketState state) {
-		this.state = state;
-	}
-
-	/**
-	 * @return the estimatedHours
-	 */
-	public Double getEstimatedHours() {
-		return estimatedHours;
-	}
-
-	/**
-	 * @param estimatedHours
-	 *            the estimatedHours to set
-	 */
-	public void setEstimatedHours(Double estimatedHours) {
-		this.estimatedHours = estimatedHours;
-	}
-
-	/**
-	 * @return the offeredHours
-	 */
-	public Double getOfferedHours() {
-		return offeredHours;
-	}
-
-	/**
-	 * @param offeredHours
-	 *            the offeredHours to set
-	 */
-	public void setOfferedHours(Double offeredHours) {
-		this.offeredHours = offeredHours;
-	}
-
-	/**
-	 * @return the totalHours
-	 */
-	public Double getTotalHours() {
-		return totalHours;
-	}
-
-	/**
-	 * @param totalHours
-	 *            the totalHours to set
-	 */
-	public void setTotalHours(Double totalHours) {
-		this.totalHours = totalHours;
-	}
-
-	/**
-	 * @return the component
-	 */
-	public TicketComponent getComponent() {
-		return component;
-	}
-
-	/**
-	 * @param component
-	 *            the component to set
-	 */
-	public void setComponent(TicketComponent component) {
-		this.component = component;
-	}
-
-	/**
-	 * @return the milestone
-	 */
-	public Milestone getMilestone() {
-		return milestone;
-	}
-
-	/**
-	 * @param milestone
-	 *            the milestone to set
-	 */
-	public void setMilestone(Milestone milestone) {
-		this.milestone = milestone;
 	}
 
 	/**
@@ -352,41 +60,17 @@ public class Ticket {
 	}
 
 	/**
-	 * @param blocking
-	 *            the blocking to set
+	 * @return the carbon copies
 	 */
-	public void setBlocking(List<Integer> blocking) {
-		this.blocking = blocking;
+	public String getCc() {
+		return cc;
 	}
 
 	/**
-	 * @return the release
+	 * @return the component
 	 */
-	public String getRelease() {
-		return release;
-	}
-
-	/**
-	 * @param release
-	 *            the release to set
-	 */
-	public void setRelease(String release) {
-		this.release = release;
-	}
-
-	/**
-	 * @return the resolution
-	 */
-	public TicketResolution getResolution() {
-		return resolution;
-	}
-
-	/**
-	 * @param resolution
-	 *            the resolution to set
-	 */
-	public void setResolution(TicketResolution resolution) {
-		this.resolution = resolution;
+	public TicketComponent getComponent() {
+		return component;
 	}
 
 	/**
@@ -397,26 +81,10 @@ public class Ticket {
 	}
 
 	/**
-	 * @param customerDescription
-	 *            the customerDescription to set
-	 */
-	public void setCustomerDescription(String customerDescription) {
-		this.customerDescription = customerDescription;
-	}
-
-	/**
 	 * @return the customerPrio
 	 */
 	public TicketCustomerPrio getCustomerPrio() {
 		return customerPrio;
-	}
-
-	/**
-	 * @param customerPrio
-	 *            the customerPrio to set
-	 */
-	public void setCustomerPrio(TicketCustomerPrio customerPrio) {
-		this.customerPrio = customerPrio;
 	}
 
 	/**
@@ -427,11 +95,326 @@ public class Ticket {
 	}
 
 	/**
-	 * @param customerType
-	 *            the customerType to set
+	 * @return the markup description
+	 */
+	public MarkupText getDescription() {
+		return description;
+	}
+
+	/**
+	 * @return the dueDate
+	 */
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+
+	/**
+	 * @return the estimatedHours
+	 */
+	public Double getEstimatedHours() {
+		return estimatedHours;
+	}
+
+	/**
+	 * @return ticket id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	/**
+	 * @return the timestamp of last change
+	 */
+	public LocalDateTime getLastDate() {
+		return lastDate;
+	}
+
+	/**
+	 * @return the milestone
+	 */
+	public Milestone getMilestone() {
+		return milestone;
+	}
+
+	/**
+	 * @return the moduleNames
+	 */
+	public String getModuleNames() {
+		return moduleNames;
+	}
+
+	/**
+	 * @return the offeredHours
+	 */
+	public Double getOfferedHours() {
+		return offeredHours;
+	}
+
+	/**
+	 * @return the owner of the ticket
+	 */
+	public String getOwner() {
+		return owner;
+	}
+
+	/**
+	 * @return the parents
+	 */
+	public Ticket getParent() {
+		return parent;
+	}
+
+	/**
+	 * @return the priority
+	 */
+	public TicketPriority getPriority() {
+		return priority;
+	}
+
+	/**
+	 * @return the release
+	 */
+	public String getRelease() {
+		return release;
+	}
+
+	/**
+	 * @return the reporter of the ticket
+	 */
+	public String getReporter() {
+		return reporter;
+	}
+
+	/**
+	 * @return the resolution
+	 */
+	public TicketResolution getResolution() {
+		return resolution;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public TicketState getState() {
+		return state;
+	}
+
+	/**
+	 * @return the short summary
+	 */
+	public String getSummary() {
+		return summary;
+	}
+
+	/**
+	 * @return the totalHours
+	 */
+	public Double getTotalHours() {
+		return totalHours;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public TicketType getType() {
+		return type;
+	}
+
+	/**
+	 * @return the billable
+	 */
+	public boolean isBillable() {
+		return billable;
+	}
+
+	/**
+	 * @param billable the billable to set
+	 */
+	public void setBillable(boolean billable) {
+		this.billable = billable;
+	}
+
+	/**
+	 * @param blockedBy the tickets (ticket ids) blocking this ticket to set
+	 */
+	public void setBlockedBy(List<Integer> blockedBy) {
+		this.blockedBy = blockedBy;
+	}
+
+	/**
+	 * @param blocking the blocking to set
+	 */
+	public void setBlocking(List<Integer> blocking) {
+		this.blocking = blocking;
+	}
+
+	/**
+	 * @param cc the carbon copies to set
+	 */
+	public void setCc(String cc) {
+		this.cc = cc;
+	}
+
+	/**
+	 * @param component the component to set
+	 */
+	public void setComponent(TicketComponent component) {
+		this.component = component;
+	}
+
+	/**
+	 * @param customerDescription the customerDescription to set
+	 */
+	public void setCustomerDescription(String customerDescription) {
+		this.customerDescription = customerDescription;
+	}
+
+	/**
+	 * @param customerPrio the customerPrio to set
+	 */
+	public void setCustomerPrio(TicketCustomerPrio customerPrio) {
+		this.customerPrio = customerPrio;
+	}
+
+	/**
+	 * @param customerType the customerType to set
 	 */
 	public void setCustomerType(TicketCustomerType customerType) {
 		this.customerType = customerType;
+	}
+
+	/**
+	 * @param description the markup description to set
+	 */
+	public void setDescription(MarkupText description) {
+		this.description = description;
+	}
+
+	/**
+	 * @param dueDate the dueDate to set
+	 */
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	/**
+	 * @param estimatedHours the estimatedHours to set
+	 */
+	public void setEstimatedHours(Double estimatedHours) {
+		this.estimatedHours = estimatedHours;
+	}
+
+	/**
+	 * @param id the ticket id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	/**
+	 * @param lastDate the timestamp of last change to set
+	 */
+	public void setLastDate(LocalDateTime lastDate) {
+		this.lastDate = lastDate;
+	}
+
+	/**
+	 * @param milestone the milestone to set
+	 */
+	public void setMilestone(Milestone milestone) {
+		this.milestone = milestone;
+	}
+
+	/**
+	 * @param moduleNames the moduleNames to set
+	 */
+	public void setModuleNames(String moduleNames) {
+		this.moduleNames = moduleNames;
+	}
+
+	/**
+	 * @param offeredHours the offeredHours to set
+	 */
+	public void setOfferedHours(Double offeredHours) {
+		this.offeredHours = offeredHours;
+	}
+
+	/**
+	 * @param owner the owner of the ticket to set
+	 */
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	/**
+	 * @param parent the parent ticket id to set
+	 */
+	public void setParent(Ticket parent) {
+		this.parent = parent;
+	}
+
+	/**
+	 * @param priority the priority to set
+	 */
+	public void setPriority(TicketPriority priority) {
+		this.priority = priority;
+	}
+
+	/**
+	 * @param release the release to set
+	 */
+	public void setRelease(String release) {
+		this.release = release;
+	}
+
+	/**
+	 * @param reporter the reporter of the ticket to set
+	 */
+	public void setReporter(String reporter) {
+		this.reporter = reporter;
+	}
+
+	/**
+	 * @param resolution the resolution to set
+	 */
+	public void setResolution(TicketResolution resolution) {
+		this.resolution = resolution;
+	}
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(TicketState state) {
+		this.state = state;
+	}
+
+	/**
+	 * @param summary the short summary to set
+	 */
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
+	/**
+	 * @param totalHours the totalHours to set
+	 */
+	public void setTotalHours(Double totalHours) {
+		this.totalHours = totalHours;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(TicketType type) {
+		this.type = type;
 	}
 
 	@Override

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="activateComponent" deactivate="deactivateComponent" name="aero.minova.crm.service.jpa.TodoServiceImpl">
-   <property name="osgi.command.scope" value="test"/>
-   <property name="osgi.command.function" value="printTodos"/>
-   <service>
-      <provide interface="aero.minova.crm.model.service.jpa.TodoService"/>
-   </service>
-   <implementation class="aero.minova.crm.service.jpa.TodoServiceImpl"/>
-</scr:component>

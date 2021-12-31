@@ -277,7 +277,7 @@ public class TicketPart {
 			ticket = null;
 			update();
 			summaryField.setMessage("lade Ticket...");
-			LoadTicketJob job = new LoadTicketJob(tracService, ticketService, ticketComponentService, ticketId, this);
+			LoadTicketJob job = new LoadTicketJob(ticketService, ticketId, this);
 			job.schedule();
 		} else {
 			summaryField.setMessage("");
