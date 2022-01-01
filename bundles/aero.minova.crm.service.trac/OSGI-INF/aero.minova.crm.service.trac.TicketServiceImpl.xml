@@ -4,6 +4,7 @@
       <provide interface="aero.minova.crm.model.service.TicketService"/>
    </service>
    <reference cardinality="1..1" field="databaseService" interface="aero.minova.crm.service.trac.DatabaseService" name="databaseService"/>
+   <reference cardinality="1..1" field="ticketComponentService" interface="aero.minova.crm.model.service.TicketComponentService" name="ticketComponentService"/>
    <reference cardinality="1..1" field="tracService" interface="aero.minova.trac.TracService" name="tracService"/>
    <implementation class="aero.minova.crm.service.trac.TicketServiceImpl"/>
 </scr:component>

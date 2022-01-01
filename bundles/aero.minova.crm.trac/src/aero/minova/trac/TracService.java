@@ -2,6 +2,7 @@ package aero.minova.trac;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Vector;
 
 import aero.minova.trac.domain.TracMilestone;
 import aero.minova.trac.domain.TracTicket;
@@ -33,4 +34,6 @@ public interface TracService {
 	 * @return {@link TracWikiPage}
 	 */
 	public String wikiToHtml(String wikiText);
+
+	public Vector<String> getTicketComponents();
 }

@@ -360,4 +360,12 @@ public class TracServiceImpl implements TracService {
 		tracServiceImpl = new TracServiceImpl();
 		return tracServiceImpl;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<String> getTicketComponents() {
+		aero.minova.trac.xmlprc.Ticket.Component component = (aero.minova.trac.xmlprc.Ticket.Component) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Ticket.Component.class);
+		return component.getAll();
+	}
 }

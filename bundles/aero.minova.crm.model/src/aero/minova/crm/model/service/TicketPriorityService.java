@@ -4,19 +4,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import aero.minova.crm.model.jpa.TicketPriority;
+public interface TicketPriorityService<TP> {
 
-public interface TicketPriorityService {
+	public void get(Consumer<List<TP>> ticketPrioritiesConsumer);
 
-	void getTicketPriorities(Consumer<List<TicketPriority>> ticketPrioritiesConsumer);
+	public List<TP> getAll();
 
-	boolean saveTicketPriority(TicketPriority newTicketPriority);
+	public boolean save(TP newTicketPriority);
 
-	Optional<TicketPriority> getTicketPriority(int id);
+	public Optional<TP> get(int id);
 
-	Optional<TicketPriority> getTicketPriority(String name);
+	public Optional<TP> get(String name);
 
-	Optional<TicketPriority> getTicketPriorityProposal();
-
-	boolean deleteTicketPriority(int id);
+	public boolean delete(int id);
 }

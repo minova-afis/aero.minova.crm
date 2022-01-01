@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import org.eclipse.core.runtime.Status;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
+import aero.minova.crm.model.service.TicketComponentService;
 import aero.minova.crm.model.service.TicketService;
+import aero.minova.crm.service.trac.converter.TracComponentConverter;
 import aero.minova.crm.service.trac.converter.TracToModel;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
@@ -30,6 +31,9 @@ public class TicketServiceImpl implements TicketService {
 
 	@Reference
 	private TracService tracService;
+	
+	@Reference
+	private TicketComponentService ticketComponentService;
 
 	@Deactivate
 	protected void deactivateComponent() {
@@ -89,6 +93,8 @@ public class TicketServiceImpl implements TicketService {
 		TracTicket tracTicket = tracService.getTicket(id);
 
 		Ticket ticket = TracToModel.getTicket(tracTicket);
+		ticket.setComponent(TracComponentConverter.get(tracTicket, tracService, ticketComponentService));
+		
 		MarkupText description = new MarkupText();
 		description.setMarkup(tracTicket.getDescription());
 		try {

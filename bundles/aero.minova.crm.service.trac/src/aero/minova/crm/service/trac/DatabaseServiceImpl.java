@@ -17,6 +17,7 @@ import jakarta.persistence.EntityManagerFactory;
 public class DatabaseServiceImpl implements DatabaseService {
 
 	private EntityManagerFactory entityManagerFactory = null;
+	private EntityManager entityManager = null;
 
 	@Activate
 	protected void activateComponent() {
@@ -24,33 +25,40 @@ public class DatabaseServiceImpl implements DatabaseService {
 
 	@Override
 	public EntityManager getEntityManager() {
-		if (entityManagerFactory != null) return entityManagerFactory.createEntityManager();
+		if (entityManagerFactory == null) {
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(PersistenceUnitProperties.CLASSLOADER, getClass().getClassLoader());
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put(PersistenceUnitProperties.CLASSLOADER, getClass().getClassLoader());
 //		map.put(PersistenceUnitProperties.WEAVING, "true");
-		map.put(PersistenceUnitProperties.WEAVING_LAZY, "true");
+			map.put(PersistenceUnitProperties.WEAVING_LAZY, "true");
 
-		/*
-		 * Datenbank
-		 */
-		map.put("jakarta.persistence.jdbc.driver", "org.h2.Driver");
-		map.put("jakarta.persistence.jdbc.user", "sa");
-		map.put("jakarta.persistence.jdbc.password", "Hallo0192*+");
-		map.put("jakarta.persistence.jdbc.url", "jdbc:h2:" + Platform.getInstanceLocation().getURL().getPath() + "crm");
-		map.put("eclipselink.ddl-generation", "create-or-extend-tables");
-		map.put("eclipselink.ddl-generation.output-mode", "database");
-		map.put("eclipselink.logging.level", "FINE");
+			/*
+			 * Datenbank
+			 */
+			map.put("jakarta.persistence.jdbc.driver", "org.h2.Driver");
+			map.put("jakarta.persistence.jdbc.user", "sa");
+			map.put("jakarta.persistence.jdbc.password", "Hallo0192*+");
+			map.put("jakarta.persistence.jdbc.url",
+					"jdbc:h2:" + Platform.getInstanceLocation().getURL().getPath() + "crm");
+			map.put("eclipselink.ddl-generation", "create-or-extend-tables");
+			map.put("eclipselink.ddl-generation.output-mode", "database");
+			map.put("eclipselink.logging.level", "FINE");
 
-		PersistenceProvider persistenceProvider = new PersistenceProvider();
-		entityManagerFactory = persistenceProvider.createEntityManagerFactory("crm", map);
+			PersistenceProvider persistenceProvider = new PersistenceProvider();
+			entityManagerFactory = persistenceProvider.createEntityManagerFactory("crm", map);
 
-		return entityManagerFactory.createEntityManager();
+		}
+
+		if (entityManager == null || !entityManager.isOpen()) {
+			entityManager = entityManagerFactory.createEntityManager();
+		}
+		return entityManager;
 	}
 
 	@Deactivate
 	protected void deactivateComponent() {
-		if (entityManagerFactory == null) return;
+		if (entityManagerFactory == null)
+			return;
 		entityManagerFactory.close();
 		entityManagerFactory = null;
 	}

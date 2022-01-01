@@ -60,7 +60,7 @@ public class TracToModel {
 	private static Double getDouble(String stringValue) {
 		try {
 			return Double.parseDouble(stringValue);
-		} catch (NumberFormatException nfe) {
+		} catch (NumberFormatException | NullPointerException e)  {
 			return null;
 		}
 	}
