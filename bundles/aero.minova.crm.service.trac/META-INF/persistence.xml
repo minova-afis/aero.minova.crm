@@ -12,6 +12,7 @@
 		<class>aero.minova.crm.model.jpa.Ticket</class>
 		<class>aero.minova.crm.model.jpa.TicketComponent</class>
 		<class>aero.minova.crm.model.jpa.TicketCustomerPrio</class>
+		<class>aero.minova.crm.model.jpa.TicketCustomerState</class>
 		<class>aero.minova.crm.model.jpa.TicketCustomerType</class>
 		<class>aero.minova.crm.model.jpa.TicketPriority</class>
 		<class>aero.minova.crm.model.jpa.TicketProperty</class>

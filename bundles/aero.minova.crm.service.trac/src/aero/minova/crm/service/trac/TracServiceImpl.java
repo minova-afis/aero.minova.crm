@@ -368,4 +368,36 @@ public class TracServiceImpl implements TracService {
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Component.class);
 		return component.getAll();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<String> getTicketPriorities() {
+		aero.minova.trac.xmlprc.Ticket.Priority priority = (aero.minova.trac.xmlprc.Ticket.Priority) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Ticket.Priority.class);
+		return priority.getAll();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<String> getTicketStates() {
+		aero.minova.trac.xmlprc.Ticket.Status resolution = (aero.minova.trac.xmlprc.Ticket.Status) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Ticket.Status.class);
+		return resolution.getAll();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<String> getTicketTypes() {
+		aero.minova.trac.xmlprc.Ticket.Type resolution = (aero.minova.trac.xmlprc.Ticket.Type) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Ticket.Type.class);
+		return resolution.getAll();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Vector<String> getMilestones() {
+		aero.minova.trac.xmlprc.Ticket.Milestone milestone = (aero.minova.trac.xmlprc.Ticket.Milestone) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Ticket.Milestone.class);
+		return milestone.getAll();
+	}
 }

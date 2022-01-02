@@ -10,9 +10,25 @@ import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
+import aero.minova.crm.model.service.MilestoneService;
 import aero.minova.crm.model.service.TicketComponentService;
+import aero.minova.crm.model.service.TicketCustomerPrioService;
+import aero.minova.crm.model.service.TicketCustomerStateService;
+import aero.minova.crm.model.service.TicketCustomerTypeService;
+import aero.minova.crm.model.service.TicketPriorityService;
+import aero.minova.crm.model.service.TicketResolutionService;
 import aero.minova.crm.model.service.TicketService;
-import aero.minova.crm.service.trac.converter.TracComponentConverter;
+import aero.minova.crm.model.service.TicketStateService;
+import aero.minova.crm.model.service.TicketTypeService;
+import aero.minova.crm.service.trac.converter.TracMilestoneConverter;
+import aero.minova.crm.service.trac.converter.TracTicketComponentConverter;
+import aero.minova.crm.service.trac.converter.TracTicketCustomerPrioConverter;
+import aero.minova.crm.service.trac.converter.TracTicketCustomerStateConverter;
+import aero.minova.crm.service.trac.converter.TracTicketCustomerTypeConverter;
+import aero.minova.crm.service.trac.converter.TracTicketPriorityConverter;
+import aero.minova.crm.service.trac.converter.TracTicketResolutionConverter;
+import aero.minova.crm.service.trac.converter.TracTicketStateConverter;
+import aero.minova.crm.service.trac.converter.TracTicketTypeConverter;
 import aero.minova.crm.service.trac.converter.TracToModel;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
@@ -31,9 +47,25 @@ public class TicketServiceImpl implements TicketService {
 
 	@Reference
 	private TracService tracService;
-	
+
+	@Reference
+	private MilestoneService milestoneService;
 	@Reference
 	private TicketComponentService ticketComponentService;
+	@Reference
+	private TicketCustomerPrioService ticketCustomerPrioService;
+	@Reference
+	private TicketCustomerStateService ticketCustomerStateService;
+	@Reference
+	private TicketCustomerTypeService ticketCustomerTypeService;
+	@Reference
+	private TicketPriorityService ticketPriorityService;
+	@Reference
+	private TicketStateService ticketStateService;
+	@Reference
+	private TicketTypeService ticketTypeService;
+	@Reference
+	private TicketResolutionService ticketResolutionService;
 
 	@Deactivate
 	protected void deactivateComponent() {
@@ -93,8 +125,16 @@ public class TicketServiceImpl implements TicketService {
 		TracTicket tracTicket = tracService.getTicket(id);
 
 		Ticket ticket = TracToModel.getTicket(tracTicket);
-		ticket.setComponent(TracComponentConverter.get(tracTicket, tracService, ticketComponentService));
-		
+		ticket.setMilestone(TracMilestoneConverter.get(tracTicket, tracService, milestoneService));
+		ticket.setComponent(TracTicketComponentConverter.get(tracTicket, tracService, ticketComponentService));
+		ticket.setCustomerPrio(TracTicketCustomerPrioConverter.get(tracTicket, tracService, ticketCustomerPrioService));
+		ticket.setCustomerState(TracTicketCustomerStateConverter.get(tracTicket, tracService, ticketCustomerStateService));
+		ticket.setCustomerType(TracTicketCustomerTypeConverter.get(tracTicket, tracService, ticketCustomerTypeService));
+		ticket.setPriority(TracTicketPriorityConverter.get(tracTicket, tracService, ticketPriorityService));
+		ticket.setState(TracTicketStateConverter.get(tracTicket, tracService, ticketStateService));
+		ticket.setType(TracTicketTypeConverter.get(tracTicket, tracService, ticketTypeService));
+		ticket.setResolution(TracTicketResolutionConverter.get(tracTicket, tracService, ticketResolutionService));
+
 		MarkupText description = new MarkupText();
 		description.setMarkup(tracTicket.getDescription());
 		try {

@@ -29,11 +29,21 @@ public interface TracService {
 	/**
 	 * Liest den Inhalt der angegebenen Wiki-Seite
 	 * 
-	 * @param wikiAddress
-	 *            die (interne) Adresse der Wiki-Seite, z.B. "Module/ch.minova.sap.sales"
+	 * @param wikiAddress die (interne) Adresse der Wiki-Seite, z.B.
+	 *                    "Module/ch.minova.sap.sales"
 	 * @return {@link TracWikiPage}
 	 */
 	public String wikiToHtml(String wikiText);
 
 	public Vector<String> getTicketComponents();
+
+	public Vector<String> getTicketPriorities();
+
+//	public Vector<String> getTicketResolutions(); // Diese Methode gibt es auf unserem TracServer nicht
+
+	public Vector<String> getTicketStates();
+
+	public Vector<String> getTicketTypes();
+
+	public Vector<String> getMilestones();
 }

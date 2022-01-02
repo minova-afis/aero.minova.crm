@@ -22,6 +22,7 @@ public class Ticket {
 	private TicketComponent component;
 	private String customerDescription; // customerdescription
 	private TicketCustomerPrio customerPrio; // customerprio
+	private TicketCustomerState customerState; // customerstate
 	private TicketCustomerType customerType; // customertype
 	@ManyToOne(cascade = CascadeType.ALL)
 	private MarkupText description;
@@ -81,14 +82,21 @@ public class Ticket {
 	}
 
 	/**
-	 * @return the customerPrio
+	 * @return the priority visible for the customer
 	 */
 	public TicketCustomerPrio getCustomerPrio() {
 		return customerPrio;
 	}
 
 	/**
-	 * @return the customerType
+	 * @return the state visible for the customer
+	 */
+	public TicketCustomerState getCustomerState() {
+		return customerState;
+	}
+	
+	/**
+	 * @return the type of the ticket visible for the customer
 	 */
 	public TicketCustomerType getCustomerType() {
 		return customerType;
@@ -280,6 +288,13 @@ public class Ticket {
 		this.customerPrio = customerPrio;
 	}
 
+	/**
+	 * @param customerState the state visible for the customer to set
+	 */
+	public void setCustomerState(TicketCustomerState customerState) {
+		this.customerState = customerState;
+	}
+	
 	/**
 	 * @param customerType the customerType to set
 	 */

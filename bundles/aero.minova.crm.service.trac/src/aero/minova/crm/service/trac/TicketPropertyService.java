@@ -49,7 +49,7 @@ public abstract class TicketPropertyService<TP extends TicketProperty> {
 		TypedQuery<TP> ticketsQuery = entityManager.createQuery(allTickets);
 		return ticketsQuery.getResultList();
 	}
-	
+
 	public void get(Consumer<List<TP>> ticketPropertiesConsumer) {
 		checkEntityManager();
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -91,14 +91,20 @@ public abstract class TicketPropertyService<TP extends TicketProperty> {
 		return true;
 	}
 
-	@SuppressWarnings("unchecked")
 	public Optional<TP> get(String name) {
 		TP ticketProperty = null;
 		checkEntityManager();
-		Query query = entityManager.createQuery("SELECT e FROM TicketComponent e WHERE e.name = :name");
+		Query query = entityManager.createQuery("SELECT e FROM TicketProperty e WHERE e.name = :name");
 		query.setParameter("name", name);
 		try {
-			ticketProperty = (TP) query.getSingleResult();
+			@SuppressWarnings("unchecked")
+			List<TicketProperty> resultList = query.getResultList();
+			for (Object object : resultList) {
+				if (ticketPropertyClass.isInstance(object)) {
+					ticketProperty = ticketPropertyClass.cast(object);
+					return Optional.of(ticketProperty);
+				}
+			}
 		} catch (NoResultException nre) {
 		}
 		return Optional.ofNullable(ticketProperty);

@@ -7,7 +7,7 @@ import aero.minova.crm.model.service.TicketComponentService;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
 
-public class TracComponentConverter {
+public class TracTicketComponentConverter {
 
 	public static TicketComponent get(TracTicket tracTicket, TracService tracService,
 			TicketComponentService ticketComponentService) {
@@ -20,12 +20,20 @@ public class TracComponentConverter {
 		if (ticketComponent == null) {
 			// Wir müssen nachladen und speichern
 			Vector<String> ticketComponents = tracService.getTicketComponents();
-			for (String string : ticketComponents) {
+			if (!ticketComponents.contains(componentName)) {
+				// Diese Komponente steht zwar im Ticket, ist aber nicht mehr gültig
 				TicketComponent tc = new TicketComponent();
-				tc.setName(string);
+				tc.setName(componentName);
 				ticketComponentService.save(tc);
-				if (componentName.equals(tc.getName())) {
-					result = ticketComponentService.get(tc.getId()).orElse(null);
+				result = ticketComponentService.get(tc.getId()).orElse(null);
+			} else {
+				for (String string : ticketComponents) {
+					TicketComponent tc = new TicketComponent();
+					tc.setName(string);
+					ticketComponentService.save(tc);
+					if (componentName.equals(tc.getName())) {
+						result = ticketComponentService.get(tc.getId()).orElse(null);
+					}
 				}
 			}
 		}

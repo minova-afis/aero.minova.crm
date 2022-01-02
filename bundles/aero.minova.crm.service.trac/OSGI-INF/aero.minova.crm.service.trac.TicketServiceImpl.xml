@@ -4,7 +4,15 @@
       <provide interface="aero.minova.crm.model.service.TicketService"/>
    </service>
    <reference cardinality="1..1" field="databaseService" interface="aero.minova.crm.service.trac.DatabaseService" name="databaseService"/>
+   <reference cardinality="1..1" field="milestoneService" interface="aero.minova.crm.model.service.MilestoneService" name="milestoneService"/>
    <reference cardinality="1..1" field="ticketComponentService" interface="aero.minova.crm.model.service.TicketComponentService" name="ticketComponentService"/>
+   <reference cardinality="1..1" field="ticketCustomerPrioService" interface="aero.minova.crm.model.service.TicketCustomerPrioService" name="ticketCustomerPrioService"/>
+   <reference cardinality="1..1" field="ticketCustomerStateService" interface="aero.minova.crm.model.service.TicketCustomerStateService" name="ticketCustomerStateService"/>
+   <reference cardinality="1..1" field="ticketCustomerTypeService" interface="aero.minova.crm.model.service.TicketCustomerTypeService" name="ticketCustomerTypeService"/>
+   <reference cardinality="1..1" field="ticketPriorityService" interface="aero.minova.crm.model.service.TicketPriorityService" name="ticketPriorityService"/>
+   <reference cardinality="1..1" field="ticketResolutionService" interface="aero.minova.crm.model.service.TicketResolutionService" name="ticketResolutionService"/>
+   <reference cardinality="1..1" field="ticketStateService" interface="aero.minova.crm.model.service.TicketStateService" name="ticketStateService"/>
+   <reference cardinality="1..1" field="ticketTypeService" interface="aero.minova.crm.model.service.TicketTypeService" name="ticketTypeService"/>
    <reference cardinality="1..1" field="tracService" interface="aero.minova.trac.TracService" name="tracService"/>
    <implementation class="aero.minova.crm.service.trac.TicketServiceImpl"/>
 </scr:component>
