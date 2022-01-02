@@ -60,8 +60,10 @@ Require-Bundle: org.eclipse.jetty.servlet,
  wrapped.com.vladsch.flexmark.flexmark-util-dependency;bundle-version="0.62.2",
  wrapped.com.vladsch.flexmark.flexmark-util-format;bundle-version="0.62.2",
  wrapped.com.vladsch.flexmark.flexmark-util-misc;bundle-version="0.62.2",
- wrapped.com.vladsch.flexmark.flexmark-util-options;bundle-version="0.62.2"
-Import-Package: org.osgi.service.component.annotations
+ wrapped.com.vladsch.flexmark.flexmark-util-options;bundle-version="0.62.2",
+ org.eclipse.osgi
+Import-Package: org.eclipse.core.runtime;version="3.7.0",
+ org.osgi.service.component.annotations
 Service-Component: OSGI-INF/aero.minova.crm.service.http.HttpServiceImpl.xml
 Bundle-ActivationPolicy: lazy
 Export-Package: aero.minova.crm.service.http,
