@@ -11,13 +11,13 @@ public class TracTicketTypeConverter {
 
 	public static TicketType get(TracTicket tracTicket, TracService tracService,
 			TicketTypeService ticketTypeService) {
-		String TypeName = tracTicket.getStatus();
+		String TypeName = tracTicket.getTicketType();
 		TicketType result = null;
 		if (TypeName == null || TypeName.trim().isEmpty())
 			return null;
 
-		TicketType ticketType = ticketTypeService.get(TypeName).orElse(null);
-		if (ticketType == null) {
+		result = ticketTypeService.get(TypeName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			Vector<String> ticketTypes = tracService.getTicketTypes();
 			for (String string : ticketTypes) {

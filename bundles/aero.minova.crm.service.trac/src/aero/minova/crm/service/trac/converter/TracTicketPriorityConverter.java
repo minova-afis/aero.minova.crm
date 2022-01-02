@@ -16,8 +16,8 @@ public class TracTicketPriorityConverter {
 		if (priorityName == null || priorityName.trim().isEmpty())
 			return null;
 
-		TicketPriority ticketPriority = ticketPriorityService.get(priorityName).orElse(null);
-		if (ticketPriority == null) {
+		result = ticketPriorityService.get(priorityName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			Vector<String> ticketPrioritys = tracService.getTicketPriorities();
 			for (String string : ticketPrioritys) {

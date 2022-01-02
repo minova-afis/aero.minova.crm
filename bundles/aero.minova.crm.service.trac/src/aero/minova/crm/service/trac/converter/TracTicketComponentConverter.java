@@ -16,8 +16,8 @@ public class TracTicketComponentConverter {
 		if (componentName == null || componentName.trim().isEmpty())
 			return null;
 
-		TicketComponent ticketComponent = ticketComponentService.get(componentName).orElse(null);
-		if (ticketComponent == null) {
+		result = ticketComponentService.get(componentName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			Vector<String> ticketComponents = tracService.getTicketComponents();
 			if (!ticketComponents.contains(componentName)) {

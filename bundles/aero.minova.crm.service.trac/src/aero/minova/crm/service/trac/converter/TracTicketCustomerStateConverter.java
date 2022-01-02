@@ -14,8 +14,8 @@ public class TracTicketCustomerStateConverter {
 		if (customerStateName == null || customerStateName.trim().isEmpty())
 			return null;
 
-		TicketCustomerState ticketCustomerState = ticketCustomerStateService.get(customerStateName).orElse(null);
-		if (ticketCustomerState == null) {
+		result = ticketCustomerStateService.get(customerStateName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			String ticketCustomerStates[] = new String[] { "erfasst", "bearbeitet", "Kunde am Zug", "auslieferbereit",
 					"gelöst", "ausgeliefert", "Analysieren", "Dokumentieren", "Implementieren", "Testen" };

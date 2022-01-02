@@ -14,10 +14,9 @@ public class TracTicketResolutionConverter {
 		if (resolutionName == null || resolutionName.trim().isEmpty())
 			return null;
 
-		TicketResolution ticketResolution = ticketResolutionService.get(resolutionName).orElse(null);
-		if (ticketResolution == null) {
-			// Wir müssen nachladen und speichern
-			// Wir müssen nachladen und speichern
+		result = ticketResolutionService.get(resolutionName).orElse(null);
+		if (result == null) {
+			// Wir müssen die defineirten Werte für MINOVA speichern
 			String ticketResolutions[] = new String[] { "gelöst", "nicht zutreffend", "wird nicht gelöst",
 					"doppeltes Ticket", "nicht nachstellbar", "bitte installieren", "Kunde am Zug", "bitte patchen",
 					"bestellt", "nicht bestellt" };

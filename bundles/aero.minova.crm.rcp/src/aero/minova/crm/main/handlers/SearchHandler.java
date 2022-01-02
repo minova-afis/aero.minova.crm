@@ -4,6 +4,7 @@ package aero.minova.crm.main.handlers;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -18,15 +19,18 @@ import aero.minova.crm.main.dialogs.SearchDialog;
 
 public class SearchHandler {
 	@Execute
-	public void execute(MApplication application, MWindow window, EModelService modelService, EPartService partService, Shell shell) {
-		SearchDialog dialog = new SearchDialog(shell);
-		dialog.setBlockOnOpen(true);
-		int result = dialog.open();
+	public void execute(ParameterizedCommand command, MApplication application, MWindow window, EModelService modelService, EPartService partService, Shell shell) {
+		String searchText = (String) command.getParameterMap().get("aero.minova.crm.rcp.commandparameter.searchtext");
+		if (searchText == null) {
+			SearchDialog dialog = new SearchDialog(shell);
+			dialog.setBlockOnOpen(true);
+			int result = dialog.open();
 
-		if (result != Window.OK) return;
+			if (result != Window.OK) return;
 
+			searchText = dialog.getSearchText();
+		}
 		Pattern ticketPattern = Pattern.compile("^#([0-9]+)$");
-		String searchText = dialog.getSearchText();
 		Matcher ticketMatcher = ticketPattern.matcher(searchText);
 		if (!ticketMatcher.find()) return;
 		int ticket = Integer.parseInt(ticketMatcher.group(1));

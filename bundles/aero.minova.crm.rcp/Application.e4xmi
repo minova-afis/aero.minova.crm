@@ -59,7 +59,9 @@
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
   <commands xmi:id="_BHOekGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.synchronizewikicommand" commandName="synchronizeWikiCommand"/>
-  <commands xmi:id="_K5FaMGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.searchcommand" commandName="searchCommand"/>
+  <commands xmi:id="_K5FaMGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.searchcommand" commandName="searchCommand">
+    <parameters xmi:id="_g-mJYGvREeyv6u-F_6HdWQ" elementId="aero.minova.crm.rcp.commandparameter.searchtext" name="searchText"/>
+  </commands>
   <commands xmi:id="_Si5OwGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.checkdatabase" commandName="checkDatabaseCommand"/>
   <commands xmi:id="_m0Ny4GWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.startjettycommand" commandName="startWebserverCommand"/>
   <commands xmi:id="_p1CyMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.command.switchtodetails" commandName="switchToDetails" category="_tvOv0GlLEeyPs7QNe0aZ_A"/>

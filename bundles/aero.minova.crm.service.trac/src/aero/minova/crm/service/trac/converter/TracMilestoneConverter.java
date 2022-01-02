@@ -16,8 +16,8 @@ public class TracMilestoneConverter {
 		if (milestoneName == null || milestoneName.trim().isEmpty())
 			return null;
 
-		Milestone milestone = ticketMilestoneService.get(milestoneName).orElse(null);
-		if (milestone == null) {
+		result = ticketMilestoneService.get(milestoneName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			Vector<String> milestones = tracService.getMilestones();
 			for (String string : milestones) {

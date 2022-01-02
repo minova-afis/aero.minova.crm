@@ -6,6 +6,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<!-- converter -->
 		<class>aero.minova.crm.model.converter.IntegerListConverter</class>
+		<class>aero.minova.crm.model.converter.TicketListConverter</class>
 		<!-- model -->
 		<class>aero.minova.crm.model.jpa.MarkupText</class>
 		<class>aero.minova.crm.model.jpa.Milestone</class>

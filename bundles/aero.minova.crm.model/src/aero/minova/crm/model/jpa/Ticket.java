@@ -2,7 +2,6 @@ package aero.minova.crm.model.jpa;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -15,8 +14,8 @@ public class Ticket {
 	@Id
 	private int id;
 	private boolean billable;
-	private List<Integer> blockedBy; // blockedby
-	private List<Integer> blocking;
+	private TicketList blockedBy; // blockedby
+	private TicketList blocking;
 	private String cc;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private TicketComponent component;
@@ -26,7 +25,8 @@ public class Ticket {
 	private TicketCustomerType customerType; // customertype
 	@ManyToOne(cascade = CascadeType.ALL)
 	private MarkupText description;
-	private LocalDate dueDate; // dueDate
+	private LocalDate startDate; // startdate
+	private LocalDate dueDate; // duedate
 	private Double estimatedHours; // esitmatedhours
 	private String keywords;
 	private LocalDateTime lastDate; // changetime
@@ -45,18 +45,16 @@ public class Ticket {
 	private String summary;
 	private Double totalHours; // totalhours
 	private TicketType type;
-
 	/**
 	 * @return the tickets (ticket ids) blocking this ticket
 	 */
-	public List<Integer> getBlockedBy() {
+	public TicketList getBlockedBy() {
 		return blockedBy;
 	}
-
 	/**
 	 * @return the blocking
 	 */
-	public List<Integer> getBlocking() {
+	public TicketList getBlocking() {
 		return blocking;
 	}
 
@@ -94,7 +92,7 @@ public class Ticket {
 	public TicketCustomerState getCustomerState() {
 		return customerState;
 	}
-	
+
 	/**
 	 * @return the type of the ticket visible for the customer
 	 */
@@ -108,7 +106,7 @@ public class Ticket {
 	public MarkupText getDescription() {
 		return description;
 	}
-
+	
 	/**
 	 * @return the dueDate
 	 */
@@ -205,6 +203,13 @@ public class Ticket {
 	}
 
 	/**
+	 * @return the startDate
+	 */
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	/**
 	 * @return the state
 	 */
 	public TicketState getState() {
@@ -249,14 +254,14 @@ public class Ticket {
 	/**
 	 * @param blockedBy the tickets (ticket ids) blocking this ticket to set
 	 */
-	public void setBlockedBy(List<Integer> blockedBy) {
+	public void setBlockedBy(TicketList blockedBy) {
 		this.blockedBy = blockedBy;
 	}
 
 	/**
 	 * @param blocking the blocking to set
 	 */
-	public void setBlocking(List<Integer> blocking) {
+	public void setBlocking(TicketList blocking) {
 		this.blocking = blocking;
 	}
 
@@ -294,14 +299,14 @@ public class Ticket {
 	public void setCustomerState(TicketCustomerState customerState) {
 		this.customerState = customerState;
 	}
-	
+
 	/**
 	 * @param customerType the customerType to set
 	 */
 	public void setCustomerType(TicketCustomerType customerType) {
 		this.customerType = customerType;
 	}
-
+	
 	/**
 	 * @param description the markup description to set
 	 */
@@ -402,6 +407,13 @@ public class Ticket {
 	 */
 	public void setResolution(TicketResolution resolution) {
 		this.resolution = resolution;
+	}
+
+	/**
+	 * @param startDate the startDate to set
+	 */
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
 	}
 
 	/**

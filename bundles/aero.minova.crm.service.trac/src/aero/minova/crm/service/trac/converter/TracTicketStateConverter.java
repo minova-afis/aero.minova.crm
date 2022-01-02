@@ -16,8 +16,8 @@ public class TracTicketStateConverter {
 		if (StateName == null || StateName.trim().isEmpty())
 			return null;
 
-		TicketState ticketState = ticketStateService.get(StateName).orElse(null);
-		if (ticketState == null) {
+		result = ticketStateService.get(StateName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			Vector<String> ticketStates = tracService.getTicketStates();
 			for (String string : ticketStates) {

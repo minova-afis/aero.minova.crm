@@ -14,8 +14,8 @@ public class TracTicketCustomerTypeConverter {
 		if (customerTypeName == null || customerTypeName.trim().isEmpty())
 			return null;
 
-		TicketCustomerType ticketCustomerType = ticketCustomerTypeService.get(customerTypeName).orElse(null);
-		if (ticketCustomerType == null) {
+		result = ticketCustomerTypeService.get(customerTypeName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			String ticketCustomerTypes[] = new String[] { "-", "Programm", "Konfiguration", "Anwender", "Wunsch" };
 			for (String string : ticketCustomerTypes) {

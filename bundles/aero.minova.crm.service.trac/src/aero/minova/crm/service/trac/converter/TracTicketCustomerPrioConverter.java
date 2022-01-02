@@ -14,8 +14,8 @@ public class TracTicketCustomerPrioConverter {
 		if (customerPrioName == null || customerPrioName.trim().isEmpty())
 			return null;
 
-		TicketCustomerPrio ticketCustomerPrio = ticketCustomerPrioService.get(customerPrioName).orElse(null);
-		if (ticketCustomerPrio == null) {
+		result = ticketCustomerPrioService.get(customerPrioName).orElse(null);
+		if (result == null) {
 			// Wir müssen nachladen und speichern
 			String ticketCustomerPrios[] = new String[] { "niedrig", "normal", "hoch" };
 			for (String string : ticketCustomerPrios) {
