@@ -16,11 +16,8 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.services.help.EHelpService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.browser.LocationEvent;
-import org.eclipse.swt.browser.LocationListener;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
@@ -39,9 +36,7 @@ import org.eclipse.swt.widgets.Text;
 import aero.minova.crm.http.HttpService;
 import aero.minova.crm.main.jobs.LoadTicketJob;
 import aero.minova.crm.model.jpa.Ticket;
-import aero.minova.crm.model.service.TicketComponentService;
 import aero.minova.crm.model.service.TicketService;
-import aero.minova.trac.TracService;
 
 public class TicketPart {
 	private Text summaryField;
@@ -66,9 +61,6 @@ public class TicketPart {
 
 	@Inject
 	private TicketService ticketService;
-
-	@Inject
-	private TicketComponentService ticketComponentService;
 
 	@Inject
 	MApplication application;
