@@ -1,8 +1,6 @@
 
 package aero.minova.crm.main.parts;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.time.format.DateTimeFormatter;
 
@@ -49,13 +47,13 @@ public class TicketPart {
 
 	MPart part;
 	private Ticket ticket;
-	
+
 	@Inject
 	EHandlerService handlerService;
 
 	@Inject
 	ECommandService commandService;
-	
+
 	@Inject
 	UISynchronize sync;
 
@@ -99,8 +97,7 @@ public class TicketPart {
 		int ticketId = -1;
 		try {
 			ticketId = Integer.parseInt(part.getLabel().substring(1));
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 
 		parent.setLayout(new FormLayout());
 
@@ -168,9 +165,10 @@ public class TicketPart {
 		fd.top = new FormAttachment(0, 10);
 		summaryField.setLayoutData(fd);
 
-		descriptionText.addModifyListener(e ->
-
-		refreshMarkdown());
+		descriptionText.addModifyListener(e -> {
+			part.setDirty(true);
+			refreshMarkdown();
+		});
 
 		if (part.getLabel().startsWith("#")) {
 			setTicketId(ticketId);
@@ -299,12 +297,11 @@ public class TicketPart {
 
 		detailsComposite.setLayout(new GridLayout(4, false));
 		detailsComposite.setTabList(new Control[] {
-				// 1. Spalte
-				reporterField, ownerField, ccField, typeField, priorityField, milestoneField, componentField,
-				keywordsField,
-				// 2. Spalte
-				estimatedHoursField, offeredHoursField, totalHoursField, startDateField, dueDateField, parentField,
-				blockedByField, blockingField });
+													// 1. Spalte
+													reporterField, ownerField, ccField, typeField, priorityField, milestoneField, componentField, keywordsField,
+													// 2. Spalte
+													estimatedHoursField, offeredHoursField, totalHoursField, startDateField, dueDateField, parentField,
+													blockedByField, blockingField });
 
 		detailsScrolledComposite.setContent(detailsComposite);
 		detailsScrolledComposite.setMinSize(detailsComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -313,8 +310,11 @@ public class TicketPart {
 
 	private void refreshMarkdown() {
 		httpService.start(application, 8082);
-		browser.setUrl("http:/localhost:8082/markdown?text="
-				+ URLEncoder.encode(descriptionText.getText(), StandardCharsets.UTF_8));
+		if (ticket != null && ticket.getDescription() != null) {
+			ticket.getDescription().setMarkup(descriptionText.getText());
+			httpService.setTicket(ticket);
+			browser.setUrl("http:/localhost:8082/markdown?part=all");
+		}
 	}
 
 	@Focus
@@ -325,6 +325,7 @@ public class TicketPart {
 	@Persist
 	public void save() {
 		ticketService.saveTicket(ticket);
+		part.setDirty(false);
 	}
 
 	public void setTicket(Ticket ticket) {
@@ -340,35 +341,29 @@ public class TicketPart {
 		summaryField.setText((ticket == null || ticket.getSummary() == null) ? "" : ticket.getSummary());
 		ownerField.setText((ticket == null || ticket.getOwner() == null) ? "" : ticket.getOwner());
 		ccField.setText((ticket == null || ticket.getCc() == null) ? "" : ticket.getCc());
-		descriptionText.setText(
-				(ticket == null || ticket.getDescription() == null) ? "" : ticket.getDescription().getMarkup());
-		lastModifiedText.setText((ticket == null || ticket.getLastDate() == null) ? ""
-				: ticket.getLastDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
-		estimatedHoursField.setText((ticket == null || ticket.getEstimatedHours() == null) ? ""
-				: MessageFormat.format("{0,number,#,##0.0}", ticket.getEstimatedHours()));
-		offeredHoursField.setText((ticket == null || ticket.getOfferedHours() == null) ? ""
-				: MessageFormat.format("{0,number,#,##0.0}", ticket.getOfferedHours()));
-		totalHoursField.setText((ticket == null || ticket.getTotalHours() == null) ? ""
-				: MessageFormat.format("{0,number,#,##0.0}", ticket.getTotalHours()));
+		descriptionText.setText((ticket == null || ticket.getDescription() == null) ? "" : ticket.getDescription().getMarkup());
+		lastModifiedText.setText(
+				(ticket == null || ticket.getLastDate() == null) ? "" : ticket.getLastDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")));
+		estimatedHoursField
+				.setText((ticket == null || ticket.getEstimatedHours() == null) ? "" : MessageFormat.format("{0,number,#,##0.0}", ticket.getEstimatedHours()));
+		offeredHoursField
+				.setText((ticket == null || ticket.getOfferedHours() == null) ? "" : MessageFormat.format("{0,number,#,##0.0}", ticket.getOfferedHours()));
+		totalHoursField.setText((ticket == null || ticket.getTotalHours() == null) ? "" : MessageFormat.format("{0,number,#,##0.0}", ticket.getTotalHours()));
 		typeField.setText((ticket == null || ticket.getType() == null) ? "" : ticket.getType().getName());
 		priorityField.setText((ticket == null || ticket.getPriority() == null) ? "" : ticket.getPriority().getName());
-		milestoneField
-				.setText((ticket == null || ticket.getMilestone() == null) ? "" : ticket.getMilestone().getName());
-		componentField
-				.setText((ticket == null || ticket.getComponent() == null) ? "" : ticket.getComponent().getName());
+		milestoneField.setText((ticket == null || ticket.getMilestone() == null) ? "" : ticket.getMilestone().getName());
+		componentField.setText((ticket == null || ticket.getComponent() == null) ? "" : ticket.getComponent().getName());
 		keywordsField.setText((ticket == null || ticket.getKeywords() == null) ? "" : ticket.getKeywords());
 
-		startDateField.setText((ticket == null || ticket.getStartDate() == null) ? ""
-				: ticket.getStartDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-		dueDateField.setText((ticket == null || ticket.getDueDate() == null) ? ""
-				: ticket.getDueDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+		startDateField
+				.setText((ticket == null || ticket.getStartDate() == null) ? "" : ticket.getStartDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+		dueDateField.setText((ticket == null || ticket.getDueDate() == null) ? "" : ticket.getDueDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 		parentField.setText((ticket == null || ticket.getParent() == null) ? "" : "" + ticket.getParent().getId());
-		blockedByField.setText(
-				(ticket == null || ticket.getBlockedBy() == null) ? "" : ticket.getBlockedBy().getTicketString());
-		blockingField.setText(
-				(ticket == null || ticket.getBlocking() == null) ? "" : ticket.getBlocking().getTicketString());
+		blockedByField.setText((ticket == null || ticket.getBlockedBy() == null) ? "" : ticket.getBlockedBy().getTicketString());
+		blockingField.setText((ticket == null || ticket.getBlocking() == null) ? "" : ticket.getBlocking().getTicketString());
 
 		summaryField.setMessage("");
+		part.setDirty(false);
 	}
 
 	public void focusDetails() {

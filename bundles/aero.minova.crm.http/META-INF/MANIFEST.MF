@@ -7,4 +7,5 @@ Automatic-Module-Name: aero.minova.crm.http
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: aero.minova.crm.http
 Require-Bundle: org.eclipse.osgi,
- org.eclipse.e4.ui.model.workbench
+ org.eclipse.e4.ui.model.workbench,
+ aero.minova.crm.model

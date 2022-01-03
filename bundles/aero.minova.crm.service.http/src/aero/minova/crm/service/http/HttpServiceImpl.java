@@ -10,12 +10,14 @@ import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletHandler;
-import org.eclipse.osgi.service.datalocation.Location;
+import org.eclipse.jetty.util.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 
 import aero.minova.crm.http.HttpService;
+import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.service.http.servlets.ExempleServlet;
 import aero.minova.crm.service.http.servlets.MarkdownServlet;
+import aero.minova.crm.service.http.servlets.PluginResourceHandler;
 import aero.minova.crm.service.http.servlets.TicketServlet;
 
 @Component(service = HttpService.class)
@@ -37,20 +39,33 @@ public class HttpServiceImpl implements HttpService {
 			handler.addServletWithMapping(TicketServlet.class, "/ticket");
 			handler.addServletWithMapping(MarkdownServlet.class, "/markdown");
 
-			ResourceHandler resourceHandler = new ResourceHandler();
+			ResourceHandler staticResourceHandler = new ResourceHandler();
 			String basePath = Platform.getInstanceLocation().getURL().getPath() + "static";
-			resourceHandler.setResourceBase(basePath);
-			resourceHandler.setDirectoriesListed(true);
+			staticResourceHandler.setResourceBase(basePath);
+			staticResourceHandler.setDirectoriesListed(true);
 			ContextHandler contextHandler = new ContextHandler("/static");
-			contextHandler.setHandler(resourceHandler);
+			contextHandler.setHandler(staticResourceHandler);
+			
+			ResourceHandler cssResourceHandler = new PluginResourceHandler();
+			cssResourceHandler.setBaseResource(Resource.newResource(PluginResourceHandler.class.getResource("/css")));
+			cssResourceHandler.setResourceBase(basePath);
+			cssResourceHandler.setDirectoriesListed(true);
+			ContextHandler cssContextHandler = new ContextHandler("/css");
+			cssContextHandler.setHandler(cssResourceHandler);
+			
 
 			HandlerList handlers = new HandlerList();
-			handlers.setHandlers(new Handler[] {contextHandler, handler});
+			handlers.setHandlers(new Handler[] { cssContextHandler, contextHandler, handler });
 			server.setHandler(handlers);
 			server.start();
 			application.getContext().set("HttpService.port", port);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void setTicket(Ticket ticket) {
+		MarkdownServlet.setTicket(ticket);
 	}
 }

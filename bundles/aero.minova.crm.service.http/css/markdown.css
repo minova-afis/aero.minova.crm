@@ -1,0 +1,72 @@
+/*
+* Tabellen
+*/
+table {
+	margin-top: 5;
+	margin-bottm: 5;
+	border: 1px gray solid;
+	border-collapse: collapse;
+	font-size: 13;
+}
+
+th {
+	border: 1px gray solid;
+	background-color: #e0e0e0;
+	padding: 2px;
+}
+
+td {
+	border: 1px gray solid;
+	padding: 2px;
+}
+
+
+body {
+	font-family: SFPro-Regular, "SF Pro Regular", serif;
+	font-size: 12pt;
+	color: black;
+	/* 
+	padding-left: 11em;
+	background-color: #d8da3d ;
+	*/
+}
+
+p {
+	margin-top: 3;
+	margin-bottom: 3;
+}
+
+h2 {
+	margin-top: 3;
+	margin-bottm: 3;
+	font-size: 17;
+}
+
+pre {
+	margin-top: 5;
+	margin-bottm: 3;
+	font-size: 15;
+	background-color: #f0f0f0;
+}
+
+/*
+
+
+
+<h2>Abrechnung SIS</h2>
+<table>
+<thead>
+<tr><th align="left">Feld</th><th align="right">Wert</th></tr>
+</thead>
+<tbody>
+<tr><td align="left">Projekt</td><td align="right">AWB</td></tr>
+<tr><td align="left">Aufwand</td><td align="right">ZWARTUNG</td></tr>
+</tbody>
+</table>
+
+<pre><code>Dies ist Quelltext
+   sdlkj
+</code></pre>
+
+
+*/
