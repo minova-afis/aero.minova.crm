@@ -19,6 +19,8 @@ import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -122,6 +124,18 @@ public class TicketPart {
 
 		descriptionTabItem.setText("Beschreibung");
 		descriptionTabItem.setControl(descriptionText);
+		descriptionText.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				System.out.println("" + e.keyCode + ", " + (((e.stateMask & SWT.COMMAND) != 0) ? "COMMAND:+" : "") + (e.stateMask & SWT.SHIFT));
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == 'a') e.doit = false;
+			}
+		});
 
 		lastUserLabel.setAlignment(SWT.RIGHT);
 		FormData fd_lastUserLabel = new FormData();

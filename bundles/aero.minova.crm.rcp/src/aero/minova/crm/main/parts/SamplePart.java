@@ -17,11 +17,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
 import aero.minova.crm.http.HttpService;
+import aero.minova.crm.model.jpa.Contact;
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.service.TicketService;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
+import ezvcard.Ezvcard;
+import ezvcard.VCard;
 
 public class SamplePart {
 
@@ -56,6 +59,17 @@ public class SamplePart {
 		browser = new Browser(parent, SWT.NONE);
 		browser.setLayoutData(new GridData(GridData.FILL_BOTH));
 		refresh();
+
+		Contact c = new Contact();
+
+		String str = "BEGIN:VCARD\r\n" + "VERSION:4.0\r\n" + "N:Doe;Jonathan;;Mr;\r\n" + "FN:John Doe\r\n" + "END:VCARD\r\n";
+
+		VCard vcard = Ezvcard.parse(str).first();
+		String fullName = vcard.getFormattedName().getValue();
+		String lastName = vcard.getStructuredName().getFamily();
+
+		System.out.println(fullName);
+		System.err.println(lastName);
 	}
 
 	public void refresh() {

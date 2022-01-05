@@ -58,4 +58,18 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="com.googlecode.ez-vcard"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.github.mangstadt.vinnie"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
