@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Wiki Tests
+Bundle-SymbolicName: aero.minova.crm.wiki.tests
+Bundle-Version: 0.0.1.qualifier
+Automatic-Module-Name: aero.minova.crm.wiki.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Require-Bundle: org.junit,
+ aero.minova.crm.wiki;bundle-version="0.0.1"

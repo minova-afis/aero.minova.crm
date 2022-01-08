@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: aero.minova.crm.service.http.tests
+Bundle-Version: 0.0.1.qualifier
+Automatic-Module-Name: aero.minova.crm.service.http.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: org.junit
