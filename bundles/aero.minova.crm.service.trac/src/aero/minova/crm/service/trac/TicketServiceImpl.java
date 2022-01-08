@@ -29,7 +29,7 @@ import aero.minova.crm.service.trac.converter.TracTicketPriorityConverter;
 import aero.minova.crm.service.trac.converter.TracTicketResolutionConverter;
 import aero.minova.crm.service.trac.converter.TracTicketStateConverter;
 import aero.minova.crm.service.trac.converter.TracTicketTypeConverter;
-import aero.minova.crm.service.trac.converter.TracToModel;
+import aero.minova.crm.service.trac.converter.TicketToModel;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
 import jakarta.persistence.EntityManager;
@@ -124,7 +124,7 @@ public class TicketServiceImpl implements TicketService {
 	private Ticket getTicketFromTrac(int id) {
 		TracTicket tracTicket = tracService.getTicket(id);
 
-		Ticket ticket = TracToModel.getTicket(tracTicket);
+		Ticket ticket = TicketToModel.getTicket(tracTicket);
 		ticket.setMilestone(TracMilestoneConverter.get(tracTicket, tracService, milestoneService));
 		ticket.setComponent(TracTicketComponentConverter.get(tracTicket, tracService, ticketComponentService));
 		ticket.setCustomerPrio(TracTicketCustomerPrioConverter.get(tracTicket, tracService, ticketCustomerPrioService));

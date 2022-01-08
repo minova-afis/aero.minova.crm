@@ -20,6 +20,8 @@ public class TicketList implements Serializable, List<Integer> {
 	}
 
 	public void setTicketString(String ticketList) {
+		if (ticketList == null)
+			return;
 		tickets = new ArrayList<>();
 		String ticketString[] = ticketList.split(" ");
 		for (String string : ticketString) {
@@ -35,7 +37,7 @@ public class TicketList implements Serializable, List<Integer> {
 		tickets.forEach(i -> sb.append(i + " "));
 		return sb.toString();
 	}
-	
+
 	public List<Integer> getList() {
 		return tickets;
 	}

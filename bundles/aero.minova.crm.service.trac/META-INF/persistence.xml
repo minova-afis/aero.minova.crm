@@ -21,6 +21,6 @@
 		<class>aero.minova.crm.model.jpa.TicketState</class>
 		<class>aero.minova.crm.model.jpa.TicketType</class>
 		<class>aero.minova.crm.model.jpa.Todo</class>
-		<class>aero.minova.crm.model.jpa.WikiPage</class>
+		<class>aero.minova.crm.model.jpa.Wiki</class>
 	</persistence-unit>
 </persistence>

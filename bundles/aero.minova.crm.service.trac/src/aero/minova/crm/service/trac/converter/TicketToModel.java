@@ -1,16 +1,10 @@
 package aero.minova.crm.service.trac.converter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 import aero.minova.crm.model.jpa.Ticket;
 import aero.minova.crm.model.jpa.TicketList;
 import aero.minova.trac.domain.TracTicket;
 
-public class TracToModel {
+public class TicketToModel extends TracToTicket {
 	public static Ticket getTicket(TracTicket tracTicket) {
 		Ticket ticket = new Ticket();
 
@@ -43,30 +37,5 @@ public class TracToModel {
 		ticket.setSummary(tracTicket.getSummary());
 		ticket.setType(null);
 		return ticket;
-	}
-
-	private static LocalDate getLocalDate(String date) {
-		LocalDate result = null;
-		try {
-			result = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-		} catch (Exception e) {
-		}
-		try {
-			result = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		} catch (Exception e) {
-		}
-		return result;
-	}
-
-	private static LocalDateTime getLocalDateTime(Date date) {
-		return (date == null) ? null : LocalDateTime.ofInstant(date.toInstant(), ZoneId.of("UTC"));
-	}
-
-	private static Double getDouble(String stringValue) {
-		try {
-			return Double.parseDouble(stringValue);
-		} catch (NumberFormatException | NullPointerException e) {
-			return null;
-		}
 	}
 }

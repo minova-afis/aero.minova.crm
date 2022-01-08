@@ -6,9 +6,9 @@ import aero.minova.crm.model.jpa.Wiki;
 
 public interface WikiService {
 
-	boolean saveWikiPage(Wiki newWikiPage);
+	boolean saveWiki(Wiki newWiki);
 
-	Optional<Wiki> getWikiPage(int id);
+	Optional<Wiki> getWiki(int id);
 
-	Optional<Wiki> getWikiPage(String path);
+	Optional<Wiki> getWiki(String path);
 }
