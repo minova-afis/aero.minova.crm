@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Wiki
+Bundle-SymbolicName: aero.minova.crm.wiki
+Bundle-Version: 0.0.1.qualifier
+Automatic-Module-Name: aero.minova.crm.wiki
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: aero.minova.crm.wiki

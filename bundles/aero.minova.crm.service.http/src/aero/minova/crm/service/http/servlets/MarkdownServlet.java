@@ -15,6 +15,7 @@ import com.vladsch.flexmark.util.ast.Node;
 import com.vladsch.flexmark.util.data.MutableDataSet;
 
 import aero.minova.crm.model.jpa.Ticket;
+import aero.minova.crm.wiki.TracToMarkdown;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,6 +48,8 @@ public class MarkdownServlet extends HttpServlet {
 	}
 
 	private String convertMarkdown(String text) {
+		text = TracToMarkdown.convert(text);
+		
 		MutableDataSet options = new MutableDataSet();
 
 		// uncomment to set optional extensions
