@@ -15,16 +15,16 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 
 import aero.minova.crm.model.jpa.MarkupText;
-import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.service.WikiPageService;
+import aero.minova.crm.model.jpa.Wiki;
+import aero.minova.crm.model.service.WikiService;
 import aero.minova.trac.TracService;
 
 public class DownloadWikiJob extends Job {
 
 	private TracService tracService;
-	private WikiPageService wikiService;
+	private WikiService wikiService;
 
-	public DownloadWikiJob(TracService tracService, WikiPageService wikiService) {
+	public DownloadWikiJob(TracService tracService, WikiService wikiService) {
 		super("Synchronize Wiki");
 		this.tracService = tracService;
 		this.wikiService = wikiService;
@@ -49,7 +49,7 @@ public class DownloadWikiJob extends Job {
 
 	private void checkWikiPage(String pagename) {
 		try {
-			Optional<WikiPage> pageOptional = wikiService.getWikiPage(pagename);
+			Optional<Wiki> pageOptional = wikiService.getWikiPage(pagename);
 			if (pageOptional.isPresent() && pageOptional.get().getLastModified() != null) return;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -57,7 +57,7 @@ public class DownloadWikiJob extends Job {
 		}
 
 		MarkupText mt = new MarkupText();
-		WikiPage page = new WikiPage();
+		Wiki page = new Wiki();
 		page.setPath(pagename);
 		page.setDescription(mt);
 
@@ -76,15 +76,16 @@ public class DownloadWikiJob extends Job {
 		} catch (Exception e) {}
 		mt.setMarkup(tracService.getPage(pagename));
 
-		try {
-			mt.setHtml(tracService.getPageHTML(pagename));
-			if (mt.getHtml().length() > 1000000) {
-				// Kann nicht mehr sauber in der Datenabnk gespeichert werden
-				mt.setHtml(null);
-			}
-		} catch (Exception e) {
-			mt.setHtml(null);
-		}
+		// HTML-Code laden / wir versuchen es mal ohne
+//		try {
+//			mt.setHtml(tracService.getPageHTML(pagename));
+//			if (mt.getHtml().length() > 1000000) {
+//				// Kann nicht mehr sauber in der Datenabnk gespeichert werden
+//				mt.setHtml(null);
+//			}
+//		} catch (Exception e) {
+//			mt.setHtml(null);
+//		}
 
 		wikiService.saveWikiPage(page);
 	}

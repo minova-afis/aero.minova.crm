@@ -7,13 +7,13 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
-import aero.minova.crm.model.jpa.WikiPage;
-import aero.minova.crm.model.service.WikiPageService;
+import aero.minova.crm.model.jpa.Wiki;
+import aero.minova.crm.model.service.WikiService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 
-@Component(service = WikiPageService.class)
-public class WikiServiceImpl implements WikiPageService {
+@Component(service = WikiService.class)
+public class WikiServiceImpl implements WikiService {
 	private EntityManager entityManager;
 
 	@Reference
@@ -32,9 +32,9 @@ public class WikiServiceImpl implements WikiPageService {
 	}
 
 	@Override
-	public boolean saveWikiPage(WikiPage page) {
+	public boolean saveWikiPage(Wiki page) {
 		checkEntityManager();
-		Optional<WikiPage> pageOptional = getWikiPage(page.getPath());
+		Optional<Wiki> pageOptional = getWikiPage(page.getPath());
 		if (pageOptional.isPresent()) {
 			entityManager.getTransaction().begin();
 			entityManager.merge(page);
@@ -48,19 +48,19 @@ public class WikiServiceImpl implements WikiPageService {
 	}
 
 	@Override
-	public Optional<WikiPage> getWikiPage(int id) {
+	public Optional<Wiki> getWikiPage(int id) {
 		checkEntityManager();
-		WikiPage find = entityManager.find(WikiPage.class, id);
+		Wiki find = entityManager.find(Wiki.class, id);
 		return Optional.ofNullable(find);
 	}
 
 	@Override
-	public Optional<WikiPage> getWikiPage(String path) {
+	public Optional<Wiki> getWikiPage(String path) {
 		checkEntityManager();
 		Query query = entityManager.createQuery("SELECT w FROM WikiPage w WHERE w.path = :path");
 		query.setParameter("path", path);
 		@SuppressWarnings("unchecked")
-		List<WikiPage> page = query.getResultList();
+		List<Wiki> page = query.getResultList();
 
 		if (page.size() == 0) return Optional.empty();
 		return Optional.of(page.get(0));

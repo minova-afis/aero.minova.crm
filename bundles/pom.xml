@@ -19,5 +19,6 @@
 		<module>aero.minova.crm.service.http</module>
 		<module>aero.minova.crm.service.trac</module>
 		<module>aero.minova.crm.trac</module>
+		<module>aero.minova.crm.wiki</module>
 	</modules>
 </project>

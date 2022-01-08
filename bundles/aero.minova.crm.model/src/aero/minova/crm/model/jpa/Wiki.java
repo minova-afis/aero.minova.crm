@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class WikiPage {
+public class Wiki {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" deactivate="deactivateComponent" name="aero.minova.crm.service.trac.WikiServiceImpl">
    <service>
-      <provide interface="aero.minova.crm.model.service.WikiPageService"/>
+      <provide interface="aero.minova.crm.model.service.WikiService"/>
    </service>
    <reference cardinality="1..1" field="databaseService" interface="aero.minova.crm.service.trac.DatabaseService" name="databaseService"/>
    <implementation class="aero.minova.crm.service.trac.WikiServiceImpl"/>
