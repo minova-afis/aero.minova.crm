@@ -15,6 +15,7 @@ import org.osgi.service.component.annotations.Component;
 
 import aero.minova.crm.http.HttpService;
 import aero.minova.crm.model.jpa.Ticket;
+import aero.minova.crm.model.jpa.Wiki;
 import aero.minova.crm.service.http.servlets.ExempleServlet;
 import aero.minova.crm.service.http.servlets.MarkdownServlet;
 import aero.minova.crm.service.http.servlets.PluginResourceHandler;
@@ -67,5 +68,10 @@ public class HttpServiceImpl implements HttpService {
 	@Override
 	public void setTicket(Ticket ticket) {
 		MarkdownServlet.setTicket(ticket);
+	}
+
+	@Override
+	public void setWiki(Wiki page) {
+		MarkdownServlet.setWiki(page);
 	}
 }

@@ -74,6 +74,7 @@ public class WikiServiceImpl implements WikiService {
 	}
 
 	private Optional<Wiki> getWiki(String path, boolean searchTrac) {
+		if (path.startsWith("/")) path = path.substring(1);
 		Wiki wiki;
 		checkEntityManager();
 		Query query = entityManager.createQuery("SELECT w FROM Wiki w WHERE w.path = :path");
