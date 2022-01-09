@@ -14,10 +14,18 @@ public class Attachment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private String description;
 	private String name;
 	private Instant lastDate;
 	private String lastUser;
 	private int size;
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
 	/**
 	 * @return the id
@@ -52,6 +60,13 @@ public class Attachment {
 	 */
 	public int getSize() {
 		return size;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**

@@ -25,7 +25,7 @@ public class Wiki {
 	private String lastUser;
 	private int version;
 	@OneToMany(mappedBy = "wiki")
-	private Set<Wiki> wikiAttachments;
+	private Set<WikiAttachment> wikiAttachments;
 
 	/**
 	 * @return Kommentar des Benutzers zur letzten Änderung
@@ -79,7 +79,7 @@ public class Wiki {
 	/**
 	 * @return the wikiAttachments
 	 */
-	public Set<Wiki> getWikiAttachments() {
+	public Set<WikiAttachment> getWikiAttachments() {
 		return wikiAttachments;
 	}
 
@@ -136,7 +136,7 @@ public class Wiki {
 	/**
 	 * @param wikiAttachments the wikiAttachments to set
 	 */
-	public void setWikiAttachments(Set<Wiki> wikiAttachments) {
+	public void setWikiAttachments(Set<WikiAttachment> wikiAttachments) {
 		this.wikiAttachments = wikiAttachments;
 	}
 }

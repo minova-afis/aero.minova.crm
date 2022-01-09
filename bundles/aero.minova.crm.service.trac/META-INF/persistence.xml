@@ -8,9 +8,11 @@
 		<class>aero.minova.crm.model.converter.IntegerListConverter</class>
 		<class>aero.minova.crm.model.converter.TicketListConverter</class>
 		<!-- model -->
+		<class>aero.minova.crm.model.jpa.Attachment</class>
 		<class>aero.minova.crm.model.jpa.MarkupText</class>
 		<class>aero.minova.crm.model.jpa.Milestone</class>
 		<class>aero.minova.crm.model.jpa.Ticket</class>
+		<class>aero.minova.crm.model.jpa.TicketAttachment</class>
 		<class>aero.minova.crm.model.jpa.TicketComponent</class>
 		<class>aero.minova.crm.model.jpa.TicketCustomerPrio</class>
 		<class>aero.minova.crm.model.jpa.TicketCustomerState</class>
@@ -22,5 +24,6 @@
 		<class>aero.minova.crm.model.jpa.TicketType</class>
 		<class>aero.minova.crm.model.jpa.Todo</class>
 		<class>aero.minova.crm.model.jpa.Wiki</class>
+		<class>aero.minova.crm.model.jpa.WikiAttachment</class>
 	</persistence-unit>
 </persistence>
