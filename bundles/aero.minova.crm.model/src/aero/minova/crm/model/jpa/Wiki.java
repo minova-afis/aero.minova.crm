@@ -1,6 +1,7 @@
 package aero.minova.crm.model.jpa;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Wiki {
@@ -22,6 +24,8 @@ public class Wiki {
 	private LocalDateTime lastModified;
 	private String lastUser;
 	private int version;
+	@OneToMany(mappedBy = "wiki")
+	private Set<Wiki> wikiAttachments;
 
 	/**
 	 * @return Kommentar des Benutzers zur letzten Änderung
@@ -73,6 +77,13 @@ public class Wiki {
 	}
 
 	/**
+	 * @return the wikiAttachments
+	 */
+	public Set<Wiki> getWikiAttachments() {
+		return wikiAttachments;
+	}
+
+	/**
 	 * @param comment Kommentar des Benutzers zur letzten Änderung
 	 */
 	public void setComment(String comment) {
@@ -120,5 +131,12 @@ public class Wiki {
 	 */
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	/**
+	 * @param wikiAttachments the wikiAttachments to set
+	 */
+	public void setWikiAttachments(Set<Wiki> wikiAttachments) {
+		this.wikiAttachments = wikiAttachments;
 	}
 }

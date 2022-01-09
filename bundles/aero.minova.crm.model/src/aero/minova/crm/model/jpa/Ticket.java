@@ -2,11 +2,13 @@ package aero.minova.crm.model.jpa;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Ticket {
@@ -45,6 +47,8 @@ public class Ticket {
 	private String summary;
 	private Double totalHours; // totalhours
 	private TicketType type;
+	@OneToMany(mappedBy = "ticket")
+	public Set<TicketAttachment> ticketAttachments;
 
 	/**
 	 * @return the tickets (ticket ids) blocking this ticket
@@ -223,6 +227,13 @@ public class Ticket {
 	 */
 	public String getSummary() {
 		return summary;
+	}
+
+	/**
+	 * @return the ticketAttachments
+	 */
+	public Set<TicketAttachment> getTicketAttachments() {
+		return ticketAttachments;
 	}
 
 	/**
@@ -430,6 +441,13 @@ public class Ticket {
 	 */
 	public void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	/**
+	 * @param ticketAttachments the ticketAttachments to set
+	 */
+	public void setTicketAttachments(Set<TicketAttachment> ticketAttachments) {
+		this.ticketAttachments = ticketAttachments;
 	}
 
 	/**
