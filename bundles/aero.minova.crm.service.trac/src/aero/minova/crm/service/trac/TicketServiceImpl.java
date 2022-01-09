@@ -1,11 +1,16 @@
 package aero.minova.crm.service.trac;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
 import java.util.function.Consumer;
 
+import org.eclipse.core.runtime.Platform;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
@@ -188,7 +193,39 @@ public class TicketServiceImpl implements TicketService {
 			ticketAttachment.setTicket(ticket);
 
 			saveTicketAttachment(ticketAttachment);
+
+			downloadAttachment(ticketAttachment);
 		}
+	}
+
+	private void downloadAttachment(TicketAttachment ticketAttachment) {
+		FileOutputStream fos = null;
+		try {
+			File f = new File(Platform.getInstanceLocation().getURL().toURI());
+			File dir = makeDir(f, "attachement/ticket/" + ticketAttachment.getTicket().getId());
+			File atFile = new File(dir, ticketAttachment.getName());
+			fos = new FileOutputStream(atFile);
+			fos.write(
+					tracService.getTicketAttachment(ticketAttachment.getTicket().getId(), ticketAttachment.getName()));
+			fos.close();
+		} catch (URISyntaxException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (fos != null)
+				try {
+					fos.close();
+				} catch (IOException e) {
+				}
+		}
+	}
+
+	private File makeDir(File f, String string) {
+		File dir = new File(f.getAbsoluteFile() + "/" + string);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		return dir;
 	}
 
 	@Override

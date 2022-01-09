@@ -407,4 +407,11 @@ public class TracServiceImpl implements TracService {
 				.newInstance(aero.minova.trac.xmlprc.Ticket.class);
 		return ticket.listAttachments(id);
 	}
+
+	@Override
+	public byte[] getTicketAttachment(int id, String name) {
+		aero.minova.trac.xmlprc.Ticket ticket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Ticket.class);
+		return ticket.getAttachment(id, name);
+	}
 }

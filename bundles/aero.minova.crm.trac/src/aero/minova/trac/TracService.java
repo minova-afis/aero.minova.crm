@@ -48,4 +48,6 @@ public interface TracService {
 	public Vector<String> getMilestones();
 	
 	public Vector<?> getTicketAttachments(int id);
+
+	public byte[] getTicketAttachment(int id, String name);
 }
