@@ -240,7 +240,7 @@ public class TracTicket {
 	public String getWikiAddress() {
 		return wikiAddress;
 	}
-
+	
 	/**
 	 * @param billable the billable to set
 	 */

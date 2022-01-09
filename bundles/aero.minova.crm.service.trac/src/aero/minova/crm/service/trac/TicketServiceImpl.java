@@ -1,7 +1,9 @@
 package aero.minova.crm.service.trac;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Vector;
 import java.util.function.Consumer;
 
 import org.osgi.service.component.annotations.Component;
@@ -10,6 +12,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import aero.minova.crm.model.jpa.MarkupText;
 import aero.minova.crm.model.jpa.Ticket;
+import aero.minova.crm.model.jpa.TicketAttachment;
 import aero.minova.crm.model.service.MilestoneService;
 import aero.minova.crm.model.service.TicketComponentService;
 import aero.minova.crm.model.service.TicketCustomerPrioService;
@@ -20,6 +23,7 @@ import aero.minova.crm.model.service.TicketResolutionService;
 import aero.minova.crm.model.service.TicketService;
 import aero.minova.crm.model.service.TicketStateService;
 import aero.minova.crm.model.service.TicketTypeService;
+import aero.minova.crm.service.trac.converter.TicketToModel;
 import aero.minova.crm.service.trac.converter.TracMilestoneConverter;
 import aero.minova.crm.service.trac.converter.TracTicketComponentConverter;
 import aero.minova.crm.service.trac.converter.TracTicketCustomerPrioConverter;
@@ -29,7 +33,6 @@ import aero.minova.crm.service.trac.converter.TracTicketPriorityConverter;
 import aero.minova.crm.service.trac.converter.TracTicketResolutionConverter;
 import aero.minova.crm.service.trac.converter.TracTicketStateConverter;
 import aero.minova.crm.service.trac.converter.TracTicketTypeConverter;
-import aero.minova.crm.service.trac.converter.TicketToModel;
 import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracTicket;
 import jakarta.persistence.EntityManager;
@@ -111,6 +114,23 @@ public class TicketServiceImpl implements TicketService {
 		return true;
 	}
 
+	private synchronized boolean saveTicketAttachment(TicketAttachment newEntity) {
+		checkEntityManager();
+		TicketAttachment entity = null;
+		if (newEntity.getId() != 0)
+			entity = entityManager.find(TicketAttachment.class, newEntity.getId());
+		if (entity != null) {
+			entityManager.getTransaction().begin();
+			entityManager.merge(newEntity);
+			entityManager.getTransaction().commit();
+		} else {
+			entityManager.getTransaction().begin();
+			entityManager.persist(newEntity);
+			entityManager.getTransaction().commit();
+		}
+		return true;
+	}
+
 	@Override
 	public Optional<Ticket> getTicket(int id) {
 		checkEntityManager();
@@ -128,7 +148,8 @@ public class TicketServiceImpl implements TicketService {
 		ticket.setMilestone(TracMilestoneConverter.get(tracTicket, tracService, milestoneService));
 		ticket.setComponent(TracTicketComponentConverter.get(tracTicket, tracService, ticketComponentService));
 		ticket.setCustomerPrio(TracTicketCustomerPrioConverter.get(tracTicket, tracService, ticketCustomerPrioService));
-		ticket.setCustomerState(TracTicketCustomerStateConverter.get(tracTicket, tracService, ticketCustomerStateService));
+		ticket.setCustomerState(
+				TracTicketCustomerStateConverter.get(tracTicket, tracService, ticketCustomerStateService));
 		ticket.setCustomerType(TracTicketCustomerTypeConverter.get(tracTicket, tracService, ticketCustomerTypeService));
 		ticket.setPriority(TracTicketPriorityConverter.get(tracTicket, tracService, ticketPriorityService));
 		ticket.setState(TracTicketStateConverter.get(tracTicket, tracService, ticketStateService));
@@ -145,7 +166,29 @@ public class TicketServiceImpl implements TicketService {
 		ticket.setDescription(description);
 		saveTicket(ticket);
 
+		getAttachmentsFromTrac(ticket);
+
 		return ticket;
+	}
+
+	private void getAttachmentsFromTrac(Ticket ticket) {
+		Vector<?> ticketAttachments = tracService.getTicketAttachments(ticket.getId());
+
+		for (Object tracAttachment : ticketAttachments) {
+			Object b[] = (Object[]) tracAttachment;
+			TicketAttachment ticketAttachment = new TicketAttachment();
+			ticketAttachment.setName((String) b[0]);
+			ticketAttachment.setDescription((String) b[1]);
+			ticketAttachment.setSize((int) b[2]);
+			Date d = (Date) b[3];
+			if (d != null) {
+				ticketAttachment.setLastDate(d.toInstant());
+			}
+			ticketAttachment.setLastUser((String) b[4]);
+			ticketAttachment.setTicket(ticket);
+
+			saveTicketAttachment(ticketAttachment);
+		}
 	}
 
 	@Override
