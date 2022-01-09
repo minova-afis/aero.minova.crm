@@ -73,56 +73,50 @@ public class Wiki {
 	}
 
 	/**
-	 * @param comment
-	 *            Kommentar des Benutzers zur letzten Änderung
+	 * @param comment Kommentar des Benutzers zur letzten Änderung
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
 
 	/**
-	 * @param description
-	 *            Seitenquelltext und ggf. HTML-Repräsentation
+	 * @param description Seitenquelltext und ggf. HTML-Repräsentation
 	 */
 	public void setDescription(MarkupText description) {
 		this.description = description;
 	}
 
 	/**
-	 * @param id
-	 *            Eindeutiger Schlüssel in der lokalen Datenbank {@link #getPath()}
+	 * @param id Eindeutiger Schlüssel in der lokalen Datenbank {@link #getPath()}
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @param lastModified
-	 *            Zeitpunkt der letzten Änderung
+	 * @param lastModified Zeitpunkt der letzten Änderung
 	 */
 	public void setLastModified(LocalDateTime lastModified) {
 		this.lastModified = lastModified;
 	}
 
 	/**
-	 * @param lastUser
-	 *            Name des Benutzers der letzen Änderung
+	 * @param lastUser Name des Benutzers der letzen Änderung
 	 */
 	public void setLastUser(String lastUser) {
 		this.lastUser = lastUser;
 	}
 
 	/**
-	 * @param path
-	 *            "Dateiname" der Seite (muss eindeutig sein (siehe {@link #getId()}))
+	 * @param path "Dateiname" der Seite (muss eindeutig sein (siehe
+	 *             {@link #getId()}))
 	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
 
 	/**
-	 * @param version
-	 *            Versionsnummer beginnend bei 1 und dann hochzählend
+	 * @param version Versionsnummer beginnend bei 1 und dann hochzählend
 	 */
 	public void setVersion(int version) {
 		this.version = version;
