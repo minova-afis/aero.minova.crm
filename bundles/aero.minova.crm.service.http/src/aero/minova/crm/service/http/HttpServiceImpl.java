@@ -47,6 +47,13 @@ public class HttpServiceImpl implements HttpService {
 			ContextHandler contextHandler = new ContextHandler("/static");
 			contextHandler.setHandler(staticResourceHandler);
 			
+			ResourceHandler attachmentResourceHandler = new ResourceHandler();
+			basePath = Platform.getInstanceLocation().getURL().getPath() + "attachement";
+			attachmentResourceHandler.setResourceBase(basePath);
+			attachmentResourceHandler.setDirectoriesListed(true);
+			ContextHandler attachmentContextHandler = new ContextHandler("/attachment");
+			attachmentContextHandler.setHandler(attachmentResourceHandler);
+			
 			ResourceHandler cssResourceHandler = new PluginResourceHandler();
 			cssResourceHandler.setBaseResource(Resource.newResource(PluginResourceHandler.class.getResource("/css")));
 			cssResourceHandler.setResourceBase(basePath);
@@ -56,7 +63,7 @@ public class HttpServiceImpl implements HttpService {
 			
 
 			HandlerList handlers = new HandlerList();
-			handlers.setHandlers(new Handler[] { cssContextHandler, contextHandler, handler });
+			handlers.setHandlers(new Handler[] { cssContextHandler, contextHandler, attachmentContextHandler, handler });
 			server.setHandler(handlers);
 			server.start();
 			application.getContext().set("HttpService.port", port);
