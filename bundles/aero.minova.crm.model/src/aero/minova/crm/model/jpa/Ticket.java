@@ -45,12 +45,14 @@ public class Ticket {
 	private String summary;
 	private Double totalHours; // totalhours
 	private TicketType type;
+
 	/**
 	 * @return the tickets (ticket ids) blocking this ticket
 	 */
 	public TicketList getBlockedBy() {
 		return blockedBy;
 	}
+
 	/**
 	 * @return the blocking
 	 */
@@ -106,7 +108,7 @@ public class Ticket {
 	public MarkupText getDescription() {
 		return description;
 	}
-	
+
 	/**
 	 * @return the dueDate
 	 */
@@ -306,7 +308,7 @@ public class Ticket {
 	public void setCustomerType(TicketCustomerType customerType) {
 		this.customerType = customerType;
 	}
-	
+
 	/**
 	 * @param description the markup description to set
 	 */
