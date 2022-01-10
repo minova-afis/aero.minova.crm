@@ -14,11 +14,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
@@ -30,6 +26,7 @@ import aero.minova.crm.model.service.WikiService;
 
 public class WikiPart {
 	private Text pathField;
+	private Text editField;
 	private Browser editBrowser;
 	private Browser viewBrowser;
 
@@ -58,7 +55,6 @@ public class WikiPart {
 	private TabFolder tabFolder;
 	private TabItem editTabItem;
 	private TabItem viewTabItem;
-	private String path;
 
 	@Inject
 	public WikiPart() {
@@ -69,45 +65,42 @@ public class WikiPart {
 
 		tabFolder = new TabFolder(parent, SWT.NONE);
 
+		viewTabItem = new TabItem(tabFolder, SWT.NONE);
+		viewTabItem.setText("View");
 		editTabItem = new TabItem(tabFolder, SWT.NONE);
 		editTabItem.setText("Bearbeiten");
 
-		Composite composite = new Composite(tabFolder, SWT.NONE);
-		editTabItem.setControl(composite);
-		GridLayout gl_composite = new GridLayout(4, false);
-		gl_composite.marginHeight = 0;
-		composite.setLayout(gl_composite);
-
-		Composite composite_2 = new Composite(composite, SWT.NONE);
-		composite_2.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1, 1));
-
-		SashForm sashForm = new SashForm(composite, SWT.BORDER);
-		new Label(composite, SWT.NONE);
-
-		Composite composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setLayout(new FillLayout(SWT.VERTICAL));
-		composite_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true, 1, 1));
-
-		editBrowser = new Browser(composite_1, SWT.NONE);
-
-		viewTabItem = new TabItem(tabFolder, SWT.NONE);
-		viewTabItem.setText("View");
-
 		viewBrowser = new Browser(tabFolder, SWT.NONE);
 		viewBrowser.addLocationListener(new BrowserLocationListener(handlerService, commandService));
-
+		
 		viewTabItem.setControl(viewBrowser);
+		
+		SashForm sashForm= new SashForm(tabFolder, SWT.NONE);
+		editTabItem.setControl(sashForm);
+
+		editField = new Text(sashForm, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		editField.addModifyListener(e -> {
+			part.setDirty(true);
+			refreshMarkdown();
+		});
+
+		editBrowser = new Browser(sashForm, SWT.NONE);
+		
+		sashForm.setOrientation(SWT.HORIZONTAL);
 
 		setPath((String)part.getPersistedState().get("path"));
 	}
 
 	private void refreshMarkdown() {
-//TODO		httpService.start(application, 8082);
-//		if (page != null && page.getDescription() != null) {
-//			page.getDescription().setMarkup(descriptionText.getText());
-//			httpService.setTicket(page);
-//			browser.setUrl("http:/localhost:8082/markdown?part=all");
-//		}
+		httpService.start(application, 8082);
+		if (page != null && page.getDescription() != null) {
+			String text = editField.getText();
+			int caretPosition = editField.getCaretPosition();
+			text = text.substring(0, caretPosition) + "<a id=\"caret\" />" + text.substring(caretPosition);
+			page.getDescription().setMarkup(text);
+			httpService.setWiki(page);
+			editBrowser.setUrl("http:/localhost:8082/markdown#caret?part=all");
+		}
 	}
 
 	@Focus
@@ -156,6 +149,9 @@ public class WikiPart {
 		if (page != null && page.getDescription() != null) {
 			httpService.setWiki(page);
 			viewBrowser.setUrl("http:/localhost:8082/markdown?part=all");
+			
+			editField.setText(page.getDescription().getMarkup());
+			editBrowser.setUrl("http:/localhost:8082/markdown?part=all");
 		}
 	}
 
@@ -165,7 +161,6 @@ public class WikiPart {
 	}
 
 	public void setPath(String path) {
-		this.path = path;
 		if (page == null || !page.getPath().equals(path)) {
 			page = null;
 			update();

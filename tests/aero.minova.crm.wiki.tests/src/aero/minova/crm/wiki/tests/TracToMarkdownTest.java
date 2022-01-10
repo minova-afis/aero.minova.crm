@@ -15,21 +15,6 @@ public class TracToMarkdownTest {
 		assertEquals("\n# H1\n", TracToMarkdown.convert("\n= H1\n", null));
 	}
 	@Test
-	public void testImagePercent() {
-		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85%\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85%)]]", "ticket/42955"));
-	}	
-	
-	@Test
-	public void testImageNothing() {
-		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85)]]", "ticket/42955"));
-	}
-	
-	@Test
-	public void testImagePx() {
-		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85px\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85px)]]", "ticket/42955"));
-	}
-
-	@Test
 	public void testH2() {
 		assertEquals("\n## H2\n", TracToMarkdown.convert("\n== H2 ==\n", null));
 		assertEquals("\n## H2\n", TracToMarkdown.convert("\n== H2\n", null));
@@ -65,6 +50,48 @@ public class TracToMarkdownTest {
 		assertEquals("\n####### H7\n", TracToMarkdown.convert("\n======= H7\n", null));
 	}
 
+	@Test
+	public void testImagePercent() {
+		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85%\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85%)]]", "ticket/42955"));
+	}	
+	
+	@Test
+	public void testImageNothing() {
+		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85)]]", "ticket/42955"));
+	}
+	
+	@Test
+	public void testImagePx() {
+		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85px\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85px)]]", "ticket/42955"));
+	}
+	
+	@Test
+	public void testImageWiki() {
+		String input = """
+				  
+				[[Image(git-install-01.png)]]
+				
+				Auf `Installieren` klicken.
+				
+				[[Image(git-install-02.png)]]
+				
+				Auf `Akzeptieren` klicken.
+				
+				""";
+		String output = """
+				  
+				<img src="/attachment/wiki/mitarbeiter/--saw/git-install-01.png" />
+				
+				Auf `Installieren` klicken.
+				
+				<img src="/attachment/wiki/mitarbeiter/--saw/git-install-02.png" />
+				
+				Auf `Akzeptieren` klicken.
+				
+				""";
+		assertEquals(output, TracToMarkdown.convert(input, "wiki/mitarbeiter/--saw"));
+	}	
+	
 	@Test
 	public void testPreformattedText() {
 		String input = """
@@ -172,6 +199,25 @@ public class TracToMarkdownTest {
 				
 				""";
 		
+		assertEquals(output, TracToMarkdown.convert(input, null));
+	}
+	
+	@Test
+	public void testLineBreak() {
+		String input = "[[BR]]";
+		String output = "<br/>";
+		assertEquals(output, TracToMarkdown.convert(input, null));
+	}
+	@Test
+	public void testWikiLink() {
+		String input = "[wiki:Projekte]";
+		String output = "<a href=\"wiki/Projekte\">wiki:Projekte</a>";
+		assertEquals(output, TracToMarkdown.convert(input, null));
+	}
+	@Test
+	public void testWikiLinkNamed() {
+		String input = "[wiki:Projekte Bezeichnung]";
+		String output = "<a href=\"wiki/Projekte\">Bezeichnung</a>";
 		assertEquals(output, TracToMarkdown.convert(input, null));
 	}
 }

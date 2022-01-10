@@ -5,6 +5,8 @@ public class TracToMarkdown {
 		input = TableConverter.convert(input);
 		input = PreformattedTextConvert.convert(input);
 		input = ImageConverter.convert(input, path);
+		input = LineBreakConverter.convert(input, path);
+		input = WikiLinkConverter.convert(input, path);
 		return HeaderConverter.convert(input); 
 	}
 }

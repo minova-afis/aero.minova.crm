@@ -50,4 +50,8 @@ public interface TracService {
 	public Vector<?> getTicketAttachments(int id);
 
 	public byte[] getTicketAttachment(int id, String name);
+
+	public Vector<?> getWikiAttachments(String path);
+	
+	public byte[] getWikiAttachment(String path, String name);
 }

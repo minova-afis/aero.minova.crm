@@ -368,7 +368,7 @@ public class TracServiceImpl implements TracService {
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Component.class);
 		return component.getAll();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<String> getTicketPriorities() {
@@ -376,7 +376,7 @@ public class TracServiceImpl implements TracService {
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Priority.class);
 		return priority.getAll();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<String> getTicketStates() {
@@ -384,7 +384,7 @@ public class TracServiceImpl implements TracService {
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Status.class);
 		return resolution.getAll();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<String> getTicketTypes() {
@@ -392,7 +392,7 @@ public class TracServiceImpl implements TracService {
 				.newInstance(aero.minova.trac.xmlprc.Ticket.Type.class);
 		return resolution.getAll();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<String> getMilestones() {
@@ -413,5 +413,19 @@ public class TracServiceImpl implements TracService {
 		aero.minova.trac.xmlprc.Ticket ticket = (aero.minova.trac.xmlprc.Ticket) trackerDynamicProxy
 				.newInstance(aero.minova.trac.xmlprc.Ticket.class);
 		return ticket.getAttachment(id, name);
+	}
+
+	@Override
+	public Vector<?> getWikiAttachments(String path) {
+		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Wiki.class);
+		return wiki.listAttachments(path);
+	}
+
+	@Override
+	public byte[] getWikiAttachment(String path, String name) {
+		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy
+				.newInstance(aero.minova.trac.xmlprc.Wiki.class);
+		return wiki.getAttachment(path + "/" + name);
 	}
 }

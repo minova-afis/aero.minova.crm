@@ -40,7 +40,7 @@ public interface Wiki {
 
 	Boolean putPage(String pagename, String content, Hashtable<String, ?> attributes);
 
-	Hashtable<String, ?> istAttachments(String pagename);
+	Vector<?> listAttachments(String pagename);
 
 	byte[] getAttachment(String path);
 
