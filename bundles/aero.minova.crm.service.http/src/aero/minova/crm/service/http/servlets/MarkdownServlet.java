@@ -42,9 +42,9 @@ public class MarkdownServlet extends HttpServlet {
 		switch (text) {
 		case "all":
 			if (MarkdownServlet.ticket != null)
-				resp.getWriter().print(convertMarkdown(ticket.getDescription().getMarkup()));
+				resp.getWriter().print(convertMarkdown(ticket.getDescription().getMarkup(), "ticket/" + ticket.getId()));
 			else 
-				resp.getWriter().print(convertMarkdown(wiki.getDescription().getMarkup()));
+				resp.getWriter().print(convertMarkdown(wiki.getDescription().getMarkup(), "wiki/" + wiki.getPath()));
 			break;
 		}
 //		if (text != null) resp.getWriter().print(convertMarkdown(text));
@@ -54,8 +54,8 @@ public class MarkdownServlet extends HttpServlet {
 		resp.setStatus(200);
 	}
 
-	private String convertMarkdown(String text) {
-		text = TracToMarkdown.convert(text);
+	private String convertMarkdown(String text, String path) {
+		text = TracToMarkdown.convert(text, path);
 
 		MutableDataSet options = new MutableDataSet();
 

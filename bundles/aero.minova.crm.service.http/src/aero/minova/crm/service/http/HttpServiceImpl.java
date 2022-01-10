@@ -48,7 +48,7 @@ public class HttpServiceImpl implements HttpService {
 			contextHandler.setHandler(staticResourceHandler);
 			
 			ResourceHandler attachmentResourceHandler = new ResourceHandler();
-			basePath = Platform.getInstanceLocation().getURL().getPath() + "attachement";
+			basePath = Platform.getInstanceLocation().getURL().getPath() + "attachment";
 			attachmentResourceHandler.setResourceBase(basePath);
 			attachmentResourceHandler.setDirectoriesListed(true);
 			ContextHandler attachmentContextHandler = new ContextHandler("/attachment");

@@ -202,7 +202,7 @@ public class TicketServiceImpl implements TicketService {
 		FileOutputStream fos = null;
 		try {
 			File f = new File(Platform.getInstanceLocation().getURL().toURI());
-			File dir = makeDir(f, "attachement/ticket/" + ticketAttachment.getTicket().getId());
+			File dir = makeDir(f, "attachment/ticket/" + ticketAttachment.getTicket().getId());
 			File atFile = new File(dir, ticketAttachment.getName());
 			fos = new FileOutputStream(atFile);
 			fos.write(

@@ -10,45 +10,59 @@ public class TracToMarkdownTest {
 
 	@Test
 	public void testH1() {
-		assertEquals("# H1", TracToMarkdown.convert("= H1"));
-		assertEquals("\n# H1\n", TracToMarkdown.convert("\n= H1 =\n"));
-		assertEquals("\n# H1\n", TracToMarkdown.convert("\n= H1\n"));
+		assertEquals("# H1", TracToMarkdown.convert("= H1", null));
+		assertEquals("\n# H1\n", TracToMarkdown.convert("\n= H1 =\n", null));
+		assertEquals("\n# H1\n", TracToMarkdown.convert("\n= H1\n", null));
+	}
+	@Test
+	public void testImagePercent() {
+		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85%\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85%)]]", "ticket/42955"));
+	}	
+	
+	@Test
+	public void testImageNothing() {
+		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85)]]", "ticket/42955"));
+	}
+	
+	@Test
+	public void testImagePx() {
+		assertEquals("<img src=\"/attachment/ticket/42955/SKEL_internalerror.png\" width=\"85px\" />", TracToMarkdown.convert("[[Image(SKEL_internalerror.png, 85px)]]", "ticket/42955"));
 	}
 
 	@Test
 	public void testH2() {
-		assertEquals("\n## H2\n", TracToMarkdown.convert("\n== H2 ==\n"));
-		assertEquals("\n## H2\n", TracToMarkdown.convert("\n== H2\n"));
+		assertEquals("\n## H2\n", TracToMarkdown.convert("\n== H2 ==\n", null));
+		assertEquals("\n## H2\n", TracToMarkdown.convert("\n== H2\n", null));
 	}
 	
 	@Test
 	public void testH3() {
-		assertEquals("\n### H3\n", TracToMarkdown.convert("\n=== H3 ===\n"));
-		assertEquals("\n### H3\n", TracToMarkdown.convert("\n=== H3\n"));
+		assertEquals("\n### H3\n", TracToMarkdown.convert("\n=== H3 ===\n", null));
+		assertEquals("\n### H3\n", TracToMarkdown.convert("\n=== H3\n", null));
 	}
 	
 	@Test
 	public void testH4() {
-		assertEquals("\n#### H4\n", TracToMarkdown.convert("\n==== H4 ====\n"));
-		assertEquals("\n#### H4\n", TracToMarkdown.convert("\n==== H4\n"));
+		assertEquals("\n#### H4\n", TracToMarkdown.convert("\n==== H4 ====\n", null));
+		assertEquals("\n#### H4\n", TracToMarkdown.convert("\n==== H4\n", null));
 	}
 	
 	@Test
 	public void testH5() {
-		assertEquals("\n##### H5\n", TracToMarkdown.convert("\n===== H5 =====\n"));
-		assertEquals("\n##### H5\n", TracToMarkdown.convert("\n===== H5\n"));
+		assertEquals("\n##### H5\n", TracToMarkdown.convert("\n===== H5 =====\n", null));
+		assertEquals("\n##### H5\n", TracToMarkdown.convert("\n===== H5\n", null));
 	}
 	
 	@Test
 	public void testH6() {
-		assertEquals("\n###### H6\n", TracToMarkdown.convert("\n====== H6 ======\n"));
-		assertEquals("\n###### H6\n", TracToMarkdown.convert("\n====== H6\n"));
+		assertEquals("\n###### H6\n", TracToMarkdown.convert("\n====== H6 ======\n", null));
+		assertEquals("\n###### H6\n", TracToMarkdown.convert("\n====== H6\n", null));
 	}
 	
 	@Test
 	public void testH7() {
-		assertEquals("\n####### H7\n", TracToMarkdown.convert("\n======= H7 =======\n"));
-		assertEquals("\n####### H7\n", TracToMarkdown.convert("\n======= H7\n"));
+		assertEquals("\n####### H7\n", TracToMarkdown.convert("\n======= H7 =======\n", null));
+		assertEquals("\n####### H7\n", TracToMarkdown.convert("\n======= H7\n", null));
 	}
 
 	@Test
@@ -64,7 +78,7 @@ public class TracToMarkdownTest {
 				```
 				""";
 		
-		assertEquals(output, TracToMarkdown.convert(input));
+		assertEquals(output, TracToMarkdown.convert(input, null));
 	}
 	
 	@Test
@@ -85,7 +99,7 @@ public class TracToMarkdownTest {
 				
 				""";
 
-		assertEquals(output, TracToMarkdown.convert(input));
+		assertEquals(output, TracToMarkdown.convert(input, null));
 	}
 	
 //	@Test
@@ -106,7 +120,7 @@ public class TracToMarkdownTest {
 				
 				""";
 		
-		assertEquals(output, TracToMarkdown.convert(input));
+		assertEquals(output, TracToMarkdown.convert(input, null));
 	}
 	
 	@Test
@@ -138,7 +152,7 @@ public class TracToMarkdownTest {
 				
 				""";
 		
-		assertEquals(output, TracToMarkdown.convert(input));
+		assertEquals(output, TracToMarkdown.convert(input, null));
 	}
 
 	@Test
@@ -158,6 +172,6 @@ public class TracToMarkdownTest {
 				
 				""";
 		
-		assertEquals(output, TracToMarkdown.convert(input));
+		assertEquals(output, TracToMarkdown.convert(input, null));
 	}
 }
