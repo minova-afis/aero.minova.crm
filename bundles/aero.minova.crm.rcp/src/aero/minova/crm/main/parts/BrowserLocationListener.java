@@ -21,11 +21,18 @@ public class BrowserLocationListener implements LocationListener {
 
 	@Override
 	public void changing(LocationEvent event) {
-		if (!event.location.startsWith("http://localhost:8082/issues/"))
+		if (!event.location.startsWith("http://localhost:8082/issues/")
+				&& !event.location.startsWith("http://localhost:8082/wiki/"))
 			return;
+		String searchCriteria;
+		if (event.location.startsWith("http://localhost:8082/issues/")) {
+			searchCriteria = "#" + event.location.substring(event.location.lastIndexOf("/") + 1);
+		} else {
+			searchCriteria = "/" + event.location.substring(27);
+		}
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("aero.minova.crm.rcp.commandparameter.searchtext",
-				"#" + event.location.substring(event.location.lastIndexOf("/")+1));
+		parameters.put("aero.minova.crm.rcp.commandparameter.searchtext", searchCriteria);
 		ParameterizedCommand createCommand = commandService.createCommand("aero.minova.crm.rcp.command.searchcommand",
 				parameters);
 //		createCommand.getParameterMap().put("aero.minova.crm.rcp.commandparameter.searchtext", "#5263");
