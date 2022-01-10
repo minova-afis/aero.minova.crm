@@ -7,6 +7,7 @@ public class TracToMarkdown {
 		input = ImageConverter.convert(input, path);
 		input = LineBreakConverter.convert(input, path);
 		input = WikiLinkConverter.convert(input, path);
+		input = WebLinkConverter.convert(input, path);
 		return HeaderConverter.convert(input); 
 	}
 }
