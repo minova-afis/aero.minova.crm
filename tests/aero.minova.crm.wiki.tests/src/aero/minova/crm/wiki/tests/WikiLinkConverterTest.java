@@ -6,11 +6,7 @@ import org.junit.Test;
 
 import aero.minova.crm.wiki.TracToMarkdown;
 
-public class TracToMarkdownWikiLinkTest {
-
-	public TracToMarkdownWikiLinkTest() {
-		super();
-	}
+public class WikiLinkConverterTest {
 
 	@Test
 	public void testWikiLink() {
