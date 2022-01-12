@@ -57,9 +57,9 @@ public interface Ticket {
 
 	Vector<?> update(Integer id, String comment, Hashtable<String, ?> attributes, Boolean notify);
 
-	Hashtable<String, ?> changeLog(Integer id);
+	Object[] changeLog(Integer id);
 
-	Hashtable<String, ?> changeLog(Integer id, Integer when);
+	Object[] changeLog(Integer id, Integer when);
 
 	Vector<?> listAttachments(Integer ticket);
 

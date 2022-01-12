@@ -54,4 +54,6 @@ public interface TracService {
 	public Vector<?> getWikiAttachments(String path);
 	
 	public byte[] getWikiAttachment(String path, String name);
+
+	Object[] changeLog(Integer id);
 }

@@ -17,6 +17,7 @@ import aero.minova.trac.TracService;
 import aero.minova.trac.domain.TracMilestone;
 import aero.minova.trac.domain.TracTicket;
 import aero.minova.trac.domain.TracWikiPage;
+import aero.minova.trac.xmlprc.Ticket;
 import aero.minova.trac.xmlprc.TrackerDynamicProxy;
 
 /**
@@ -427,5 +428,11 @@ public class TracServiceImpl implements TracService {
 		aero.minova.trac.xmlprc.Wiki wiki = (aero.minova.trac.xmlprc.Wiki) trackerDynamicProxy
 				.newInstance(aero.minova.trac.xmlprc.Wiki.class);
 		return wiki.getAttachment(path + "/" + name);
+	}
+
+	@Override
+	public Object[] changeLog(Integer id) {
+		Ticket ticket = (Ticket) trackerDynamicProxy.newInstance(Ticket.class);
+		return ticket.changeLog(id, 0);
 	}
 }
