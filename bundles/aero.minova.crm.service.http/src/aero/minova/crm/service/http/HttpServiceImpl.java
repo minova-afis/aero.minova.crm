@@ -38,7 +38,7 @@ public class HttpServiceImpl implements HttpService {
 			ServletHandler handler = new ServletHandler();
 			handler.addServletWithMapping(ExempleServlet.class, "/test");
 			handler.addServletWithMapping(TicketServlet.class, "/ticket");
-			handler.addServletWithMapping(MarkdownServlet.class, "/markdown");
+			handler.addServletWithMapping(MarkdownServlet.class, "/markdown/*");
 
 			ResourceHandler staticResourceHandler = new ResourceHandler();
 			String basePath = Platform.getInstanceLocation().getURL().getPath() + "static";
@@ -80,5 +80,10 @@ public class HttpServiceImpl implements HttpService {
 	@Override
 	public void setWiki(Wiki page) {
 		MarkdownServlet.setWiki(page);
+	}
+
+	@Override
+	public void setText(String text) {
+		MarkdownServlet.setText(text);
 	}
 }

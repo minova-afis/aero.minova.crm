@@ -11,4 +11,6 @@ public interface HttpService {
 	public void setTicket(Ticket ticket);
 
 	public void setWiki(Wiki page);
+
+	public void setText(String text);
 }

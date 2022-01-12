@@ -46,7 +46,7 @@ public class WikiPart {
 
 	@Inject
 	MApplication application;
-	
+
 	@Inject
 	MPart part;
 
@@ -55,6 +55,7 @@ public class WikiPart {
 	private TabFolder tabFolder;
 	private TabItem editTabItem;
 	private TabItem viewTabItem;
+	private boolean updating = false;
 
 	@Inject
 	public WikiPart() {
@@ -72,34 +73,39 @@ public class WikiPart {
 
 		viewBrowser = new Browser(tabFolder, SWT.NONE);
 		viewBrowser.addLocationListener(new BrowserLocationListener(handlerService, commandService));
-		
+
 		viewTabItem.setControl(viewBrowser);
-		
-		SashForm sashForm= new SashForm(tabFolder, SWT.NONE);
+
+		SashForm sashForm = new SashForm(tabFolder, SWT.NONE);
 		editTabItem.setControl(sashForm);
 
 		editField = new Text(sashForm, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		editField.addModifyListener(e -> {
-			part.setDirty(true);
+			part.setDirty(!updating );
 			refreshMarkdown();
 		});
 
 		editBrowser = new Browser(sashForm, SWT.NONE);
-		
+
 		sashForm.setOrientation(SWT.HORIZONTAL);
 
-		setPath((String)part.getPersistedState().get("path"));
+		setPath((String) part.getPersistedState().get("path"));
 	}
 
 	private void refreshMarkdown() {
 		httpService.start(application, 8082);
 		if (page != null && page.getDescription() != null) {
 			String text = editField.getText();
-			int caretPosition = editField.getCaretPosition();
-			text = text.substring(0, caretPosition) + "<a id=\"caret\" />" + text.substring(caretPosition);
 			page.getDescription().setMarkup(text);
-			httpService.setWiki(page);
-			editBrowser.setUrl("http:/localhost:8082/markdown#caret?part=all");
+			int caretPosition = editField.getCaretPosition();
+
+			while (caretPosition > 0 && text.charAt(caretPosition - 1) != '\n') {
+				caretPosition--;
+			}
+
+			text = text.substring(0, caretPosition) + "<a id=\"caret\" />" + text.substring(caretPosition);
+			httpService.setText(text);
+			editBrowser.setUrl("http:/localhost:8082/markdown/text#caret");
 		}
 	}
 
@@ -110,14 +116,16 @@ public class WikiPart {
 
 	@Persist
 	public void save() {
-//TODO		ticketService.saveTicket(page);
+		wikiService.saveWiki(page);
 		part.setDirty(false);
+		update();
 	}
 
 	/**
 	 * Es wurde ein neues Ticket gesetzt und muss jetzt angezeigt werden.
 	 */
 	private void update() {
+		updating = true;
 //		reporterField.setText((page == null || page.getReporter() == null) ? "" : page.getReporter());
 //		pathField.setText((page == null || page.getSummary() == null) ? "" : page.getSummary());
 //		ownerField.setText((page == null || page.getOwner() == null) ? "" : page.getOwner());
@@ -149,10 +157,11 @@ public class WikiPart {
 		if (page != null && page.getDescription() != null) {
 			httpService.setWiki(page);
 			viewBrowser.setUrl("http:/localhost:8082/markdown?part=all");
-			
+
 			editField.setText(page.getDescription().getMarkup());
 			editBrowser.setUrl("http:/localhost:8082/markdown?part=all");
 		}
+		updating = false;
 	}
 
 	public void focusDetails() {
