@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-        <java.version>15</java.version>
+        <java.version>17</java.version>
 		<tycho.version>2.5.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
