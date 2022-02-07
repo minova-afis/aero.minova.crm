@@ -4,7 +4,7 @@ Bundle-Name: Service
 Bundle-SymbolicName: aero.minova.crm.service.trac
 Bundle-Version: 0.0.1.qualifier
 Automatic-Module-Name: aero.minova.crm.jpa.service
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: jakarta.persistence-api;bundle-version="3.0.0",
  org.eclipse.persistence.jpa;bundle-version="3.0.2",
  com.h2database;bundle-version="2.0.202",
