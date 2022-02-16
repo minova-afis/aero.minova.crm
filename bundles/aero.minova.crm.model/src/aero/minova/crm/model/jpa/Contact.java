@@ -33,7 +33,7 @@ public class Contact {
 			properties.computeIfAbsent(prop, s -> new LinkedHashMap<>());
 			properties.get(prop).put(type, val);
 		} else {
-			System.err.println("Property " + prop + " nicht unterstüzt oder Typ " + type + " nicht unterstüzt für Property " + prop);
+			throw new RuntimeException("Property " + prop + " nicht unterstüzt oder Typ " + type + " nicht unterstüzt für Property " + prop);
 		}
 
 		// Set formatted Name

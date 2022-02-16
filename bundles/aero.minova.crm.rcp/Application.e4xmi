@@ -80,7 +80,7 @@
     <toolbar xmi:id="_mf8hMI5DEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.toolbar.0">
       <children xsi:type="menu:HandledToolItem" xmi:id="_DOWmYI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.newContact" label="Neu" command="_KDeEEI5EEeyvteSzXBkoag"/>
       <children xsi:type="menu:HandledToolItem" xmi:id="_YHBeYI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.bearbeiten" label="Bearbeiten" command="_MpedAI5EEeyvteSzXBkoag"/>
-      <children xsi:type="menu:HandledToolItem" xmi:id="_cHkisI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.gruppenanzeigen" label="Gruppen anzeigen" type="Check" command="_PGmmwI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledToolItem" xmi:id="_cHkisI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.gruppenanzeigen" label="Gruppen anzeigen" selected="true" type="Check" command="_PGmmwI5EEeyvteSzXBkoag"/>
       <children xsi:type="menu:HandledToolItem" xmi:id="_ehpYcI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.lschen" label="Löschen" command="_Rtg-oI5EEeyvteSzXBkoag"/>
     </toolbar>
   </snippets>

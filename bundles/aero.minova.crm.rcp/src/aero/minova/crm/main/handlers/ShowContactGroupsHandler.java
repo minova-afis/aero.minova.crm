@@ -15,16 +15,15 @@ public class ShowContactGroupsHandler {
 		boolean selection = false;
 
 		for (MToolBarElement item : part.getToolbar().getChildren()) {
-			if ("aero.minova.crm.rcp.handledtoolitem.gruppenanzeigen".equals(item.getElementId())) {
-				if (item.getWidget() instanceof ToolItem) {
-					selection = ((ToolItem) item.getWidget()).getSelection();
-					break;
-				}
+			if ("aero.minova.crm.rcp.handledtoolitem.gruppenanzeigen".equals(item.getElementId()) //
+					&& item.getWidget() instanceof ToolItem toolItem) {
+				selection = toolItem.getSelection();
+				break;
 			}
 		}
 
-		if (part.getObject() instanceof ContactPart) {
-			((ContactPart) part.getObject()).setGroupListVisible(selection);
+		if (part.getObject() instanceof ContactPart contactPart) {
+			contactPart.setGroupListVisible(selection);
 		}
 	}
 

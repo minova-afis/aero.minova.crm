@@ -2,11 +2,11 @@ package aero.minova.crm.main.parts;
 
 import static org.eclipse.jface.widgets.ButtonFactory.newButton;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -14,11 +14,13 @@ import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.MUILabel;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.model.application.ui.menu.MToolBarElement;
 import org.eclipse.e4.ui.services.EMenuService;
 import org.eclipse.e4.ui.services.IServiceConstants;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -29,7 +31,6 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IEditableRule;
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IRowDataProvider;
-import org.eclipse.nebula.widgets.nattable.data.IRowIdAccessor;
 import org.eclipse.nebula.widgets.nattable.data.ListDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.config.DefaultEditBindings;
@@ -47,10 +48,8 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -80,20 +79,16 @@ public class ContactPart {
 	private Database db = Database.getInstance();
 
 	private Composite groupList;
-	private Composite contactList;
 	private Composite contactDetail;
-	private SashForm sashForm;
 
 	private Button deleteGroupButton;
 	private NatTable groupTable;
 	private SelectionLayer selectionLayerGroup;
-	private DataLayer bodyDataLayerGroup;
 	private List<Group> groups;
 	private List<Group> selectedGroups = new ArrayList<>();
 
 	private NatTable contactTable;
 	private SelectionLayer selectionLayerContact;
-	private DataLayer bodyDataLayerContact;
 	private Contact currentContact;
 	private List<Contact> contacts;
 	private List<Contact> selectedContacts;
@@ -102,28 +97,30 @@ public class ContactPart {
 	private Map<String, PropertyEntry> entries;
 
 	@Inject
-	private MPart part;
+	private MPart mPart;
 	@Inject
 	private ESelectionService service;
 	@Inject
 	private Shell shell;
 	@Inject
 	EMenuService menuService;
-
 	@Inject
-	public ContactPart() {}
+	EModelService modelService;
+
+	private MApplication mApplication;
 
 	@PostConstruct
-	public void postConstruct(Composite parent) {
-		contacts = new ArrayList<Contact>(db.getContacts());
+	public void postConstruct(Composite parent, MApplication app) {
+		this.mApplication = app;
+		contacts = new ArrayList<>(db.getContacts());
 		groups = db.getGroups();
 		selectedGroups.add(db.getGroupById(0));
 
-		sashForm = new SashForm(parent, SWT.HORIZONTAL);
+		SashForm sashForm = new SashForm(parent, SWT.HORIZONTAL);
 		sashForm.setSashWidth(1);
 
 		groupList = new Composite(sashForm, SWT.None);
-		contactList = new Composite(sashForm, SWT.None);
+		Composite contactList = new Composite(sashForm, SWT.None);
 		contactDetail = new Composite(sashForm, SWT.None);
 
 		createGroupList(groupList);
@@ -140,19 +137,13 @@ public class ContactPart {
 		deleteGroupButton.setEnabled(false);
 
 		IColumnPropertyAccessor<Group> columnPropertyAccessor = new GroupColumnPropertyAccessor();
-		IRowDataProvider<Group> bodyDataProvider = new ListDataProvider<Group>(groups, columnPropertyAccessor);
+		IRowDataProvider<Group> bodyDataProvider = new ListDataProvider<>(groups, columnPropertyAccessor);
 
-		bodyDataLayerGroup = new DataLayer(bodyDataProvider);
+		DataLayer bodyDataLayerGroup = new DataLayer(bodyDataProvider);
 
 		selectionLayerGroup = new SelectionLayer(bodyDataLayerGroup);
-		// selectionLayerGroup.addConfiguration(new DefaultRowSelectionLayerConfiguration());
-		selectionLayerGroup.setSelectionModel(new RowSelectionModel<>(selectionLayerGroup, bodyDataProvider, new IRowIdAccessor<Group>() {
-			@Override
-			public Serializable getRowId(Group rowObject) {
-				return rowObject.getGroupID();
-			}
-		}, true));
-		E4SelectionListener<Group> eslGroup = new E4SelectionListener<Group>(service, selectionLayerGroup, bodyDataProvider);
+		selectionLayerGroup.setSelectionModel(new RowSelectionModel<>(selectionLayerGroup, bodyDataProvider, rowObject -> rowObject.getGroupID(), true));
+		E4SelectionListener<Group> eslGroup = new E4SelectionListener<>(service, selectionLayerGroup, bodyDataProvider);
 		selectionLayerGroup.addLayerListener(eslGroup);
 
 		ViewportLayer viewportLayer = new ViewportLayer(selectionLayerGroup);
@@ -161,13 +152,7 @@ public class ContactPart {
 		groupTable = new NatTable(groupList, viewportLayer, false);
 
 		menuService.registerContextMenu(groupTable, "aero.minova.crm.rcp.popupmenu.groupmenu");
-		groupTable.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseDoubleClick(MouseEvent e) {}
-
-			@Override
-			public void mouseUp(MouseEvent e) {}
-
+		groupTable.addMouseListener(new MouseAdapter() {
 			// Wähle Gruppe bei Rechtsklick
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -196,18 +181,12 @@ public class ContactPart {
 
 					@Override
 					public boolean isEditable(int columnIndex, int rowIndex) {
-						if (columnIndex == 0)
-							return true;
-						return false;
+						return columnIndex == 0;
 					}
 
 					@Override
 					public boolean isEditable(ILayerCell cell, IConfigRegistry configRegistry) {
-						if (cell.getRowIndex() == 0)
-							return false;
-						if (cell.getColumnIndex() == 0)
-							return true;
-						return false;
+						return (cell.getRowIndex() != 0 && cell.getColumnIndex() == 0);
 					}
 				});
 			}
@@ -231,28 +210,16 @@ public class ContactPart {
 		search.setLayoutData(gd);
 		search.setMessage("Suche Kontakt");
 		search.setSize(1000, 200);
-		ModifyListener listener = new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				String s = search.getText().toLowerCase().trim();
-				filterContactTable(s);
-			}
-		};
-		search.addModifyListener(listener);
+		search.addModifyListener(e -> filterContactTable(search.getText().toLowerCase().trim()));
 
 		IColumnPropertyAccessor<Contact> columnPropertyAccessor = new ContactColumnPropertyAccessor();
-		IRowDataProvider<Contact> bodyDataProvider = new ListDataProvider<Contact>(contacts, columnPropertyAccessor);
-		bodyDataLayerContact = new DataLayer(bodyDataProvider);
+		IRowDataProvider<Contact> bodyDataProvider = new ListDataProvider<>(contacts, columnPropertyAccessor);
+		DataLayer bodyDataLayerContact = new DataLayer(bodyDataProvider);
 
 		selectionLayerContact = new SelectionLayer(bodyDataLayerContact);
-		selectionLayerContact.setSelectionModel(new RowSelectionModel<>(selectionLayerContact, bodyDataProvider, new IRowIdAccessor<Contact>() {
-			@Override
-			public Serializable getRowId(Contact rowObject) {
-				return rowObject.getId();
-			}
-		}, true));
+		selectionLayerContact.setSelectionModel(new RowSelectionModel<>(selectionLayerContact, bodyDataProvider, rowObject -> rowObject.getId(), true));
 
-		E4SelectionListener<Contact> esl = new E4SelectionListener<Contact>(service, selectionLayerContact, bodyDataProvider);
+		E4SelectionListener<Contact> esl = new E4SelectionListener<>(service, selectionLayerContact, bodyDataProvider);
 		selectionLayerContact.addLayerListener(esl);
 
 		ViewportLayer viewportLayer = new ViewportLayer(selectionLayerContact);
@@ -262,13 +229,7 @@ public class ContactPart {
 
 		// Rechtsklick-Menü
 		menuService.registerContextMenu(contactTable, "aero.minova.crm.rcp.popupmenu.contactmenu");
-		contactTable.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseDoubleClick(MouseEvent e) {}
-
-			@Override
-			public void mouseUp(MouseEvent e) {}
-
+		contactTable.addMouseListener(new MouseAdapter() {
 			// Wähle Kontakt bei Rechtsklick
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -307,30 +268,28 @@ public class ContactPart {
 		entries.put(VCardOptions.ADR, new DefaultPropertyEntry(body, VCardOptions.ADR));
 
 		// Notizen
-		entries.put(VCardOptions.NOTE, new NotesPropertyEntry(body)); 
+		entries.put(VCardOptions.NOTE, new NotesPropertyEntry(body));
 	}
 
 	@Inject
 	@Optional
 	private void handleSelectionGroup(@Named(IServiceConstants.ACTIVE_SELECTION) List<Group> selected) {
-		if (selected != null && selected.size() > 0 && selected.get(0) instanceof Group && contacts != null) {
+		if (selected != null && !selected.isEmpty() && selected.get(0) instanceof Group && contacts != null) {
 			contacts.clear();
 			contacts.addAll(selected.get(0).getMembers());
 			contactTable.refresh();
 			selectedGroups = selected;
 			selectionLayerContact.selectRow(0, 0, false, false);
 
-			if (selected.get(0).getGroupID() == 0)
-				deleteGroupButton.setEnabled(false);
-			else
-				deleteGroupButton.setEnabled(true);
+			deleteGroupButton.setEnabled(selected.get(0).getGroupID() == 0);
+
 		}
 	}
 
 	@Inject
 	@Optional
 	private void handleSelectionContact(@Named(IServiceConstants.ACTIVE_SELECTION) List<Contact> selected) {
-		if (selected != null && selected.size() > 0 && selected.get(0) instanceof Contact && contacts != null) {
+		if (selected != null && !selected.isEmpty() && selected.get(0) instanceof Contact && contacts != null) {
 			saveChanges();
 			currentContact = selected.get(0);
 			updateContactDetail(selected.get(0));
@@ -347,10 +306,11 @@ public class ContactPart {
 	}
 
 	private void filterContactTable(String s) {
-		List<Contact> list = new ArrayList<Contact>();
+		List<Contact> list = new ArrayList<>();
 		for (Contact c : selectedGroups.get(0).getMembers()) {
-			if (c.getValueString(VCardOptions.N).toLowerCase().contains(s))
+			if (c.getValueString(VCardOptions.N).toLowerCase().contains(s)) {
 				list.add(c);
+			}
 		}
 		contacts.clear();
 		contacts.addAll(list);
@@ -359,8 +319,8 @@ public class ContactPart {
 
 	private void updateContactDetail(Contact c) {
 
-		for (String s : entries.keySet()) {
-			entries.get(s).setInput(c);
+		for (Entry<String, PropertyEntry> entry : entries.entrySet()) {
+			entry.getValue().setInput(c);
 		}
 
 		contactDetail.requestLayout();
@@ -394,10 +354,11 @@ public class ContactPart {
 	@Inject
 	@Optional
 	private void subscribeTopicExistingContact(@UIEventTopic(Constants.CONTACT_EXISTS) int amount) {
-		if (amount > 1)
+		if (amount > 1) {
 			MessageDialog.openInformation(shell, null, amount + " dieser Kontakte existieren bereits und werden aktualisiert.");
-		else
+		} else {
 			MessageDialog.openInformation(shell, null, "Dieser Kontakte existiert bereits und wird aktualisiert.");
+		}
 	}
 
 	@Inject
@@ -504,7 +465,7 @@ public class ContactPart {
 		this.editable = editable;
 
 		// Change Text on Edit button
-		for (MToolBarElement item : part.getToolbar().getChildren()) {
+		for (MToolBarElement item : mPart.getToolbar().getChildren()) {
 			if ("aero.minova.crm.rcp.handledtoolitem.bearbeiten".equals(item.getElementId())) {
 				if (editable) {
 					((MUILabel) item).setLabel("Fertig!");
@@ -515,11 +476,12 @@ public class ContactPart {
 			}
 		}
 
-		for (String s : entries.keySet()) {
-			entries.get(s).setEditable(editable);
+		for (Entry<String, PropertyEntry> entry : entries.entrySet()) {
+			entry.getValue().setEditable(editable);
 		}
-		if (!editable && entries.get(VCardOptions.N).getTypeEntryByType("") != null)
+		if (!editable && entries.get(VCardOptions.N).getTypeEntryByType("") != null) {
 			entries.get(VCardOptions.N).getTypeEntryByType("").getTypeLabel().setFocus();
+		}
 		contactDetail.requestLayout();
 
 		// Update Contact
@@ -531,8 +493,8 @@ public class ContactPart {
 
 	private void saveChanges() {
 		if (currentContact != null) {
-			for (String s : entries.keySet()) {
-				entries.get(s).updateContact();
+			for (Entry<String, PropertyEntry> entry : entries.entrySet()) {
+				entry.getValue().updateContact();
 			}
 		}
 	}
