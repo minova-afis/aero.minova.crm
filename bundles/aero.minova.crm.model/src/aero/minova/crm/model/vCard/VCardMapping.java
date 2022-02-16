@@ -1,6 +1,5 @@
 package aero.minova.crm.model.vCard;
 
-import java.util.Date;
 import java.util.List;
 
 import aero.minova.crm.model.values.AddressValue;
@@ -20,14 +19,16 @@ import ezvcard.property.VCardProperty;
 
 public class VCardMapping {
 
+	private VCardMapping() {}
+
 	public static String getPropertyString(VCardProperty vCardProp) {
 		switch (vCardProp.getClass().getName()) {
 		case ("ezvcard.property.Photo"):
 			return VCardOptions.PHOTO;
 		case ("ezvcard.property.StructuredName"):
-			return VCardOptions.NAME;
+			return VCardOptions.N;
 		case ("ezvcard.property.FormattedName"):
-			return VCardOptions.FNAME;
+			return VCardOptions.FN;
 		case ("ezvcard.property.Organization"):
 			return VCardOptions.ORG;
 		case ("ezvcard.property.Telephone"):
@@ -49,25 +50,27 @@ public class VCardMapping {
 	}
 
 	public static Value getValue(VCardProperty prop) {
-		if (prop instanceof TextListProperty) { // Categories, Nickname, Organization
-			return new TextValue(((TextListProperty) prop).getValues().get(0));
-		} else if (prop instanceof TextProperty) { // Classification, Email, Expertise, FormattedName, Hobby, Interest, Kind, Label, Language, Mailer, Note,
-													// ProductId, Profile, RawPropertie, Role, SortString, SourceDisplayText, Title, UriProperty
-			return new TextValue(((TextProperty) prop).getValue());
+		if (prop instanceof TextListProperty textList) { // Categories, Nickname, Organization
+			return new TextValue(textList.getValues().get(0));
+		}
+		if (prop instanceof TextProperty text) { // Classification, Email, Expertise, FormattedName, Hobby, Interest, Kind, Label, Language, Mailer, Note,
+			// ProductId, Profile, RawPropertie, Role, SortString, SourceDisplayText, Title, UriProperty
+			return new TextValue(text.getValue());
 
-		} else if (prop instanceof ImageProperty) { // Photo, Logo
-			ImageProperty img = (ImageProperty) prop;
+		}
+		if (prop instanceof ImageProperty img) { // Photo, Logo
 			String filetype = VCardOptions.PHOTOTYPES[0];
-			if (img.getType() != null)
+			if (img.getType() != null) {
 				filetype = img.getType();
+			}
 			return new PhotoValue(img.getData(), filetype);
 
-		} else if (prop instanceof DateOrTimeProperty) { // Birthday, Deathday, Anniversary
-			Date date = ((DateOrTimeProperty) prop).getDate();
-			return new DateValue(date);
+		}
+		if (prop instanceof DateOrTimeProperty dateTime) { // Birthday, Deathday, Anniversary
+			return new DateValue(dateTime.getDate());
 
-		} else if (prop instanceof StructuredName) {
-			StructuredName sName = (StructuredName) prop;
+		}
+		if (prop instanceof StructuredName sName) {
 			String val = "";
 			val += ((sName.getFamily() == null) ? "" : sName.getFamily()) + ";";
 			val += ((sName.getGiven() == null) ? "" : sName.getGiven()) + ";";
@@ -76,11 +79,12 @@ public class VCardMapping {
 			val += getListAsString(sName.getSuffixes());
 			return new NameValue(val);
 
-		} else if (prop instanceof Telephone) {
-			return new TextValue(((Telephone) prop).getText());
+		}
+		if (prop instanceof Telephone tel) {
+			return new TextValue(tel.getText());
 
-		} else if (prop instanceof Address) {
-			Address addr = (Address) prop;
+		}
+		if (prop instanceof Address addr) {
 			String val = "";
 			val += ((addr.getPoBox() == null) ? "" : addr.getPoBox()) + ";";
 			val += ((addr.getExtendedAddress() == null) ? "" : addr.getExtendedAddress()) + ";";
@@ -89,11 +93,43 @@ public class VCardMapping {
 			val += ((addr.getRegion() == null) ? "" : addr.getRegion()) + ";";
 			val += ((addr.getPostalCode() == null) ? "" : addr.getPostalCode()) + ";";
 			val += ((addr.getCountry() == null) ? "" : addr.getCountry());
-
 			return new AddressValue(val);
 		}
 
 		return null;
+	}
+
+	public static String getLabel(String prop) {
+		switch (prop) {
+		case (VCardOptions.PHOTO):
+			return "Bild";
+		case (VCardOptions.N):
+			return "Name";
+		case (VCardOptions.FN):
+			return "Strukturierter Name";
+		case (VCardOptions.ORG):
+			return "Firma";
+		case (VCardOptions.TEL):
+			return "Telefonnummer";
+		case (VCardOptions.EMAIL):
+			return "E-Mail";
+		case (VCardOptions.ADR):
+			return "Addresse";
+		case (VCardOptions.NOTE):
+			return "Notiz";
+		case (VCardOptions.BDAY):
+			return "Geburtstag";
+		case (VCardOptions.HOME):
+			return "Privat";
+		case (VCardOptions.WORK):
+			return "Arbeit";
+		case (VCardOptions.CELL):
+			return "Mobil";
+		case (VCardOptions.INTERNET):
+			return "Internet";
+		default:
+			return prop;
+		}
 	}
 
 	public static String getListAsString(List<String> list) {

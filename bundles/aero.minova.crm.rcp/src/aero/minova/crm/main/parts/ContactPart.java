@@ -290,7 +290,7 @@ public class ContactPart {
 
 	private void createContactDetail(Composite body) {
 
-		entries = new LinkedHashMap<String, PropertyEntry>();
+		entries = new LinkedHashMap<>();
 
 		// Layout für Body definieren
 		body.setLayout(new GridLayout(3, false));
@@ -299,7 +299,7 @@ public class ContactPart {
 		entries.put(VCardOptions.PHOTO, new PhotoPropertyEntry(body));
 
 		// Normale input Felder
-		entries.put(VCardOptions.NAME, new DefaultPropertyEntry(body, VCardOptions.NAME));
+		entries.put(VCardOptions.N, new DefaultPropertyEntry(body, VCardOptions.N));
 		entries.put(VCardOptions.ORG, new DefaultPropertyEntry(body, VCardOptions.ORG));
 		entries.put(VCardOptions.TEL, new DefaultPropertyEntry(body, VCardOptions.TEL));
 		entries.put(VCardOptions.EMAIL, new DefaultPropertyEntry(body, VCardOptions.EMAIL));
@@ -307,7 +307,7 @@ public class ContactPart {
 		entries.put(VCardOptions.ADR, new DefaultPropertyEntry(body, VCardOptions.ADR));
 
 		// Notizen
-		entries.put(VCardOptions.NOTE, new NotesPropertyEntry(body));
+		entries.put(VCardOptions.NOTE, new NotesPropertyEntry(body)); 
 	}
 
 	@Inject
@@ -349,7 +349,7 @@ public class ContactPart {
 	private void filterContactTable(String s) {
 		List<Contact> list = new ArrayList<Contact>();
 		for (Contact c : selectedGroups.get(0).getMembers()) {
-			if (c.getValueString(VCardOptions.NAME).toLowerCase().contains(s))
+			if (c.getValueString(VCardOptions.N).toLowerCase().contains(s))
 				list.add(c);
 		}
 		contacts.clear();
@@ -434,7 +434,7 @@ public class ContactPart {
 				MessageDialog dia;
 				if (selectedContacts.size() == 1) {
 					Contact c = selectedContacts.get(0);
-					dia = new MessageDialog(shell, "Löschen", null, "Wollen Sie den Kontakt \"" + c.getValueString(VCardOptions.NAME) + "\" endgültig löschen?",
+					dia = new MessageDialog(shell, "Löschen", null, "Wollen Sie den Kontakt \"" + c.getValueString(VCardOptions.N) + "\" endgültig löschen?",
 							MessageDialog.CONFIRM, new String[] { "Löschen", "Abbrechen" }, 0);
 				} else {
 					dia = new MessageDialog(shell, "Löschen", null, "Wollen Sie " + selectedContacts.size() + " Kontakte endgültig löschen?",
@@ -452,7 +452,7 @@ public class ContactPart {
 				if (selectedContacts.size() == 1) {
 					Contact c = selectedContacts.get(0);
 					dia = new MessageDialog(shell, "Entfernen", null,
-							"Wollen Sie den Kontakt \"" + c.getValueString(VCardOptions.NAME) + "\" aus der Gruppe \"" + g.getName() + "\" entfernen?",
+							"Wollen Sie den Kontakt \"" + c.getValueString(VCardOptions.N) + "\" aus der Gruppe \"" + g.getName() + "\" entfernen?",
 							MessageDialog.CONFIRM, new String[] { "Entfernen", "Abbrechen" }, 0);
 				} else {
 					dia = new MessageDialog(shell, "Entfernen", null,
@@ -518,8 +518,8 @@ public class ContactPart {
 		for (String s : entries.keySet()) {
 			entries.get(s).setEditable(editable);
 		}
-		if (!editable && entries.get(VCardOptions.NAME).getTypeEntryByType("") != null)
-			entries.get(VCardOptions.NAME).getTypeEntryByType("").getTypeLabel().setFocus();
+		if (!editable && entries.get(VCardOptions.N).getTypeEntryByType("") != null)
+			entries.get(VCardOptions.N).getTypeEntryByType("").getTypeLabel().setFocus();
 		contactDetail.requestLayout();
 
 		// Update Contact

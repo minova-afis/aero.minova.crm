@@ -12,7 +12,7 @@ public class ContactColumnPropertyAccessor implements IColumnPropertyAccessor<Co
 	public Object getDataValue(Contact c, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
-			String name = c.getValueString(VCardOptions.NAME);
+			String name = c.getValueString(VCardOptions.N);
 			if (name.equals(""))
 				return "Neuer Kontakt";
 			return name;
@@ -28,7 +28,7 @@ public class ContactColumnPropertyAccessor implements IColumnPropertyAccessor<Co
 	public void setDataValue(Contact c, int columnIndex, Object newValue) {
 		switch (columnIndex) {
 		case 0:
-			c.setProperty(VCardOptions.NAME, new TextValue(String.valueOf(newValue)));
+			c.setProperty(VCardOptions.N, new TextValue(String.valueOf(newValue)));
 		case 1:
 			c.setProperty(VCardOptions.ORG, new TextValue(String.valueOf(newValue)));
 		default:

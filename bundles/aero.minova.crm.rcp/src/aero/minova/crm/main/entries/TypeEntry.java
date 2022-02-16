@@ -9,10 +9,10 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Label;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+import aero.minova.crm.model.vCard.VCardMapping;
 import aero.minova.crm.model.vCard.VCardOptions;
 import aero.minova.crm.model.values.Value;
 
@@ -60,13 +61,7 @@ public class TypeEntry {
 		Image image = resManager.createImage(imageDesc);
 		deleteIcon.setImage(image);
 		deleteIcon.setSize(5, 5);
-		deleteIcon.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseDoubleClick(MouseEvent e) {}
-
-			@Override
-			public void mouseUp(MouseEvent e) {}
-
+		deleteIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
 				deleteEntry();
@@ -86,19 +81,16 @@ public class TypeEntry {
 		gd.widthHint = width;
 		typeCombo.setLayoutData(gd);
 		typeCombo.setVisible(false);
-		typeCombo.addSelectionListener(new SelectionListener() {
+		typeCombo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				setType(typeCombo.getText());
 			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {}
 		});
 
 		// Input
 		switch (property) {
-		case (VCardOptions.NAME):
+		case (VCardOptions.N):
 			input = new NameValueEntry(body);
 			break;
 		case (VCardOptions.ADR):
@@ -125,9 +117,10 @@ public class TypeEntry {
 	public void setType(String type) {
 		String before = this.type;
 		this.type = type;
-		typeLabel.setText(type);
-		if (type.equals(""))
-			typeLabel.setText(property);
+		typeLabel.setText(VCardMapping.getLabel(type));
+		if (type.equals("")) {
+			typeLabel.setText(VCardMapping.getLabel(property));
+		}
 
 		parent.typeChanged(before);
 	}

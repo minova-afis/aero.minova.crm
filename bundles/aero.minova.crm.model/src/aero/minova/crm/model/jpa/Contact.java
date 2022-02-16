@@ -9,7 +9,6 @@ import aero.minova.crm.model.vCard.VCardOptions;
 import aero.minova.crm.model.values.TextValue;
 import aero.minova.crm.model.values.Value;
 
-
 /**
  * Jede natürliche Peron stellt einen Kontakt dar.
  * 
@@ -23,7 +22,7 @@ public class Contact {
 
 	public Contact(int id) {
 		this.id = id;
-		properties = new LinkedHashMap<String, Map<String, Value>>();
+		properties = new LinkedHashMap<>();
 	}
 
 	public void setProperty(String prop, String type, Value val) {
@@ -31,21 +30,16 @@ public class Contact {
 		type = type.toUpperCase();
 		if (Arrays.asList(VCardOptions.PROPERTIES).contains(prop)
 				&& (VCardOptions.TYPES.get(prop) != null && Arrays.asList(VCardOptions.TYPES.get(prop)).contains(type) || type.equals(""))) {
-			if (properties.get(prop) == null) {
-				properties.put(prop, new LinkedHashMap<String, Value>());
-			}
-
+			properties.computeIfAbsent(prop, s -> new LinkedHashMap<>());
 			properties.get(prop).put(type, val);
 		} else {
 			System.err.println("Property " + prop + " nicht unterstüzt oder Typ " + type + " nicht unterstüzt für Property " + prop);
 		}
 
 		// Set formatted Name
-		if (prop.equals(VCardOptions.NAME)) {
-			if (properties.get(VCardOptions.FNAME) == null) {
-				properties.put(VCardOptions.FNAME, new LinkedHashMap<String, Value>());
-			}
-			properties.get(VCardOptions.FNAME).put("", new TextValue(val.getStringRepresentation()));
+		if (prop.equals(VCardOptions.N)) {
+			properties.computeIfAbsent(VCardOptions.FN, s -> new LinkedHashMap<>());
+			properties.get(VCardOptions.FN).put("", new TextValue(val.getStringRepresentation()));
 		}
 	}
 
@@ -103,12 +97,14 @@ public class Contact {
 	}
 
 	public void removeProperty(String prop) {
-		if (properties.containsKey(prop))
+		if (properties.containsKey(prop)) {
 			properties.remove(prop);
+		}
 	}
 
 	public void removeProperty(String prop, String type) {
-		if (properties.containsKey(prop) && properties.get(prop).containsKey(type))
+		if (properties.containsKey(prop) && properties.get(prop).containsKey(type)) {
 			properties.get(prop).remove(type);
+		}
 	}
 }

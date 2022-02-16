@@ -42,8 +42,8 @@ public class VCardExportHandler {
 
 	public static void exportVCard(Contact c) {
 		String vCardString = getVCardString(c);
-		if (c.getValueString(VCardOptions.NAME).length() > 0)
-			writeVCard(vCardString, c.getValueString(VCardOptions.NAME));
+		if (c.getValueString(VCardOptions.N).length() > 0)
+			writeVCard(vCardString, c.getValueString(VCardOptions.N));
 		else
 			writeVCard(vCardString, "Neuer Kontakt");
 	}

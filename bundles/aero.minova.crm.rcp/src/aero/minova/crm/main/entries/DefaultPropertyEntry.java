@@ -32,7 +32,7 @@ public class DefaultPropertyEntry extends PropertyEntry {
 
 		this.body = body;
 		this.property = property;
-		typeEntries = new ArrayList<TypeEntry>();
+		typeEntries = new ArrayList<>();
 
 		if (VCardOptions.TYPES.get(property) == null) {
 			types = new ArrayList<>();
@@ -60,7 +60,7 @@ public class DefaultPropertyEntry extends PropertyEntry {
 	}
 
 	public void addCTE() {
-		if (getUnusedTypes().size() > 0) {
+		if (!getUnusedTypes().isEmpty()) {
 			addCTE(getUnusedTypes().get(0));
 		}
 	}
@@ -69,7 +69,7 @@ public class DefaultPropertyEntry extends PropertyEntry {
 	public void setInput(Contact c) {
 		currentContact = c;
 		List<String> usedTypes = getUsedTypes();
-		List<String> neededTypes = new ArrayList<String>();
+		List<String> neededTypes = new ArrayList<>();
 		if (c.getTypesAndValues(property) != null) {
 			for (String type : c.getTypesAndValues(property).keySet()) {
 				neededTypes.add(type);
@@ -102,29 +102,32 @@ public class DefaultPropertyEntry extends PropertyEntry {
 	@Override
 	public void updateContact() {
 		for (TypeEntry cte : typeEntries) {
-			if (cte.getContent() != null)
+			if (cte.getContent() != null) {
 				currentContact.setProperty(property, cte.getType(), cte.getValue());
-			else
+			} else {
 				currentContact.removeProperty(property, cte.getType());
+			}
 		}
 
-		if (typeEntries.isEmpty())
+		if (typeEntries.isEmpty()) {
 			currentContact.removeProperty(property);
+		}
 	}
 
 	@Override
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 
-		if (editable && getUnusedTypes().size() > 0) {
+		if (editable && !getUnusedTypes().isEmpty()) {
 			addCTE(getUnusedTypes().get(0));
 		}
 
 		if (!editable) {
-			List<TypeEntry> remove = new ArrayList<TypeEntry>();
+			List<TypeEntry> remove = new ArrayList<>();
 			for (TypeEntry cte : typeEntries) {
-				if (!cte.hasContent())
+				if (!cte.hasContent()) {
 					remove.add(cte);
+				}
 			}
 			for (TypeEntry cte : remove) {
 				removeEntry(cte);
@@ -134,8 +137,9 @@ public class DefaultPropertyEntry extends PropertyEntry {
 		boolean vis = false;
 		for (TypeEntry cte : typeEntries) {
 			cte.setEditable(editable);
-			if (cte.hasContent())
+			if (cte.hasContent()) {
 				vis = true;
+			}
 		}
 		vis = vis || editable;
 
@@ -162,14 +166,16 @@ public class DefaultPropertyEntry extends PropertyEntry {
 
 	public void setCombo(TypeEntry cte) {
 		List<String> availableTypes = getUnusedTypes();
-		if (cte.getType() != null)
+		if (cte.getType() != null) {
 			availableTypes.add(0, cte.getType());
+		}
 		cte.setCombo(availableTypes);
 	}
 
 	public void typeChanged(String before) {
-		if (before != null && currentContact.getTypesAndValues(property) != null)
+		if (before != null && currentContact.getTypesAndValues(property) != null) {
 			currentContact.getTypesAndValues(property).remove(before);
+		}
 		for (TypeEntry cte : typeEntries) {
 			setCombo(cte);
 		}
@@ -183,8 +189,9 @@ public class DefaultPropertyEntry extends PropertyEntry {
 		cte.dispose();
 		typeEntries.remove(cte);
 
-		if (typeEntries.size() == 0 && editable)
+		if (typeEntries.isEmpty() && editable) {
 			addCTE();
+		}
 	}
 
 	public void deleteEntry(String type, TypeEntry cte) {

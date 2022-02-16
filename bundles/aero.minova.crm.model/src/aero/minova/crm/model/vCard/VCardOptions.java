@@ -6,8 +6,8 @@ import java.util.Map;
 public class VCardOptions {
 
 	public static final String PHOTO = "PHOTO";
-	public static final String NAME = "N";
-	public static final String FNAME = "FN";
+	public static final String N = "N";
+	public static final String FN = "FN";
 
 	public static final String ORG = "ORG";
 	public static final String TEL = "TEL";
@@ -37,12 +37,12 @@ public class VCardOptions {
 	 * <li>Note: Notizen</li>
 	 * </ul>
 	 **/
-	public static final String[] PROPERTIES = { "PHOTO", "N", "FN", "ORG", "TEL", "EMAIL", "ADR", "NOTE", "BDAY" };
+	public static final String[] PROPERTIES = { PHOTO, N, FN, ORG, TEL, EMAIL, ADR, NOTE, BDAY };
 
-	public static final String[] TELTYPES = { "HOME", "WORK", "CELL" };
-	public static final String[] EMAILTYPES = { "HOME", "WORK", "INTERNET" };
-	public static final String[] ADRTYPES = { "HOME", "WORK" };
-	public static final String[] PHOTOTYPES = { "JPG", "PNG", "GIF" };
+	public static final String[] TELTYPES = { HOME, WORK, CELL };
+	public static final String[] EMAILTYPES = { HOME, WORK, INTERNET };
+	public static final String[] ADRTYPES = { HOME, WORK };
+	public static final String[] PHOTOTYPES = { JPG, PNG, GIF };
 
 	/**
 	 * Die unterstützen Typen der verschiedenen Properties <br>
@@ -54,8 +54,8 @@ public class VCardOptions {
 	 * <li>ADR: "HOME", "WORK"</li>
 	 * </ul>
 	 **/
-	public static final Map<String, String[]> TYPES = Map.ofEntries(new AbstractMap.SimpleEntry<String, String[]>("TEL", TELTYPES),
-			new AbstractMap.SimpleEntry<String, String[]>("EMAIL", EMAILTYPES), new AbstractMap.SimpleEntry<String, String[]>("ADR", ADRTYPES),
-			new AbstractMap.SimpleEntry<String, String[]>("PHOTO", PHOTOTYPES));
+	public static final Map<String, String[]> TYPES = Map.ofEntries(new AbstractMap.SimpleEntry<String, String[]>(TEL, TELTYPES),
+			new AbstractMap.SimpleEntry<String, String[]>(EMAIL, EMAILTYPES), new AbstractMap.SimpleEntry<String, String[]>(ADR, ADRTYPES),
+			new AbstractMap.SimpleEntry<String, String[]>(PHOTO, PHOTOTYPES));
 
 }
