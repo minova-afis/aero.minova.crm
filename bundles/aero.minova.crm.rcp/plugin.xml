@@ -12,7 +12,19 @@
                name="appName"
                value="CRM">
          </property>
+         <property
+               name="cssTheme"
+               value="aero.minova.crm.rcp.defaulttheme">
+         </property>
       </product>
+   </extension>
+   <extension
+         point="org.eclipse.e4.ui.css.swt.theme">
+      <theme
+            basestylesheeturi="css/default.css"
+            id="aero.minova.crm.rcp.defaulttheme"
+            label="Default Theme">
+      </theme>
    </extension>
 
 </plugin>

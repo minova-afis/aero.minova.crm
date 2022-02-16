@@ -14,7 +14,6 @@
       </children>
       <children xsi:type="menu:Menu" xmi:id="_xEd6sGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.menu.server" label="Server">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_8LZy4GWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handledmenuitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/wiki.png" command="_m0Ny4GWEEey8iMpThXUUnw"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_h9LOYG_rEeyBRNnZcFo5mw" elementId="aero.minova.crm.rcp.handledmenuitem.test" label="Test" command="_QMEZsG_qEeyBRNnZcFo5mw"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
@@ -28,20 +27,30 @@
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_R2eDEGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.toolbarseparator.0"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_SV7mQGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handledtoolitem.0" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/project.png" command="_K5FaMGWDEey8iMpThXUUnw"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_JaOaEGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handledtoolitem.1" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/synchronize.png" command="_BHOekGWDEey8iMpThXUUnw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_446KoI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.3" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/contacts.png" command="_KJIVQI5GEeyvteSzXBkoag"/>
       </children>
     </trimBars>
   </children>
-  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.quitCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.openCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.saveCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.aboutCommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_FGRHAGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.0" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.DownloadWikiHandler" command="_BHOekGWDEey8iMpThXUUnw"/>
-  <handlers xmi:id="_MiVP8GWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.1" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SearchHandler" command="_K5FaMGWDEey8iMpThXUUnw"/>
-  <handlers xmi:id="_VgjSsGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.2" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_Si5OwGWEEey8iMpThXUUnw"/>
-  <handlers xmi:id="_zuSIMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.handler.4" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SwitchToDetailsHandler" command="_p1CyMGlLEeyPs7QNe0aZ_A"/>
-  <handlers xmi:id="_p9EaMGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.3" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartWebserverHandler" command="_m0Ny4GWEEey8iMpThXUUnw"/>
-  <handlers xmi:id="__UaJQGm4EeyrA9bDxnp9ow" elementId="aero.minova.crm.rcp.handler.5" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.FocusPartHandler" command="_3NBLYGm4EeyrA9bDxnp9ow"/>
-  <handlers xmi:id="_R9i-YG_qEeyBRNnZcFo5mw" elementId="aero.minova.crm.rcp.handler.6" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.TestHandler" command="_QMEZsG_qEeyBRNnZcFo5mw"/>
+  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.quit" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.open" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.save" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.handler.about" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_FGRHAGWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.synchronizewiki" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.DownloadWikiHandler" command="_BHOekGWDEey8iMpThXUUnw"/>
+  <handlers xmi:id="_MiVP8GWDEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.search" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SearchHandler" command="_K5FaMGWDEey8iMpThXUUnw"/>
+  <handlers xmi:id="_VgjSsGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.checkdatabase" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartDatabaseHandler" command="_Si5OwGWEEey8iMpThXUUnw"/>
+  <handlers xmi:id="_zuSIMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.handler.switchtodetails" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SwitchToDetailsHandler" command="_p1CyMGlLEeyPs7QNe0aZ_A"/>
+  <handlers xmi:id="_p9EaMGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.handler.startjettycommand" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.StartWebserverHandler" command="_m0Ny4GWEEey8iMpThXUUnw"/>
+  <handlers xmi:id="__UaJQGm4EeyrA9bDxnp9ow" elementId="aero.minova.crm.rcp.handler.focuspart" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.FocusPartHandler" command="_3NBLYGm4EeyrA9bDxnp9ow"/>
+  <handlers xmi:id="_urNdAI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.newContact" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.NewContactHandler" command="_KDeEEI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_GR0h8I5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.editContact" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.EditContactHandler" command="_MpedAI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_JnSo8I5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.showGroups" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.ShowContactGroupsHandler" command="_PGmmwI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_MN--YI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.deleteContact" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.DeleteContactHandler" command="_Rtg-oI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_QQ1IwI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.importvcard" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.VCardImportHandler" command="_kRrdYI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_Uf6_YI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.exportvcard" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.VCardExportHandler" command="_lkdT4I5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_YVZcII5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.deletegroup" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.DeleteGroupHandler" command="_nKXhwI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_bCUVYI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.exportgroup" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.ExportGroupHandler" command="_q2AtEI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_eTYdgI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.sendmail" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SendMailHandler" command="_sfhBgI5EEeyvteSzXBkoag"/>
+  <handlers xmi:id="_PxlLgI5GEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.opencontacts" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.OpenContactsHandler" command="_KJIVQI5GEeyvteSzXBkoag"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -57,6 +66,24 @@
   </rootContext>
   <snippets xsi:type="basic:Part" xmi:id="_hawgQGWXEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.part.ticket" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.parts.TicketPart" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/ticket.png" closeable="true"/>
   <snippets xsi:type="basic:Part" xmi:id="_OCveAHCgEeyPpO335DNHvQ" elementId="aero.minova.crm.rcp.part.wiki" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.parts.WikiPart" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/wiki.png" closeable="true"/>
+  <snippets xsi:type="basic:Part" xmi:id="_T86D0I5DEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.part.contacts" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.parts.ContactPart" label="Kontakte" iconURI="platform:/plugin/aero.minova.crm.rcp/icons/contacts.png" closeable="true">
+    <menus xsi:type="menu:PopupMenu" xmi:id="_A2LPQI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.popupmenu.contactmenu" label="Contact Menu">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_D0pykI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.handledmenuitem.bearbeiten" label="Bearbeiten" command="_MpedAI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_GdCKEI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.handledmenuitem.exportieren" label="Exportieren" command="_lkdT4I5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_Jn7YwI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.handledmenuitem.lschen" label="Löschen" command="_Rtg-oI5EEeyvteSzXBkoag"/>
+    </menus>
+    <menus xsi:type="menu:PopupMenu" xmi:id="_M4ntcI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.popupmenu.groupmenu" label="Group Menu">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_OIMe8I5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.handledmenuitem.gruppeexportieren" label="Gruppe Exportieren" command="_q2AtEI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_Q8cIMI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.handledmenuitem.gruppelschen" label="Gruppe Löschen" command="_nKXhwI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_TpMCUI5eEey3rsjoV31gpA" elementId="aero.minova.crm.rcp.handledmenuitem.e-mailangruppeschicken" label="E-Mail an Gruppe schicken" command="_sfhBgI5EEeyvteSzXBkoag"/>
+    </menus>
+    <toolbar xmi:id="_mf8hMI5DEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.toolbar.0">
+      <children xsi:type="menu:HandledToolItem" xmi:id="_DOWmYI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.newContact" label="Neu" command="_KDeEEI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledToolItem" xmi:id="_YHBeYI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.bearbeiten" label="Bearbeiten" command="_MpedAI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledToolItem" xmi:id="_cHkisI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.gruppenanzeigen" label="Gruppen anzeigen" type="Check" command="_PGmmwI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledToolItem" xmi:id="_ehpYcI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.lschen" label="Löschen" command="_Rtg-oI5EEeyvteSzXBkoag"/>
+    </toolbar>
+  </snippets>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
@@ -67,9 +94,18 @@
   </commands>
   <commands xmi:id="_Si5OwGWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.checkdatabase" commandName="checkDatabaseCommand"/>
   <commands xmi:id="_m0Ny4GWEEey8iMpThXUUnw" elementId="aero.minova.crm.rcp.command.startjettycommand" commandName="startWebserverCommand"/>
-  <commands xmi:id="_p1CyMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.command.switchtodetails" commandName="switchToDetails" category="_tvOv0GlLEeyPs7QNe0aZ_A"/>
+  <commands xmi:id="_p1CyMGlLEeyPs7QNe0aZ_A" elementId="aero.minova.crm.rcp.command.switchtodetails" commandName="switchToDetailsCommand" category="_tvOv0GlLEeyPs7QNe0aZ_A"/>
   <commands xmi:id="_3NBLYGm4EeyrA9bDxnp9ow" elementId="aero.minova.crm.rcp.command.focuspartcommand" commandName="focusPartCommand"/>
-  <commands xmi:id="_QMEZsG_qEeyBRNnZcFo5mw" elementId="aero.minova.crm.rcp.command.testcommand" commandName="testCommand"/>
+  <commands xmi:id="_KDeEEI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.newcontactcommand" commandName="newContactCommand"/>
+  <commands xmi:id="_MpedAI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.editContactCommand" commandName="editContactCommand"/>
+  <commands xmi:id="_PGmmwI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.showGroupsCommand" commandName="showGroupsCommand"/>
+  <commands xmi:id="_Rtg-oI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.deletecontactcommand" commandName="deleteContactCommand"/>
+  <commands xmi:id="_kRrdYI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.importvcardcommand" commandName="importVCardCommand"/>
+  <commands xmi:id="_lkdT4I5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.exportvcardcommand" commandName="exportVCardCommand"/>
+  <commands xmi:id="_nKXhwI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.deletegroupcommand" commandName="deleteGroupCommand"/>
+  <commands xmi:id="_q2AtEI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.exportgroupcommand" commandName="exportGroupCommand"/>
+  <commands xmi:id="_sfhBgI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.sendmailcommand" commandName="sendMailCommand"/>
+  <commands xmi:id="_KJIVQI5GEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.opencontactscommand" commandName="openContactsCommand"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

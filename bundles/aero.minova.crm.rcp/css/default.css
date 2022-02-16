@@ -1,0 +1,79 @@
+Text {
+	/*font-size: 14;*/
+}
+
+Label {
+/*	font-size: 12; */
+	color: grey;
+}
+
+
+Link {
+/*	font-size: 12; */
+	color: #6060ff;
+}
+
+.statusBar {
+	color: black;
+}
+
+Composite {
+	background-color: white;
+}
+
+.MPartStack {
+    swt-maximize-visible: false;
+    swt-minimize-visible: false;
+}
+
+SashForm {
+	background-color: #A0A0A0;
+}
+
+
+
+NatTable {
+	color: black;
+	cell-background-color: white;
+	background-color: white;
+	/*table-border-color: auto;*/
+	render-table-border: false;
+	/*column-width: auto;*/
+	render-grid-lines: false;
+	grid-line-color: black;
+	grid-line-width: 1px;
+	font-weight: normal;
+	font-style: normal;
+	font-family: tahoma;
+	tree-structure-painter: background tree;
+	text-align: left;
+	padding-left: 7px;
+	
+	font-size: 11px;
+	--fontSizeGeneral: attr(font-size)
+}
+
+NatTable:select {
+	row-height: auto;
+	painter-resolution: false;
+	render-grid-lines: false;
+}
+
+NatTable > .BODY:select {
+    painter-resolution: false;
+	cell-background-color: yellow;
+	color: black;
+	font-weight: normal;
+	font-style: normal;
+	font-family: tahoma;
+}
+
+NatTable > .selectionAnchor:select {
+    painter-resolution: false;
+	cell-background-color: yellow;
+	color: black;
+	font-style: normal;
+	font-family: tahoma;
+	font-size: var(--fontSizeGeneral)
+}
+

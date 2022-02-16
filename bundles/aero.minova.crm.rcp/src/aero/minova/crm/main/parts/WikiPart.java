@@ -58,8 +58,7 @@ public class WikiPart {
 	private boolean updating = false;
 
 	@Inject
-	public WikiPart() {
-	}
+	public WikiPart() {}
 
 	@PostConstruct
 	public void createUI(Composite parent) {
@@ -81,7 +80,7 @@ public class WikiPart {
 
 		editField = new Text(sashForm, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		editField.addModifyListener(e -> {
-			part.setDirty(!updating );
+			part.setDirty(!updating);
 			refreshMarkdown();
 		});
 
@@ -89,7 +88,7 @@ public class WikiPart {
 
 		sashForm.setOrientation(SWT.HORIZONTAL);
 
-		setPath((String) part.getPersistedState().get("path"));
+		setPath(part.getPersistedState().get("path"));
 	}
 
 	private void refreshMarkdown() {
