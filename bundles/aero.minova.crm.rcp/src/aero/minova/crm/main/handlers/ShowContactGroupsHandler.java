@@ -6,10 +6,6 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.model.application.ui.menu.MToolBarElement;
 import org.eclipse.swt.widgets.ToolItem;
 
-import aero.minova.cloud.crm.frontend.adapter.in.web.ApiClient;
-import aero.minova.cloud.crm.frontend.adapter.in.web.ApiException;
-import aero.minova.cloud.crm.frontend.adapter.in.web.api.ContactsPersonsApi;
-import aero.minova.cloud.crm.frontend.adapter.in.web.model.ContactsAllPersonsResponse;
 import aero.minova.crm.main.parts.ContactPart;
 
 public class ShowContactGroupsHandler {
@@ -29,19 +25,6 @@ public class ShowContactGroupsHandler {
 		if (part.getObject() instanceof ContactPart contactPart) {
 			contactPart.setGroupListVisible(selection);
 		}
-
-		ApiClient client = new ApiClient();
-		client.updateBaseUri("https://www.minova.de/de/");
-
-		ContactsPersonsApi api = new ContactsPersonsApi(client);
-		try {
-			ContactsAllPersonsResponse allPersons = api.getAllPersons("minova");
-			System.out.println(allPersons);
-		} catch (ApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	@CanExecute

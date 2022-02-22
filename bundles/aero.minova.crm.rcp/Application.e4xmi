@@ -51,6 +51,7 @@
   <handlers xmi:id="_bCUVYI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.exportgroup" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.ExportGroupHandler" command="_q2AtEI5EEeyvteSzXBkoag"/>
   <handlers xmi:id="_eTYdgI5FEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.sendmail" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.SendMailHandler" command="_sfhBgI5EEeyvteSzXBkoag"/>
   <handlers xmi:id="_PxlLgI5GEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handler.opencontacts" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.OpenContactsHandler" command="_KJIVQI5GEeyvteSzXBkoag"/>
+  <handlers xmi:id="_a6ioQJO9EeybpcihhcqocQ" elementId="aero.minova.crm.rcp.handler.loadcontacts" contributionURI="bundleclass://aero.minova.crm.rcp/aero.minova.crm.main.handlers.LoadContactsHandler" command="_YoLkEJO9EeybpcihhcqocQ"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="aero.minova.crm.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -82,6 +83,7 @@
       <children xsi:type="menu:HandledToolItem" xmi:id="_YHBeYI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.bearbeiten" label="Bearbeiten" command="_MpedAI5EEeyvteSzXBkoag"/>
       <children xsi:type="menu:HandledToolItem" xmi:id="_cHkisI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.gruppenanzeigen" label="Gruppen anzeigen" selected="true" type="Check" command="_PGmmwI5EEeyvteSzXBkoag"/>
       <children xsi:type="menu:HandledToolItem" xmi:id="_ehpYcI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.handledtoolitem.lschen" label="Löschen" command="_Rtg-oI5EEeyvteSzXBkoag"/>
+      <children xsi:type="menu:HandledToolItem" xmi:id="_N1ig4JO9EeybpcihhcqocQ" elementId="aero.minova.crm.rcp.handledtoolitem.kontakteladen" label="Kontakte laden" command="_YoLkEJO9EeybpcihhcqocQ"/>
     </toolbar>
   </snippets>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
@@ -106,6 +108,7 @@
   <commands xmi:id="_q2AtEI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.exportgroupcommand" commandName="exportGroupCommand"/>
   <commands xmi:id="_sfhBgI5EEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.sendmailcommand" commandName="sendMailCommand"/>
   <commands xmi:id="_KJIVQI5GEeyvteSzXBkoag" elementId="aero.minova.crm.rcp.command.opencontactscommand" commandName="openContactsCommand"/>
+  <commands xmi:id="_YoLkEJO9EeybpcihhcqocQ" elementId="aero.minova.crm.rcp.command.loadcontactscommand" commandName="loadContactsCommand"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
