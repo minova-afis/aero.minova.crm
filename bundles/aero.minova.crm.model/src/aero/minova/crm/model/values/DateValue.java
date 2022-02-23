@@ -2,6 +2,8 @@ package aero.minova.crm.model.values;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import aero.minova.crm.model.Constants;
@@ -15,13 +17,22 @@ public class DateValue extends Value {
 		try {
 			this.setDate(format.parse(dateString));
 		} catch (ParseException e) {
-			if (!dateString.equals(""))
+			format = new SimpleDateFormat(Constants.DATEFORMATVCARD);
+			try {
+				this.setDate(format.parse(dateString));
+			} catch (ParseException e1) {
 				e.printStackTrace();
+			}
 		}
 	}
 
 	public DateValue(Date date) {
 		this.setDate(date);
+	}
+
+	public DateValue(LocalDate birthday) {
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		this.setDate(Date.from(birthday.atStartOfDay(defaultZoneId).toInstant()));
 	}
 
 	@Override
