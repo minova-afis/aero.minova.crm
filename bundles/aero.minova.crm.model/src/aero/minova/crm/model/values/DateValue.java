@@ -13,6 +13,11 @@ public class DateValue extends Value {
 	private Date date;
 
 	public DateValue(String dateString) {
+
+		if (dateString == null || dateString.isBlank()) {
+			return;
+		}
+
 		SimpleDateFormat format = new SimpleDateFormat(Constants.DATEFORMAT);
 		try {
 			this.setDate(format.parse(dateString));
@@ -30,13 +35,18 @@ public class DateValue extends Value {
 		this.setDate(date);
 	}
 
-	public DateValue(LocalDate birthday) {
+	public DateValue(LocalDate date) {
+		if (date == null) {
+			return;
+		}
+
 		ZoneId defaultZoneId = ZoneId.systemDefault();
-		this.setDate(Date.from(birthday.atStartOfDay(defaultZoneId).toInstant()));
+		this.setDate(Date.from(date.atStartOfDay(defaultZoneId).toInstant()));
 	}
 
 	@Override
 	public String getStringRepresentation() {
+
 		SimpleDateFormat format = new SimpleDateFormat(Constants.DATEFORMAT);
 		return format.format(getDate());
 	}
@@ -49,6 +59,10 @@ public class DateValue extends Value {
 
 	public Date getDate() {
 		return date;
+	}
+
+	public LocalDate getLocalDate() {
+		return date == null ? null : LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
 	}
 
 	public void setDate(Date date) {

@@ -17,6 +17,7 @@ public class TextValueEntry extends ValueEntry {
 	private Composite inputComp;
 	private Text input;
 	private ModifyListener inputModifyListener;
+	private Value value;
 
 	public TextValueEntry(Composite body, DefaultPropertyEntry contactPropertyEntry, String property, boolean editable) {
 
@@ -83,11 +84,15 @@ public class TextValueEntry extends ValueEntry {
 
 	@Override
 	protected Value getValue() {
-		return new TextValue(input.getText());
+		TextValue v = new TextValue(input.getText());
+		v.setUuid(value.getUuid());
+		value = v;
+		return v;
 	}
 
 	@Override
 	protected void setText(Value value) {
+		this.value = value;
 		input.setText(value.getStringRepresentation());
 	}
 

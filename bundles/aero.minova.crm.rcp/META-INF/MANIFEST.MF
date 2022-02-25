@@ -31,7 +31,7 @@ Require-Bundle: aero.minova.crm.http;bundle-version="0.0.1",
  org.eclipse.e4.core.services;bundle-version="2.3.100",
  org.eclipse.e4.ui.css.swt;bundle-version="0.14.400",
  org.eclipse.e4.ui.css.swt.theme,
- wrapped.aero.minova.cloud.crm.frontend.api;bundle-version="1.0.5"
+ wrapped.aero.minova.cloud.crm.frontend.api
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
  javax.inject;version="1.0.0"

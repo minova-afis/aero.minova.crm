@@ -2,6 +2,7 @@ package aero.minova.crm.model.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import aero.minova.crm.model.vCard.VCardOptions;
@@ -58,17 +59,18 @@ public class Database {
 	}
 
 	public Group getGroupByPosition(int pos) {
-		if (groups.size() >= pos && pos >= 0)
+		if (groups.size() >= pos && pos >= 0) {
 			return groups.get(pos);
-		else
-			return null;
+		}
+		return null;
 	}
 
 	public int getPositionOfGroup(Group g) {
 		int i = 0;
 		for (Group group : groups) {
-			if (g.equals(group))
+			if (g.equals(group)) {
 				return i;
+			}
 			i += 1;
 		}
 		return -1;
@@ -168,8 +170,18 @@ public class Database {
 
 	public Contact getContactByName(Value value) {
 		for (Contact c : contacts) {
-			if (c.getValue(VCardOptions.N) != null && c.getValue(VCardOptions.N).equals(value))
+			if (c.getValue(VCardOptions.N) != null && c.getValue(VCardOptions.N).equals(value)) {
 				return c;
+			}
+		}
+		return null;
+	}
+
+	public Contact getContactByUUID(UUID uuid) {
+		for (Contact c : contacts) {
+			if (c.getUuid() != null && c.getUuid().equals(uuid)) {
+				return c;
+			}
 		}
 		return null;
 	}

@@ -34,7 +34,7 @@ public class NotesPropertyEntry extends PropertyEntry {
 	@Override
 	public void setInput(Contact c) {
 		currentContact = c;
-		if (c.getValue(VCardOptions.NOTE) != null) {
+		if (c.getValue(VCardOptions.NOTE) != null && c.getValue(VCardOptions.NOTE).getStringRepresentation() != null) {
 			input.setText(c.getValue(VCardOptions.NOTE).getStringRepresentation());
 		} else {
 			input.setText("");

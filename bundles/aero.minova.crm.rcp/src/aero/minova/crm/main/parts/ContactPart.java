@@ -520,4 +520,12 @@ public class ContactPart {
 			MessageDialog.openInformation(shell, null, "Es ist keine Gruppe ausgewählt");
 		}
 	}
+
+	public List<Contact> getSelectedContacts() {
+		return selectedContacts;
+	}
+
+	public void refreshTables() {
+		showContacts(selectedGroups.get(0).getMembers());
+	}
 }

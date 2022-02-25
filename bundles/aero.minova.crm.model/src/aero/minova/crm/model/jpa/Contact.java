@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import aero.minova.crm.model.vCard.VCardOptions;
 import aero.minova.crm.model.values.TextValue;
@@ -17,6 +18,8 @@ import aero.minova.crm.model.values.Value;
 public class Contact {
 
 	private final int id;
+
+	private UUID uuid;
 
 	private Map<String, Map<String, Value>> properties;
 
@@ -106,5 +109,13 @@ public class Contact {
 		if (properties.containsKey(prop) && properties.get(prop).containsKey(type)) {
 			properties.get(prop).remove(type);
 		}
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 }

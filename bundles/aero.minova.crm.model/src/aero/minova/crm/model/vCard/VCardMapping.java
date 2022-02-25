@@ -1,7 +1,10 @@
 package aero.minova.crm.model.vCard;
 
+import java.util.AbstractMap;
 import java.util.List;
+import java.util.Map;
 
+import aero.minova.cloud.crm.frontend.adapter.in.web.model.Purpose;
 import aero.minova.crm.model.values.AddressValue;
 import aero.minova.crm.model.values.DateValue;
 import aero.minova.crm.model.values.NameValue;
@@ -20,6 +23,14 @@ import ezvcard.property.VCardProperty;
 public class VCardMapping {
 
 	private VCardMapping() {}
+
+	public static Map<String, Purpose> propToPurpose = Map.ofEntries(//
+			new AbstractMap.SimpleEntry<String, Purpose>(VCardOptions.WORK, Purpose.BUSINESS), //
+			new AbstractMap.SimpleEntry<String, Purpose>(VCardOptions.HOME, Purpose.PRIVATE));
+
+	public static Map<Purpose, String> purposeToProp = Map.ofEntries(//
+			new AbstractMap.SimpleEntry<Purpose, String>(Purpose.BUSINESS, VCardOptions.WORK), //
+			new AbstractMap.SimpleEntry<Purpose, String>(Purpose.PRIVATE, VCardOptions.HOME));
 
 	public static String getPropertyString(VCardProperty vCardProp) {
 		switch (vCardProp.getClass().getName()) {
