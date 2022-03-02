@@ -3,7 +3,6 @@
 	<groupId>aero.minova.crm</groupId>
 	<artifactId>aero.minova.crm.root</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>[mvn] Root</name>
 	<packaging>pom</packaging>
 
 	<properties>
