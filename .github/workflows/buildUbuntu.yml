@@ -14,7 +14,7 @@ env:
   ACCOUNT: minova-afis
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
 
     steps:
