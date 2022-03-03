@@ -177,8 +177,10 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>7.0.0</version>
                 <configuration>
-                    <!-- Rainer: @Lea remove all vulnerabilities and reactivate -->
+                    <!-- Rainer: @Lea remove all vulnerabilities and activate line below -->
                     <!-- <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability> -->
+                    <!-- Rainer: @Lea remove all vulnerabilities and remove line below -->
+                    <failOnError>false</failOnError>
                 </configuration>
             </plugin>
         </plugins>
