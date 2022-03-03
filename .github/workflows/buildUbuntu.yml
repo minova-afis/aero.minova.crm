@@ -45,14 +45,30 @@ jobs:
 
       - name: SonarQube Scan
         env:
+          MAIN_GITHUB_RELEASE_USERNAME: ${{ secrets.MAIN_GITHUB_RELEASE_USERNAME }}
+          MAIN_GITHUB_RELEASE_TOKEN: ${{ secrets.MAIN_GITHUB_RELEASE_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn --batch-mode verify \
+            dependency-check:aggregate \
             org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=${{env.ACCOUNT}}_${{github.event.repository.name}} \
             -Dsonar.branch.name=${{steps.branch-name.outputs.current_branch}} \
-            --file pom.xml
+            --file pom.xml \
+            --settings .github/settings.xml
+
+      - name: Store report of Dependency Check
+        uses: actions/upload-artifact@v2
+        with:
+          name: dependency-check-report.html
+          path: target/dependency-check-report.html
 
       - name: Build with Maven
-        run: xvfb-run mvn clean verify --fae --file pom.xml -T4
+        env:
+          MAIN_GITHUB_RELEASE_USERNAME: ${{ secrets.MAIN_GITHUB_RELEASE_USERNAME }}
+          MAIN_GITHUB_RELEASE_TOKEN: ${{ secrets.MAIN_GITHUB_RELEASE_TOKEN }}
+        run: |
+          xvfb-run mvn clean verify --fae -T4 \
+          --file pom.xml \
+          --settings .github/settings.xml
