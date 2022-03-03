@@ -18,7 +18,7 @@
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.language>java</sonar.language>
-        <tycho.version>2.6.0</tycho.version>
+        <tycho.version>2.7.0</tycho.version>
     </properties>
 
     <reporting>
