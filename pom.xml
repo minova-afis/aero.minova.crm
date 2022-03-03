@@ -12,11 +12,12 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dependencyCheck.htmlReportPath>${project.basedir}/target/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
+        <sonar.dependencyCheck.jsonReportPath>${project.basedir}/target/dependency-check-report.json</sonar.dependencyCheck.jsonReportPath>
+        <sonar.dependencyCheck.xmlReportPath>${project.basedir}/target/dependency-check-report.xml</sonar.dependencyCheck.xmlReportPath>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.language>java</sonar.language>
-        <tycho.version>2.6.0</tycho.version>
     </properties>
 
     <reporting>
@@ -177,6 +178,7 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>7.0.0</version>
                 <configuration>
+                    <formats>HTML,JSON</formats>
                     <!-- Rainer: @Lea remove all vulnerabilities and activate line below -->
                     <!-- <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability> -->
                     <!-- Rainer: @Lea remove all vulnerabilities and remove line below -->
