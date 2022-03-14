@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.RuntimeWorkbench">
+    <setAttribute key="additional_plugins">
+        <setEntry value="org.apache.felix.scr:2.1.24.v20200924-1939:default:true:2:true"/>
+        <setEntry value="org.eclipse.core.runtime:3.24.0.v20210910-0750:default:true:2:true"/>
+        <setEntry value="org.eclipse.equinox.common:3.15.100.v20211021-1418:default:true:2:true"/>
+        <setEntry value="org.eclipse.equinox.event:1.6.100.v20211021-1418:default:true:3:true"/>
+        <setEntry value="org.eclipse.equinox.simpleconfigurator:1.4.0.v20210315-2228:default:true:1:true"/>
+    </setAttribute>
+    <booleanAttribute key="append.args" value="true"/>
+    <stringAttribute key="application" value="org.eclipse.e4.ui.workbench.swt.E4Application"/>
+    <booleanAttribute key="askclear" value="true"/>
+    <booleanAttribute key="automaticAdd" value="false"/>
+    <booleanAttribute key="automaticValidate" value="true"/>
+    <stringAttribute key="bootstrap" value=""/>
+    <stringAttribute key="checked" value="[NONE]"/>
+    <booleanAttribute key="clearConfig" value="true"/>
+    <booleanAttribute key="clearws" value="false"/>
+    <booleanAttribute key="clearwslog" value="false"/>
+    <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/aero.minova.crm.crm.product"/>
+    <booleanAttribute key="default" value="false"/>
+    <setAttribute key="deselected_workspace_bundles"/>
+    <booleanAttribute key="includeOptional" value="false"/>
+    <stringAttribute key="location" value="${workspace_loc}/../runtime-aero.minova.crm.crm.product"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -clearPersistedState"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.swt.graphics.Resource.reportNonDisposed=true -Dfile.encoding=UTF-8 -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts"/>
+    <stringAttribute key="pde.version" value="3.3"/>
+    <stringAttribute key="product" value="aero.minova.crm.rcp.product"/>
+    <stringAttribute key="productFile" value="/aero.minova.crm.product/aero.minova.crm.crm.product"/>
+    <setAttribute key="selected_features">
+        <setEntry value="aero.minova.feature.crm:default"/>
+        <setEntry value="aero.minova.feature.h2:default"/>
+        <setEntry value="aero.minova.feature.jetty:default"/>
+        <setEntry value="aero.minova.feature.jpa:default"/>
+        <setEntry value="aero.minova.feature.markdown:default"/>
+        <setEntry value="aero.minova.feature.xmlrpc:default"/>
+        <setEntry value="org.eclipse.e4.rcp:default"/>
+        <setEntry value="org.eclipse.justj.openjdk.hotspot.jre.full:default"/>
+    </setAttribute>
+    <setAttribute key="selected_target_bundles">
+        <setEntry value="com.fasterxml.jackson.core.jackson-annotations*2.10.4@default:default"/>
+        <setEntry value="com.fasterxml.jackson.core.jackson-annotations*2.12.5@default:default"/>
+        <setEntry value="com.fasterxml.jackson.core.jackson-core*2.10.4@default:default"/>
+        <setEntry value="com.fasterxml.jackson.core.jackson-core*2.12.5@default:default"/>
+        <setEntry value="com.fasterxml.jackson.core.jackson-databind*2.10.4@default:default"/>
+        <setEntry value="com.fasterxml.jackson.core.jackson-databind*2.12.5@default:default"/>
+        <setEntry value="com.fasterxml.jackson.datatype.jackson-datatype-jsr310@default:default"/>
+        <setEntry value="com.github.mangstadt.vinnie@default:default"/>
+        <setEntry value="com.google.gson@default:default"/>
+        <setEntry value="com.googlecode.ez-vcard@default:default"/>
+        <setEntry value="com.h2database@default:default"/>
+        <setEntry value="com.sun.jna.platform@default:default"/>
+        <setEntry value="com.sun.jna@default:default"/>
+        <setEntry value="io.swagger.annotations@default:default"/>
+        <setEntry value="jakarta.persistence-api@default:default"/>
+        <setEntry value="jakarta.servlet-api*5.0.0@default:default"/>
+        <setEntry value="javax.annotation@default:default"/>
+        <setEntry value="javax.inject@default:default"/>
+        <setEntry value="org.apache.batik.constants@default:default"/>
+        <setEntry value="org.apache.batik.css@default:default"/>
+        <setEntry value="org.apache.batik.i18n@default:default"/>
+        <setEntry value="org.apache.batik.util@default:default"/>
+        <setEntry value="org.apache.commons.io@default:default"/>
+        <setEntry value="org.apache.commons.jxpath@default:default"/>
+        <setEntry value="org.apache.commons.logging*1.2.0.v20180409-1502@default:default"/>
+        <setEntry value="org.apache.felix.gogo.command@default:default"/>
+        <setEntry value="org.apache.felix.gogo.runtime@default:default"/>
+        <setEntry value="org.apache.felix.gogo.shell@default:default"/>
+        <setEntry value="org.apache.felix.scr@2:true"/>
+        <setEntry value="org.apache.xmlgraphics@default:default"/>
+        <setEntry value="org.eclipse.core.commands@default:default"/>
+        <setEntry value="org.eclipse.core.contenttype@default:default"/>
+        <setEntry value="org.eclipse.core.databinding.beans@default:default"/>
+        <setEntry value="org.eclipse.core.databinding.observable@default:default"/>
+        <setEntry value="org.eclipse.core.databinding.property@default:default"/>
+        <setEntry value="org.eclipse.core.databinding@default:default"/>
+        <setEntry value="org.eclipse.core.expressions@default:default"/>
+        <setEntry value="org.eclipse.core.jobs@default:default"/>
+        <setEntry value="org.eclipse.core.runtime@2:true"/>
+        <setEntry value="org.eclipse.e4.core.commands@default:default"/>
+        <setEntry value="org.eclipse.e4.core.contexts@default:default"/>
+        <setEntry value="org.eclipse.e4.core.di.annotations@default:default"/>
+        <setEntry value="org.eclipse.e4.core.di.extensions.supplier@default:default"/>
+        <setEntry value="org.eclipse.e4.core.di.extensions@default:default"/>
+        <setEntry value="org.eclipse.e4.core.di@default:default"/>
+        <setEntry value="org.eclipse.e4.core.services@default:default"/>
+        <setEntry value="org.eclipse.e4.emf.xpath@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.bindings@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.css.core@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.css.swt.theme@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.css.swt@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.di@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.dialogs@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.model.workbench@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.services@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.widgets@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.workbench.addons.swt@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.workbench.renderers.swt.cocoa@default:false"/>
+        <setEntry value="org.eclipse.e4.ui.workbench.renderers.swt@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.workbench.swt@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.workbench3@default:default"/>
+        <setEntry value="org.eclipse.e4.ui.workbench@default:default"/>
+        <setEntry value="org.eclipse.emf.common@default:default"/>
+        <setEntry value="org.eclipse.emf.ecore.change@default:default"/>
+        <setEntry value="org.eclipse.emf.ecore.xmi@default:default"/>
+        <setEntry value="org.eclipse.emf.ecore@default:default"/>
+        <setEntry value="org.eclipse.equinox.app@default:default"/>
+        <setEntry value="org.eclipse.equinox.bidi@default:default"/>
+        <setEntry value="org.eclipse.equinox.common@2:true"/>
+        <setEntry value="org.eclipse.equinox.console@default:default"/>
+        <setEntry value="org.eclipse.equinox.event@3:true"/>
+        <setEntry value="org.eclipse.equinox.launcher.cocoa.macosx.x86_64@default:false"/>
+        <setEntry value="org.eclipse.equinox.launcher@default:default"/>
+        <setEntry value="org.eclipse.equinox.preferences@default:default"/>
+        <setEntry value="org.eclipse.equinox.region@default:false"/>
+        <setEntry value="org.eclipse.equinox.registry@default:default"/>
+        <setEntry value="org.eclipse.equinox.simpleconfigurator@1:true"/>
+        <setEntry value="org.eclipse.equinox.transforms.hook@default:false"/>
+        <setEntry value="org.eclipse.equinox.weaving.hook@default:false"/>
+        <setEntry value="org.eclipse.jetty.http*11.0.3@default:default"/>
+        <setEntry value="org.eclipse.jetty.io*11.0.3@default:default"/>
+        <setEntry value="org.eclipse.jetty.security*11.0.3@default:default"/>
+        <setEntry value="org.eclipse.jetty.server*11.0.3@default:default"/>
+        <setEntry value="org.eclipse.jetty.servlet*11.0.3@default:default"/>
+        <setEntry value="org.eclipse.jetty.servlet-api@default:default"/>
+        <setEntry value="org.eclipse.jetty.util*11.0.3@default:default"/>
+        <setEntry value="org.eclipse.jface.databinding@default:default"/>
+        <setEntry value="org.eclipse.jface.notifications@default:default"/>
+        <setEntry value="org.eclipse.jface@default:default"/>
+        <setEntry value="org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64@default:false"/>
+        <setEntry value="org.eclipse.justj.openjdk.hotspot.jre.full@default:default"/>
+        <setEntry value="org.eclipse.nebula.widgets.nattable.core@default:default"/>
+        <setEntry value="org.eclipse.nebula.widgets.nattable.extension.e4@default:default"/>
+        <setEntry value="org.eclipse.osgi.compatibility.state@default:false"/>
+        <setEntry value="org.eclipse.osgi.services@default:default"/>
+        <setEntry value="org.eclipse.osgi.util@default:default"/>
+        <setEntry value="org.eclipse.osgi@-1:true"/>
+        <setEntry value="org.eclipse.persistence.asm*9.2.0@default:default"/>
+        <setEntry value="org.eclipse.persistence.core@default:default"/>
+        <setEntry value="org.eclipse.persistence.jpa.jpql@default:default"/>
+        <setEntry value="org.eclipse.persistence.jpa@default:default"/>
+        <setEntry value="org.eclipse.swt.cocoa.macosx.x86_64@default:false"/>
+        <setEntry value="org.eclipse.swt@default:default"/>
+        <setEntry value="org.eclipse.urischeme@default:default"/>
+        <setEntry value="org.glassfish.corba.glassfish-corba-omgapi@default:false"/>
+        <setEntry value="org.w3c.css.sac@default:default"/>
+        <setEntry value="org.w3c.dom.events@default:default"/>
+        <setEntry value="org.w3c.dom.smil@default:default"/>
+        <setEntry value="org.w3c.dom.svg@default:default"/>
+        <setEntry value="slf4j.api@default:default"/>
+        <setEntry value="wrapped.aero.minova.cloud.crm.frontend.api@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-all@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-abbreviation@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-admonition@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-anchorlink@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-aside@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-attributes@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-autolink@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-definition@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-emoji@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-enumerated-reference@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-escaped-character@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-footnotes@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-gfm-issues@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-gfm-strikethrough@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-gfm-tasklist@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-gfm-users@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-gitlab@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-ins@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-jekyll-front-matter@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-jekyll-tag@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-macros@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-media-tags@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-superscript@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-tables@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-toc@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-typographic@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-wikilink@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-xwiki-macros@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-yaml-front-matter@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-ext-youtube-embedded@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-html2md-converter@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-jira-converter@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-pdf-converter@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-profile-pegdown@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-ast@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-builder@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-collection@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-data@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-dependency@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-format@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-html@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-misc@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-options@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-sequence@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util-visitor@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-util@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark-youtrack-converter@default:default"/>
+        <setEntry value="wrapped.com.vladsch.flexmark.flexmark@default:default"/>
+        <setEntry value="wrapped.org.apache.ws.commons.util.ws-commons-util@default:default"/>
+        <setEntry value="wrapped.org.apache.xmlrpc.xmlrpc-client@default:default"/>
+        <setEntry value="wrapped.org.apache.xmlrpc.xmlrpc-common@default:default"/>
+        <setEntry value="wrapped.org.openapitools.jackson-databind-nullable@default:default"/>
+    </setAttribute>
+    <setAttribute key="selected_workspace_bundles">
+        <setEntry value="aero.minova.crm.http@default:default"/>
+        <setEntry value="aero.minova.crm.model@default:default"/>
+        <setEntry value="aero.minova.crm.rcp@default:default"/>
+        <setEntry value="aero.minova.crm.service.http@default:default"/>
+        <setEntry value="aero.minova.crm.service.trac@default:default"/>
+        <setEntry value="aero.minova.crm.trac@default:default"/>
+        <setEntry value="aero.minova.crm.wiki@default:default"/>
+    </setAttribute>
+    <booleanAttribute key="show_selected_only" value="false"/>
+    <booleanAttribute key="tracing" value="false"/>
+    <booleanAttribute key="useCustomFeatures" value="false"/>
+    <booleanAttribute key="useDefaultConfig" value="true"/>
+    <booleanAttribute key="useDefaultConfigArea" value="true"/>
+    <booleanAttribute key="useProduct" value="true"/>
+</launchConfiguration>

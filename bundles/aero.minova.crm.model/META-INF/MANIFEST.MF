@@ -6,9 +6,15 @@ Bundle-Version: 0.0.1.qualifier
 Bundle-Activator: aero.minova.crm.model.Activator
 Require-Bundle: org.eclipse.persistence.jpa;bundle-version="3.0.2",
  jakarta.persistence-api;bundle-version="3.0.0",
- org.eclipse.osgi
+ org.eclipse.osgi,
+ com.googlecode.ez-vcard,
+ org.eclipse.core.runtime,
+ wrapped.aero.minova.cloud.crm.frontend.api
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: aero.minova.crm.model
 Bundle-ActivationPolicy: lazy
-Export-Package: aero.minova.crm.model.jpa,
- aero.minova.crm.model.service
+Export-Package: aero.minova.crm.model,
+ aero.minova.crm.model.jpa,
+ aero.minova.crm.model.service,
+ aero.minova.crm.model.vCard,
+ aero.minova.crm.model.values
