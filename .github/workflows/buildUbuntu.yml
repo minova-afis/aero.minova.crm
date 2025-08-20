@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v9.0.9
+        uses: tj-actions/branch-names@v9.0.0
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -59,7 +59,7 @@ jobs:
             --settings .github/settings.xml
 
       - name: Store report of Dependency Check
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report.html
           path: target/dependency-check-report.html
